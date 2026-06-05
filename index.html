@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <!-- SEO Meta Tags -->
+  <title>Vignesh Kasinath Lab — Regulation of Gene Silencing by RNA and Chromatin</title>
+  <meta name="description" content="We investigate the structural and biochemical mechanisms of gene silencing, chromatin organization, and chromosome pairing using state-of-the-art cryo-EM, cryo-ET, and biochemistry at CU Boulder.">
+  <meta name="keywords" content="Vignesh Kasinath, Cryo-EM, Cryo-ET, Chromatin, Gene Silencing, PRC2, Biochemistry, Structural Biology, CU Boulder">
+  <meta name="author" content="Vignesh Kasinath Lab">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Vignesh Kasinath Lab — Regulation of Gene Silencing">
+  <meta property="og:description" content="Investigating the structures of gene silencing complexes and chromatin architecture at the University of Colorado Boulder.">
+  <meta property="og:image" content="assets/molecular_header.png">
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Floating particles animation canvas -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- CU Boulder Affiliation Banner -->
+  <div class="brand-top-bar" id="brand-affiliation-bar">
+    <span>University of Colorado Boulder</span>
+    <a href="https://www.colorado.edu/artsandsciences/" target="_blank" rel="noopener">College of Arts & Sciences</a>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="main-header" id="site-header">
+    <div class="logo-container" id="brand-logo">
+      <a href="#" onclick="document.querySelector('[data-target=home]').click(); return false;">KASINATH LAB</a>
+    </div>
+    
+    <button class="mobile-nav-toggle" id="mobile-toggle" aria-label="Toggle Menu" aria-expanded="false">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    
+    <nav class="nav-tabs" id="main-nav">
+      <button class="nav-tab active" data-target="home" id="tab-btn-home">Home</button>
+      <button class="nav-tab" data-target="research" id="tab-btn-research">Research</button>
+      <button class="nav-tab" data-target="structures" id="tab-btn-structures">Structures</button>
+      <button class="nav-tab" data-target="publications" id="tab-btn-publications">Publications</button>
+      <button class="nav-tab" data-target="team" id="tab-btn-team">Team</button>
+      <button class="nav-tab" data-target="openings" id="tab-btn-openings">Openings</button>
+      <button class="nav-tab" data-target="contact" id="tab-btn-contact">Contact</button>
+    </nav>
+  </header>
+
+  <!-- Main Content Viewport -->
+  <main class="content-container" id="main-content-area">
+
+    <!-- ==========================================
+         HOME SECTION
+         ========================================== -->
+    <section class="tab-section active" id="home">
+      <div class="hero-split" id="hero-banner">
+        <div class="hero-content">
+          <h1>Regulation of <span class="gradient-text">Gene Silencing</span> by RNA & Chromatin</h1>
+          <p class="hero-description">
+            We are a structural biology group at the University of Colorado Boulder. Using advanced cryo-electron microscopy (cryo-EM), cryo-electron tomography (cryo-ET), and biochemistry, we characterize the molecular machinery governing transcriptional repression, gene silencing, and higher-order chromosome architecture.
+          </p>
+          <div class="button-group">
+            <button class="btn btn-primary" onclick="document.querySelector('[data-target=research]').click();" id="hero-btn-explore">Explore Our Research</button>
+            <button class="btn btn-secondary" onclick="document.querySelector('[data-target=openings]').click();" id="hero-btn-openings">Join the Lab</button>
+          </div>
+        </div>
+        <div class="glass-card hero-carousel" id="hero-media">
+          <div class="carousel-slide active">
+            <img src="assets/molecular_header.png" alt="PRC2 complex bound to a dinucleosome structure">
+          </div>
+          <div class="carousel-slide">
+            <img src="file:///C:/Users/murar/.gemini/antigravity/brain/d1e16bc8-8d3d-42d9-9599-a1d7bf35a522/hero_chromatin_1780685976104.png" alt="Chromatin Architecture">
+          </div>
+          <div class="carousel-slide">
+            <img src="file:///C:/Users/murar/.gemini/antigravity/brain/d1e16bc8-8d3d-42d9-9599-a1d7bf35a522/hero_cryo_et_1780685989519.png" alt="Cryo-Electron Tomography">
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Row -->
+      <div class="stats-row" id="quick-metrics">
+        <div class="glass-card stat-item">
+          <div class="stat-number">Pew</div>
+          <div class="stat-label">Scholar Lab</div>
+        </div>
+        <div class="glass-card stat-item">
+          <div class="stat-number">$2.25M</div>
+          <div class="stat-label">NIH & NSF Funding</div>
+        </div>
+        <div class="glass-card stat-item">
+          <div class="stat-number">3.5Å</div>
+          <div class="stat-label">Cryo-EM Resolutions</div>
+        </div>
+        <div class="glass-card stat-item">
+          <div class="stat-number">3D</div>
+          <div class="stat-label">Chromosome Architecture</div>
+        </div>
+      </div>
+
+      <!-- Split Layout: Latest News & Key Questions -->
+      <div class="home-layout">
+        
+        <!-- News Column -->
+        <div class="news-section">
+          <h2 class="section-title">Latest Announcements</h2>
+          
+          <div class="news-carousel">
+            <div class="glass-card news-card active" id="news-pew">
+              <img src="file:///C:/Users/murar/.gemini/antigravity/brain/d1e16bc8-8d3d-42d9-9599-a1d7bf35a522/news_pew_1780686001612.png" alt="Pew Scholar" class="news-img">
+              <div class="news-date">June 2025</div>
+              <div class="news-headline">Vignesh Awarded Pew Biomedical Scholar Grant</div>
+              <div class="news-excerpt">Recognized for pioneering structural studies on chromatin regulation. Read more about the project on the Pew Scholars Directory.</div>
+            </div>
+            
+            <div class="glass-card news-card" id="news-grants">
+              <img src="file:///C:/Users/murar/.gemini/antigravity/brain/d1e16bc8-8d3d-42d9-9599-a1d7bf35a522/news_grants_1780686011568.png" alt="Grants Awarded" class="news-img">
+              <div class="news-date">April 2025</div>
+              <div class="news-headline">NIH MIRA and NSF Grants Totaling $2.25 Million</div>
+              <div class="news-excerpt">Funding will support our molecular investigations into chromatin modifier complex mechanics and cellular heterochromatin pathways.</div>
+            </div>
+            
+            <div class="glass-card news-card" id="news-students">
+              <img src="file:///C:/Users/murar/.gemini/antigravity/brain/d1e16bc8-8d3d-42d9-9599-a1d7bf35a522/news_students_1780686023826.png" alt="New Students" class="news-img">
+              <div class="news-date">September 2025</div>
+              <div class="news-headline">Welcome Graduate Students Keagan, Noah, and Carolina</div>
+              <div class="news-excerpt">We are thrilled to welcome three new graduate researchers to our team as they begin their doctoral rotations and projects.</div>
+            </div>
+          </div>
+          <!-- Dots for news carousel -->
+          <div class="carousel-dots news-dots"></div>
+        </div>
+
+        <!-- Key Questions Column -->
+        <div class="questions-section">
+          <h2 class="section-title">Core Research Themes</h2>
+          
+          <div class="glass-card question-card" id="question-1">
+            <div class="question-title">How do chromatin modifier complexes establish heterochromatin?</div>
+            <p class="news-excerpt">We analyze how complexes like PRC2 interact with RNA molecules and specific histone modifications to silence target genomic sites.</p>
+          </div>
+          
+          <div class="glass-card question-card alt" id="question-2">
+            <div class="question-title">How do homologous chromosomes pair and interact?</div>
+            <p class="news-excerpt">Using state-of-the-art cryo-ET and cryo-FIB milling, we capture the physical organization of synaptonemal complexes directly in situ.</p>
+          </div>
+
+          <div class="glass-card question-card" id="question-3">
+            <div class="question-title">What regulates structural variations of gene silencing enzymes?</div>
+            <p class="news-excerpt">We use mass spectrometry and biochemistry to examine how active transcription post-translational modifications inhibit and fine-tune silencing activity.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         RESEARCH SECTION
+         ========================================== -->
+    <section class="tab-section" id="research">
+      <h2 class="section-title">Research Priorities</h2>
+      <p style="margin-bottom: 40px; color: var(--color-text-muted); max-width: 800px;">
+        Our laboratory sits at the intersection of structural biology, molecular biochemistry, and epigenetics. We develop molecular models to explain the chromatin-level regulatory pathways that govern cellular development, silencing stability, and disease states.
+      </p>
+
+      <div class="research-grid" id="research-pillars">
+        <!-- Pillar 1 -->
+        <div class="glass-card research-card" id="pillar-epigenetics">
+          <div class="research-icon"><i class="fa-solid fa-dna"></i></div>
+          <h3>Epigenetics & Gene Silencing</h3>
+          <p>
+            We focus on Polycomb group proteins (PRC1 & PRC2) and their chromatin modifier pathways. Using single-particle cryo-EM, we visualize these massive complexes engaged with dinucleosomes to resolve their mechanism of catalysis, recruitment, and inhibition by active transcriptional modifications.
+          </p>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="glass-card research-card alt" id="pillar-tomography">
+          <div class="research-icon"><i class="fa-solid fa-microscope"></i></div>
+          <h3>In Situ Chromosome Architecture</h3>
+          <p>
+            To understand how chromosomes organize in three dimensions within the nucleus, we utilize cryo-focused ion beam (cryo-FIB) milling and cryo-electron tomography (cryo-ET). This allows us to map higher-order chromatin folding and pairing interactions directly inside intact cellular environments.
+          </p>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="glass-card research-card" id="pillar-biochemistry">
+          <div class="research-icon"><i class="fa-solid fa-flask"></i></div>
+          <h3>Biochemistry & Mass Spectrometry</h3>
+          <p>
+            We complement our structural studies with quantitative biochemistry, chromatin reconstitution assays, and quantitative mass spectrometry. This combined toolkit allows us to measure interaction binding affinities, kinetic behaviors, and map post-translational modifications of complex protein assemblies.
+          </p>
+        </div>
+      </div>
+
+      <!-- Detail Card with generated asset background -->
+      <div class="glass-card" style="margin-top: 50px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;" id="research-methodology">
+        <div>
+          <h3 style="margin-bottom: 15px; font-size: 1.5rem;">Visualizing Biological Architectures</h3>
+          <p style="color: var(--color-text-muted); font-size: 0.95rem; margin-bottom: 20px;">
+            By integrating molecular resolution cryo-EM structure determination with cellular scale cryo-ET mapping, our lab bridges the gap between atomic configurations and physiological chromosome folding.
+          </p>
+          <ul style="list-style-type: none; display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem;">
+            <li><i class="fa-solid fa-circle-check" style="color: var(--color-primary); margin-right: 8px;"></i> Single-particle cryo-EM reconstitution of epigenetic assemblies</li>
+            <li><i class="fa-solid fa-circle-check" style="color: var(--color-primary); margin-right: 8px;"></i> In situ cellular tomography with cryo-FIB grid sectioning</li>
+            <li><i class="fa-solid fa-circle-check" style="color: var(--color-primary); margin-right: 8px;"></i> Reconstituted chromatin templates with designer modifications</li>
+          </ul>
+        </div>
+        <div>
+          <img src="assets/cryo_em_microscope.png" alt="Cryo-EM electron microscope concept graphic" style="width: 100%; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: var(--shadow-glow-violet);">
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         STRUCTURES SECTION (Interactive 3Dmol)
+         ========================================== -->
+    <section class="tab-section" id="structures">
+      <h2 class="section-title">Solved Structures</h2>
+      <p style="margin-bottom: 30px; color: var(--color-text-muted); max-width: 800px;">
+        Rotate, zoom, and interact with the 3D structures solved by the lab and collaborators. These coordinate models represent the molecular mechanisms of transcriptional regulators resolved at atomic and near-atomic resolutions.
+      </p>
+
+      <div class="structure-viewer-container" id="solved-structures-interactive">
+        
+        <!-- Sidebar controls -->
+        <div class="structure-list" id="structures-selector">
+          <button class="structure-btn active" data-pdb="6WKR" id="btn-struct-6wkr">
+            <h4>PDB 6WKR</h4>
+            <span>PRC2 Dinucleosome Complex</span>
+            <span>Resolution: 3.5 Å</span>
+          </button>
+          
+          <button class="structure-btn" data-pdb="6C23" id="btn-struct-6c23">
+            <h4>PDB 6C23</h4>
+            <span>PRC2 bound to AEBP2 cofactor</span>
+            <span>Resolution: 4.2 Å</span>
+          </button>
+          
+          <button class="structure-btn" data-pdb="6C24" id="btn-struct-6c24">
+            <h4>PDB 6C24</h4>
+            <span>PRC2 with AEBP2 & JARID2</span>
+            <span>Resolution: 3.9 Å</span>
+          </button>
+        </div>
+
+        <!-- 3Dmol Window -->
+        <div class="viewer-window" id="viewer-window">
+          <div class="viewer-viewport" id="viewer-viewport">
+            <!-- Programmatic canvas loaded by 3Dmol.js -->
+          </div>
+
+          <!-- Custom overlay controls -->
+          <div class="viewer-overlay-ui" id="viewer-controls">
+            <button class="viewer-control-btn" id="btn-spin">Pause Rotation</button>
+            <button class="viewer-control-btn" id="btn-style">Style: Cartoon</button>
+            <button class="viewer-control-btn" id="btn-reset">Reset View</button>
+          </div>
+
+          <!-- Info Box on active structure -->
+          <div class="viewer-info" id="viewer-info-box">
+            <h5 id="struct-info-title">PRC2-AEBP2-JARID2 Bound to Dinucleosome</h5>
+            <p id="struct-info-method" style="color: var(--color-primary); font-weight: 500; margin-bottom: 5px;">Single Particle Cryo-EM (3.5 Å)</p>
+            <p id="struct-info-desc">Human Polycomb Repressive Complex 2 (PRC2) in complex with cofactor AEBP2 and JARID2, engaged on a dinucleosome substrate showing methylation state.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         PUBLICATIONS SECTION
+         ========================================== -->
+    <section class="tab-section" id="publications">
+      <h2 class="section-title">Selected Publications</h2>
+      
+      <!-- Filters -->
+      <div class="pub-filters" id="publications-filters">
+        <button class="pub-filter-btn active" id="filter-all">All Publications</button>
+        <button class="pub-filter-btn" id="filter-recent">Recent (2021-2025)</button>
+        <button class="pub-filter-btn" id="filter-prc">Polycomb & Chromatin</button>
+      </div>
+
+      <div class="publications-list" id="publications-content">
+        
+        <!-- Pub 1 -->
+        <div class="glass-card publication-item" data-category="recent prc" id="pub-2025-nsmb">
+          <div class="pub-year">2025</div>
+          <div class="pub-details">
+            <h3 class="pub-title">Structural basis for the inhibition of PRC2 by active transcription histone posttranslational modifications</h3>
+            <p class="pub-authors"><strong>Kasinath V.</strong>, et al.</p>
+            <p class="pub-journal">Nature Structural & Molecular Biology. (2025). doi:10.1038/s41594-025-01435-y</p>
+            <div class="pub-links">
+              <a href="https://doi.org/10.1038/s41594-025-01435-y" target="_blank" rel="noopener" class="pub-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Publisher Link</a>
+              <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener" class="pub-link"><i class="fa-solid fa-book-open"></i> PubMed</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pub 2 -->
+        <div class="glass-card publication-item" data-category="recent prc" id="pub-2021-science">
+          <div class="pub-year">2021</div>
+          <div class="pub-details">
+            <h3 class="pub-title">JARID2 and AEBP2 regulate PRC2 in the presence of H2AK119ub1 and other histone modifications</h3>
+            <p class="pub-authors"><strong>Kasinath V.</strong>, Beck C., Sauer P., Poepsel S., Kosmatka J., Faini M., Toso D., Aebersold R., Nogales E.</p>
+            <p class="pub-journal">Science. (2021) Jan 15;371(6526):eabc0739. doi:10.1126/science.abc0739</p>
+            <div class="pub-links">
+              <a href="https://doi.org/10.1126/science.abc0739" target="_blank" rel="noopener" class="pub-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Science Link</a>
+              <a href="https://pubmed.ncbi.nlm.nih.gov/33446524/" target="_blank" rel="noopener" class="pub-link"><i class="fa-solid fa-book-open"></i> PubMed (33446524)</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pub 3 -->
+        <div class="glass-card publication-item" data-category="prc" id="pub-2018-science">
+          <div class="pub-year">2018</div>
+          <div class="pub-details">
+            <h3 class="pub-title">Structures of human PRC2 with its cofactors AEBP2 and JARID2</h3>
+            <p class="pub-authors"><strong>Kasinath V.</strong>, Faini M., Poepsel S., Reif D., Feng X.A., Stjepanovic G., Aebersold R., Nogales E.</p>
+            <p class="pub-journal">Science. (2018) Jan 19;359(6373):340-344. doi:10.1126/science.aar7072</p>
+            <div class="pub-links">
+              <a href="https://doi.org/10.1126/science.aar7072" target="_blank" rel="noopener" class="pub-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Science Link</a>
+              <a href="https://pubmed.ncbi.nlm.nih.gov/29348238/" target="_blank" rel="noopener" class="pub-link"><i class="fa-solid fa-book-open"></i> PubMed (29348238)</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pub 4 -->
+        <div class="glass-card publication-item" data-category="prc" id="pub-2019-nsmb">
+          <div class="pub-year">2019</div>
+          <div class="pub-details">
+            <h3 class="pub-title">PRC2 recruitment and allosteric activation by cofactors</h3>
+            <p class="pub-authors">Poepsel S., <strong>Kasinath V.</strong>, Nogales E.</p>
+            <p class="pub-journal">Nature Structural & Molecular Biology. (2019) 26(5):351-361. doi:10.1038/s41594-019-0223-z</p>
+            <div class="pub-links">
+              <a href="https://doi.org/10.1038/s41594-019-0223-z" target="_blank" rel="noopener" class="pub-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Publisher Link</a>
+              <a href="https://pubmed.ncbi.nlm.nih.gov/31061526/" target="_blank" rel="noopener" class="pub-link"><i class="fa-solid fa-book-open"></i> PubMed (31061526)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TEAM SECTION
+         ========================================== -->
+    <section class="tab-section" id="team">
+      <h2 class="section-title">Meet the Team</h2>
+      <p style="margin-bottom: 40px; color: var(--color-text-muted); max-width: 800px;">
+        We are a dedicated group of molecular biophysicists, biochemists, and computer scientists working together to answer fundamental questions about gene regulation.
+      </p>
+
+      <div class="team-grid" id="team-members">
+        <!-- PI -->
+        <div class="glass-card team-card" id="team-member-pi">
+          <div class="team-photo-container">
+            <!-- Simulated image using default placeholder with styling -->
+            <div style="width:100%; height:100%; border-radius:50%; background: linear-gradient(135deg, var(--color-primary), var(--color-secondary)); display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-weight:700; font-size:1.8rem; color:#fff;">VK</div>
+          </div>
+          <div class="team-info">
+            <h3>Vignesh Kasinath</h3>
+            <div class="team-role">Principal Investigator</div>
+            <p class="team-bio-short">Pew Scholar & Assistant Professor of Biochemistry. Focusing on single particle cryo-EM and in situ tomography.</p>
+          </div>
+        </div>
+
+        <!-- Member 1 -->
+        <div class="glass-card team-card" id="team-member-1">
+          <div class="team-photo-container">
+            <div style="width:100%; height:100%; border-radius:50%; background:#2c264d; display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-weight:700; font-size:1.8rem; color:#e2e1ee;">LY</div>
+          </div>
+          <div class="team-info">
+            <h3>Liqi Yao</h3>
+            <div class="team-role">Postdoctoral Scholar</div>
+            <p class="team-bio-short">Reconstructing nucleosome assembly states and mapping chromatin modifications using cryo-EM.</p>
+          </div>
+        </div>
+
+        <!-- Member 2 -->
+        <div class="glass-card team-card" id="team-member-2">
+          <div class="team-photo-container">
+            <div style="width:100%; height:100%; border-radius:50%; background:#2c264d; display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-weight:700; font-size:1.8rem; color:#e2e1ee;">DG</div>
+          </div>
+          <div class="team-info">
+            <h3>Danielle Guillen</h3>
+            <div class="team-role">PhD Candidate</div>
+            <p class="team-bio-short">Investigating non-coding RNA pathways regulating Polycomb recruitment and chromatin configuration.</p>
+          </div>
+        </div>
+
+        <!-- Member 3 -->
+        <div class="glass-card team-card" id="team-member-3">
+          <div class="team-photo-container">
+            <div style="width:100%; height:100%; border-radius:50%; background:#2c264d; display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-weight:700; font-size:1.8rem; color:#e2e1ee;">MM</div>
+          </div>
+          <div class="team-info">
+            <h3>Mark Matyas</h3>
+            <div class="team-role">Graduate Student</div>
+            <p class="team-bio-short">Developing computational models for processing structural datasets and high-resolution tomograms.</p>
+          </div>
+        </div>
+
+        <!-- Member 4 -->
+        <div class="glass-card team-card" id="team-member-4">
+          <div class="team-photo-container">
+            <div style="width:100%; height:100%; border-radius:50%; background:#2c264d; display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-weight:700; font-size:1.8rem; color:#e2e1ee;">KH</div>
+          </div>
+          <div class="team-info">
+            <h3>Keagan Hesse</h3>
+            <div class="team-role">Graduate Student</div>
+            <p class="team-bio-short">Joined in 2025. Focused on resolving the molecular mechanisms of DNA transposon silencing complexes.</p>
+          </div>
+        </div>
+
+        <!-- Member 5 -->
+        <div class="glass-card team-card" id="team-member-5">
+          <div class="team-photo-container">
+            <div style="width:100%; height:100%; border-radius:50%; background:#2c264d; display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-weight:700; font-size:1.8rem; color:#e2e1ee;">NL</div>
+          </div>
+          <div class="team-info">
+            <h3>Noah Lohar</h3>
+            <div class="team-role">Graduate Student</div>
+            <p class="team-bio-short">Joined in 2025. Developing specialized workflows for in situ cryo-FIB cellular tomography alignments.</p>
+          </div>
+        </div>
+
+        <!-- Member 6 -->
+        <div class="glass-card team-card" id="team-member-6">
+          <div class="team-photo-container">
+            <div style="width:100%; height:100%; border-radius:50%; background:#2c264d; display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-weight:700; font-size:1.8rem; color:#e2e1ee;">CV</div>
+          </div>
+          <div class="team-info">
+            <h3>Carolina Valderrama</h3>
+            <div class="team-role">Graduate Student</div>
+            <p class="team-bio-short">Joined in 2025. Analyzing dynamic interactions of PRC2 with RNA binders on reconstituted templates.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         OPENINGS SECTION
+         ========================================== -->
+    <section class="tab-section" id="openings">
+      <h2 class="section-title">Join Us</h2>
+      <p style="margin-bottom: 40px; color: var(--color-text-muted); max-width: 800px;">
+        We are always seeking passionate and motivated researchers to join our lab. If you are interested in exploring complex structural molecular biology systems using cutting-edge tools, check out our current openings.
+      </p>
+
+      <div class="openings-layout" id="opportunities-list">
+        <!-- Opening 1 -->
+        <div class="glass-card position-card" id="position-comp">
+          <span class="position-tag">Masters & Undergrad</span>
+          <h3>Computational Project Positions</h3>
+          <p>
+            Positions are available immediately for undergraduate and master's students interested in computational structural biology. Projects involve cryo-EM data preprocessing, 3D tomogram alignment, and developing structural visualization routines. Python experience is highly recommended.
+          </p>
+          <button class="btn btn-secondary" onclick="document.querySelector('[data-target=contact]').click();" id="btn-apply-comp">Inquire About Role</button>
+        </div>
+
+        <!-- Opening 2 -->
+        <div class="glass-card position-card postdoc" id="position-postdoc">
+          <span class="position-tag">Postdoctoral Scholar</span>
+          <h3>Postdoctoral Fellow in Cryo-EM & Cryo-ET</h3>
+          <p>
+            We are looking for highly motivated postdocs with experience in molecular biology, biochemistry, or structural biology. The candidate will lead projects determining high-resolution structures of nucleosome-bound complexes and map chromatin structure in cellular slices.
+          </p>
+          <button class="btn btn-secondary" onclick="document.querySelector('[data-target=contact]').click();" id="btn-apply-postdoc">Submit CV / Contact</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         CONTACT SECTION
+         ========================================== -->
+    <section class="tab-section" id="contact">
+      <h2 class="section-title">Contact & Location</h2>
+      <p style="margin-bottom: 40px; color: var(--color-text-muted); max-width: 800px;">
+        Our laboratory is located within the Department of Biochemistry at the University of Colorado Boulder. Feel free to reach out to us with research inquiries or application questions.
+      </p>
+
+      <div class="contact-grid" id="contact-panel">
+        
+        <!-- Left Side: Contact details -->
+        <div class="contact-info-list" id="contact-details">
+          <div class="glass-card contact-item-box">
+            <div class="contact-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+            <div class="contact-text">
+              <h4>Mailing & Lab Address</h4>
+              <p>Jennie Smoly Caruthers Biotechnology Building (JSCBB)<br>
+              University of Colorado Boulder<br>
+              3415 Colorado Ave, Boulder, CO 80303</p>
+            </div>
+          </div>
+
+          <div class="glass-card contact-item-box">
+            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div class="contact-text">
+              <h4>Email Inquiries</h4>
+              <p><a href="mailto:vignesh.kasinath@colorado.edu">vignesh.kasinath@colorado.edu</a></p>
+            </div>
+          </div>
+
+          <div class="glass-card contact-item-box">
+            <div class="contact-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="contact-text">
+              <h4>Internal Resources</h4>
+              <p><a href="https://kasinath-aydin-lab.atlassian.net/wiki/spaces/KAL/overview" target="_blank" rel="noopener">Lab Intranet Portal (KAL Wiki)</a></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Contact Form -->
+        <div class="glass-card" id="contact-form-card">
+          <h3 style="margin-bottom: 20px;">Send a Message</h3>
+          <form class="contact-form" id="lab-contact-form">
+            <div class="form-group">
+              <label for="input-name">Name</label>
+              <input type="text" id="input-name" class="form-control" placeholder="Enter your full name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="input-email">Email Address</label>
+              <input type="email" id="input-email" class="form-control" placeholder="name@domain.com" required>
+            </div>
+
+            <div class="form-group">
+              <label for="input-message">Message</label>
+              <textarea id="input-message" class="form-control" rows="5" placeholder="Write your inquiry or interest description..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="btn-submit-message">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer Area -->
+  <footer class="main-footer" id="site-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">VIGNESH KASINATH LAB</div>
+        <div class="footer-meta">© 2026 Vignesh Kasinath Lab. All rights reserved.</div>
+      </div>
+      
+      <!-- Social Media & external networks -->
+      <div class="social-links" id="footer-social-links">
+        <a href="https://www.linkedin.com/pub/vignesh-kasinath/5/b67/960" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://www.flickr.com/people/vignesh757/" target="_blank" rel="noopener" class="social-btn" aria-label="Flickr Gallery"><i class="fa-brands fa-flickr"></i></a>
+        <a href="https://KasLab-Twitter/" target="_blank" rel="noopener" class="social-btn" aria-label="Twitter Profile"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Dependencies: jQuery and 3Dmol.js -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://3dmol.org/build/3Dmol-min.js"></script>
+  
+  <!-- JavaScript Files -->
+  <script src="index.js"></script>
+</body>
+</html>
