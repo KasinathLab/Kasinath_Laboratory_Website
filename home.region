@@ -38,6 +38,7 @@
     <div class="logo-container" id="brand-logo">
       <a href="#" onclick="document.querySelector('[data-target=home]').click(); return false;">
         <img src="assets/lab_logo.png" alt="Vignesh Kasinath Lab Logo" class="header-logo">
+        <span class="logo-text">KASINATH LAB</span>
       </a>
     </div>
     

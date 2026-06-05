@@ -135,6 +135,7 @@ header.main-header {
   text-decoration: none;
   display: flex;
   align-items: center;
+  gap: 12px;
 }
 
 .logo-container a::before {
@@ -158,6 +159,23 @@ header.main-header {
   background: #ffffff;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 229, 255, 0.2);
 }
+
+.logo-container .logo-text {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  transition: opacity 0.3s ease;
+}
+
+.logo-container a:hover .logo-text {
+  opacity: 0.9;
+}
+
 
 
 nav.nav-tabs {
