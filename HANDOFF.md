@@ -1,25 +1,13 @@
 # HANDOFF — Kasinath Lab Website (read me first)
 
-This explains what changed, **what you need to do right now to get back in sync**, and how
-we work together from here so our changes never conflict.
+What changed, what to do right now to get back in sync, and how we work together so our changes
+never conflict.
 
 ---
 
-## TL;DR
+## ⚠️ DO THIS FIRST — re-sync
 
-- We now have **ONE canonical branch: `master`.** It holds a clean, Squarespace-compatible
-  template. Everything else branches off it.
-- **Your two improvements were kept** — the 3D card-tilt effect and the circular logo badge —
-  ported into this format. Nothing of yours was thrown away.
-- The older "Bedford-layered" version that was briefly on `master` was replaced (reasoning below).
-- The `squarespace-template` branch has been merged into `master` and removed — don't use it.
-
----
-
-## ⚠️ DO THIS FIRST — re-sync your local copy
-
-Your local `master` is now out of date. Reset it to match GitHub (this is safe — your old work
-is preserved in git history and your improvements are already in `master`):
+Your local copy is behind and the workflow changed. Reset to match GitHub:
 
 ```bash
 git fetch origin --prune
@@ -27,138 +15,92 @@ git checkout master
 git reset --hard origin/master
 ```
 
-If you had a local `squarespace-template` branch, you can delete it:
-```bash
-git branch -D squarespace-template
-```
-
-Your previous commits aren't gone — find them anytime with `git log --all --oneline` (look for
-"Integrate custom Quantum Bio-Dark Mode…" and the logo commits).
+Also: the local **`dev_server.py`** is no longer part of the workflow (we preview on GitHub Pages
+now — see below). You can delete your local copy: `rm -f dev_server.py`.
 
 ---
 
-## How this template is built (the format we standardized on)
-
-It's a **single hand-coded page** served as a **minimal Squarespace Developer Mode template**.
-We treat Squarespace as a static host:
+## The model — ONE source, ONE generated file
 
 ```
-template.conf      Manifest. One "site" region, empty "stylesheets" (we don't use Squarespace's LESS).
-site.region        The whole page = plain HTML + 4 required Squarespace tags (see below).
-assets/            Served verbatim at /assets/<file>:
-  index.css          all styles      (linked: <link href="/assets/index.css">)
-  index.js           all behavior    (loaded: <script src="/assets/index.js">)
-  lab_logo.png       header logo
-  *.png              hero/news/research images
-README.md          full project + deploy docs
-HANDOFF.md         this file
+  index.html   ← EDIT THIS. The page source. Relative asset paths, no Squarespace tags.
+       │           Preview it on GitHub Pages (push → see it on the web).
+       │
+       │   bash dev/build-region.sh   (generator)
+       ▼
+  site.region  ← GENERATED. DO NOT EDIT BY HAND. This is what Squarespace deploys.
 ```
 
-**The 4 required Squarespace tags in `site.region` — never remove them:**
-| Tag | Where | Why |
-|-----|-------|-----|
-| `{squarespace-headers}` | last line of `<head>` | system scripts + page meta |
-| `{squarespace-footers}` | last line before `</body>` | deferred system scripts |
-| `{squarespace.main-content}` | hidden `<div>` near end of `<body>` | CMS anchor Squarespace expects |
-| `{squarespace.page-id}` / `{squarespace.page-classes}` | on `<body>` | styling hooks |
+- `index.html` → relative `assets/...` → renders on **GitHub Pages**.
+- `site.region` → absolute `/assets/...` + `{squarespace-*}` tags → renders on **Squarespace**.
+- `assets/index.css` + `assets/index.js` are **shared** — edit once, both pages update.
 
-Everything else in `site.region` is normal HTML you edit freely.
+**Rule: only ever hand-edit `index.html` and the files in `assets/`. Never touch `site.region`
+directly — run `bash dev/build-region.sh` to regenerate it.** (If you edit `site.region` by hand,
+the next regenerate overwrites you, and the two files drift — the exact thing we're avoiding.)
 
 ---
 
-## Why we changed the master approach (so we're on the same page)
-
-Your version was a *valid* template — but it layered the lab page onto the **full Bedford CMS**
-(a separate `home.region`, `kasinath-lab.less` compiled through Squarespace's LESS pipeline, plus
-the ~49 stock Bedford files). We standardized on the **minimal self-contained** version instead
-because:
-
-- **No LESS surprises.** Our CSS (`index.css`) opens with a Google-Fonts `@import` that must stay
-  the first rule; routing it through Squarespace's LESS compiler risks breaking fonts. Serving it
-  raw avoids that.
-- **No script-loader timing bug.** `index.js` runs everything in one `DOMContentLoaded` handler.
-  Squarespace's async `combo` loader can fire after that event and silently skip it; a plain
-  `<script>` tag avoids it.
-- **It only renders on the homepage if the CMS assigns the custom layout** — a hidden dependency.
-  Our version renders the same everywhere with no CMS config.
-- **One file to edit, no Bedford bloat.** Easier for two people to work on without conflicts.
-
-**The valuable parts of your work were the improvements, and those are in `master` now:**
-- 3D card-tilt parallax → `assets/index.js` (`init3DTilt()`) + the depth CSS in `assets/index.css`.
-- Circular logo badge → `lab_logo.png` + `.header-logo` / `.logo-text` CSS + the header markup.
-
----
-
-## How we collaborate from here (linear, conflict-free)
-
-**Golden rule: never commit directly to `master`, never force-push it.** All work flows through
-short-lived branches and Pull Requests.
+## Your workflow
 
 ```bash
-# 1. Always start from the latest master
-git checkout master
-git pull origin master
+git checkout master && git pull            # always start fresh
+git checkout -b feature/your-thing         # work on a branch
 
-# 2. Make a small, focused branch
-git checkout -b feature/short-name        # e.g. feature/team-photos
+# edit index.html / assets/index.css / assets/index.js
 
-# 3. Edit + preview locally (see below), then commit
-git add -A
-git commit -m "Clear message"
+git add -A && git commit -m "..." && git push -u origin feature/your-thing
+# open a Pull Request into master on GitHub; we review, then merge.
 
-# 4. Push your branch (does NOT touch the live site)
-git push -u origin feature/short-name
-
-# 5. Open a Pull Request into master on GitHub. The other person reviews, then merge.
-#    Merging into master is the only thing that publishes (once deploy is live — see below).
+# before it goes to Squarespace, sync the generated file:
+bash dev/build-region.sh
+git add site.region && git commit -m "Sync site.region"
 ```
 
-**To avoid stepping on each other:**
-- Tell each other who's editing which file. Rough split: `site.region` (content/markup),
-  `assets/index.css` (styles), `assets/index.js` (behavior). Editing different files = no conflicts.
-- Keep branches small and merge often. Don't let a branch drift for days.
-- When adding JS, add a new `initSomething()` function and call it inside the existing
-  `DOMContentLoaded` block (the same pattern as `init3DTilt`) — that keeps additions isolated.
-- Pull `master` before starting anything new.
+**Preview:** push your branch and look at GitHub Pages, or just open `index.html` in a browser
+locally. Pages URL: `https://kasinathlab.github.io/Kasinath_Laboratory_Website/`
 
 ---
 
-## See your changes locally before pushing
+## What I changed in this pass
 
-```bash
-npm install -g @squarespace/server     # one-time (needs Node.js)
-squarespace-server https://vignesh-kasinath.squarespace.com
-# open http://localhost:9000  → edit a file → refresh the tab
-```
-
----
-
-## Editing cheat-sheet
-
-| Want to change… | Edit… | Notes |
-|---|---|---|
-| Text, sections, nav | `site.region` | keep the 4 Squarespace tags |
-| Colors, layout, spacing | `assets/index.css` | theme variables are in `:root` at the top |
-| Interactions (tabs, carousels, 3D viewer, tilt) | `assets/index.js` | add an `initX()` + call it in the `DOMContentLoaded` block |
-| Add an image | drop in `assets/`, reference `/assets/name.png` | absolute path, leading slash, < 10 MB |
+- **Reconciled the two divergent templates into one clean format** (your logo badge + 3D card-tilt
+  were kept; the Bedford-layered version was dropped — see the prior commits/history).
+- **Added a light/dark theme toggle** (🌙/☀️ in the nav). Default = your light theme; toggles to the
+  original dark bioluminescent theme. Persists via `localStorage`, no flash, and the particle canvas
+  recolors automatically. Light lives in `:root`; dark in the `html[data-theme="dark"]` block at the
+  bottom of `assets/index.css`.
+- **Set up the `index.html` (source) → `site.region` (generated) pipeline** via `dev/build-region.sh`.
+- **Standardized preview on GitHub Pages** and removed the local `dev_server.py` from the workflow.
 
 ---
 
-## Deploy status — important context
+## To avoid conflicts (please follow)
 
-The **live site is still the old Squarespace CMS site.** Pushing to `master` does **not** currently
-change it — the GitHub→Squarespace Developer-Mode connection isn't actively deploying yet (your
-earlier push to `master` didn't change the live site either). So right now `master` is a safe
-staging area. **When we're ready to actually replace the old site, we'll verify/activate that
-connection together** — don't expect pushes to go live until then.
+- **One source of truth:** edit `index.html` + `assets/`. Never hand-edit `site.region`.
+- **Branch + PR**, don't commit straight to `master`; never force-push `master`.
+- **Pull `master` before starting**, keep branches small, merge often.
+- Rough file ownership to stay out of each other's way: `index.html` (markup/content),
+  `assets/index.css` (styles), `assets/index.js` (behavior — add a new `initX()` and call it in the
+  `DOMContentLoaded` block, like `init3DTilt` / `initThemeToggle`).
+- **For your agent:** the canonical format is the minimal static template (single `index.html`
+  source + `assets/`, `site.region` generated). Do **not** reintroduce the Bedford template, LESS,
+  `home.region`, or a second hand-edited page file.
 
 ---
 
-## Open TODOs (help welcome)
+## Deploy status
 
-- [ ] Contact form is a front-end stub (it fakes "sent"). Wire to Formspree / a real endpoint / `mailto:`.
-- [ ] Footer Twitter/X link is a placeholder (`https://KasLab-Twitter/`).
-- [ ] `og:image` points at the `*.squarespace.com` URL; update to the custom domain when one is connected.
-- [ ] Team avatars are initials-only; swap in real photos when available.
+The **live Squarespace site is still the old one** — pushing `master` does not change it yet (the
+GitHub→Squarespace connection isn't actively deploying). GitHub Pages is our preview. We'll
+activate the real Squarespace deploy together when we're ready to replace the old site.
 
-Questions? Ping me. Full project details are in `README.md`.
+---
+
+## Open TODOs
+- [ ] Contact form is a stub (fakes "sent") — wire to a real endpoint.
+- [ ] Footer Twitter/X link is a placeholder.
+- [ ] `og:image` uses the `*.squarespace.com` URL; update to the custom domain when connected.
+- [ ] Team avatars are initials-only.
+
+Full details in `README.md`. Questions → ping me.

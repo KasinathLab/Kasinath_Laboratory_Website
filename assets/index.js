@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initCarousels();
   init3DTilt();
+  initThemeToggle();
 });
 
 /* =========================================================================
@@ -84,6 +85,14 @@ function initCanvasBackground() {
   const particleCount = 45;
   const connectionDistance = 140;
 
+  // Particle/line colors follow the active theme (read live so toggling updates instantly)
+  function themePalette() {
+    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    return dark
+      ? { a: 'rgba(0, 229, 255, 0.4)', b: 'rgba(189, 0, 255, 0.3)', line: '156, 154, 174' }
+      : { a: 'rgba(0, 119, 182, 0.4)', b: 'rgba(114, 9, 183, 0.3)', line: '30, 41, 59' };
+  }
+
   class Particle {
     constructor() {
       this.x = Math.random() * width;
@@ -91,8 +100,8 @@ function initCanvasBackground() {
       this.radius = Math.random() * 3 + 1.5;
       this.speedX = (Math.random() - 0.5) * 0.45;
       this.speedY = (Math.random() - 0.5) * 0.45;
-      // Bioluminescent colors adjusted for light mode (teal and violet)
-      this.color = Math.random() > 0.5 ? 'rgba(0, 119, 182, 0.4)' : 'rgba(114, 9, 183, 0.3)';
+      // Theme decides the actual color at draw time (see themePalette)
+      this.useFirst = Math.random() > 0.5;
     }
 
     update() {
@@ -118,6 +127,7 @@ function initCanvasBackground() {
 
   function animate() {
     ctx.clearRect(0, 0, width, height);
+    const pal = themePalette();
 
     // Draw connection lines representing biological nodes/complexes
     for (let i = 0; i < particles.length; i++) {
@@ -131,7 +141,7 @@ function initCanvasBackground() {
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(30, 41, 59, ${alpha})`;
+          ctx.strokeStyle = `rgba(${pal.line}, ${alpha})`;
           ctx.lineWidth = 0.8;
           ctx.stroke();
         }
@@ -141,6 +151,7 @@ function initCanvasBackground() {
     // Update and draw particles
     particles.forEach(p => {
       p.update();
+      p.color = p.useFirst ? pal.a : pal.b;
       p.draw();
     });
 
@@ -454,6 +465,30 @@ function init3DTilt() {
     card.addEventListener('mouseenter', () => {
       card.style.transition = 'transform 0.1s ease, box-shadow 0.1s ease';
     });
+  });
+}
+
+/* =========================================================================
+   Light / Dark Theme Toggle
+   Default theme is light. Toggling sets data-theme="dark" on <html> and saves
+   the choice. The canvas background follows automatically (see themePalette).
+   ========================================================================= */
+function initThemeToggle() {
+  const btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+
+  const syncIcon = () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    btn.innerHTML = isDark ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+    btn.setAttribute('aria-label', isDark ? 'Switch to light theme' : 'Switch to dark theme');
+  };
+  syncIcon();
+
+  btn.addEventListener('click', () => {
+    const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('kaslab-theme', next); } catch (e) {}
+    syncIcon();
   });
 }
 

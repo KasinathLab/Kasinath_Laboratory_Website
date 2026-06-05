@@ -4,7 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  
+
+  <!-- Apply saved theme before paint to avoid a flash of the wrong theme -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('kaslab-theme');
+        if (t) document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+
   <!-- SEO Meta Tags -->
   <title>Vignesh Kasinath Lab — Regulation of Gene Silencing by RNA and Chromatin</title>
   <meta name="description" content="We investigate the structural and biochemical mechanisms of gene silencing, chromatin organization, and chromosome pairing using state-of-the-art cryo-EM, cryo-ET, and biochemistry at CU Boulder.">
@@ -53,6 +63,7 @@
       <button class="nav-tab" data-target="team" id="tab-btn-team">Team</button>
       <button class="nav-tab" data-target="openings" id="tab-btn-openings">Openings</button>
       <button class="nav-tab" data-target="contact" id="tab-btn-contact">Contact</button>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme" title="Toggle light/dark theme"><i class="fa-solid fa-moon"></i></button>
     </nav>
   </header>
 

@@ -1,3 +1,4 @@
+<!-- GENERATED from index.html by dev/build-region.sh — DO NOT EDIT BY HAND. Edit index.html, then re-run. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,25 +6,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+  <!-- Apply saved theme before paint to avoid a flash of the wrong theme -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('kaslab-theme');
+        if (t) document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+
   <!-- SEO Meta Tags -->
   <title>Vignesh Kasinath Lab — Regulation of Gene Silencing by RNA and Chromatin</title>
   <meta name="description" content="We investigate the structural and biochemical mechanisms of gene silencing, chromatin organization, and chromosome pairing using state-of-the-art cryo-EM, cryo-ET, and biochemistry at CU Boulder.">
   <meta name="keywords" content="Vignesh Kasinath, Cryo-EM, Cryo-ET, Chromatin, Gene Silencing, PRC2, Biochemistry, Structural Biology, CU Boulder">
   <meta name="author" content="Vignesh Kasinath Lab">
-
+  
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Vignesh Kasinath Lab — Regulation of Gene Silencing">
   <meta property="og:description" content="Investigating the structures of gene silencing complexes and chromatin architecture at the University of Colorado Boulder.">
   <meta property="og:image" content="https://vignesh-kasinath.squarespace.com/assets/molecular_header.png">
-
-  <!-- CSS Stylesheets (served as raw static assets, bypassing Squarespace LESS so the
-       hand-coded styles + Google Fonts @import render exactly as authored) -->
+  
+  <!-- CSS Stylesheets -->
   <link rel="stylesheet" href="/assets/index.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <!-- REQUIRED by Squarespace: must be the last element in <head>. Injects system
-       scripts, page metadata, and any Header Code Injection. Do not remove. -->
   {squarespace-headers}
 </head>
 <body id="{squarespace.page-id}" class="{squarespace.page-classes}">
@@ -45,11 +52,11 @@
         <span class="logo-text">KASINATH LAB</span>
       </a>
     </div>
-
+    
     <button class="mobile-nav-toggle" id="mobile-toggle" aria-label="Toggle Menu" aria-expanded="false">
       <i class="fa-solid fa-bars"></i>
     </button>
-
+    
     <nav class="nav-tabs" id="main-nav">
       <button class="nav-tab active" data-target="home" id="tab-btn-home">Home</button>
       <button class="nav-tab" data-target="research" id="tab-btn-research">Research</button>
@@ -58,6 +65,7 @@
       <button class="nav-tab" data-target="team" id="tab-btn-team">Team</button>
       <button class="nav-tab" data-target="openings" id="tab-btn-openings">Openings</button>
       <button class="nav-tab" data-target="contact" id="tab-btn-contact">Contact</button>
+      <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme" title="Toggle light/dark theme"><i class="fa-solid fa-moon"></i></button>
     </nav>
   </header>
 
@@ -114,11 +122,11 @@
 
       <!-- Split Layout: Latest News & Key Questions -->
       <div class="home-layout">
-
+        
         <!-- News Column -->
         <div class="news-section">
           <h2 class="section-title">Latest Announcements</h2>
-
+          
           <div class="news-carousel">
             <div class="glass-card news-card active" id="news-pew">
               <img src="/assets/news_pew.png" alt="Pew Scholar" class="news-img">
@@ -126,14 +134,14 @@
               <div class="news-headline">Vignesh Awarded Pew Biomedical Scholar Grant</div>
               <div class="news-excerpt">Recognized for pioneering structural studies on chromatin regulation. Read more about the project on the Pew Scholars Directory.</div>
             </div>
-
+            
             <div class="glass-card news-card" id="news-grants">
               <img src="/assets/news_grants.png" alt="Grants Awarded" class="news-img">
               <div class="news-date">April 2025</div>
               <div class="news-headline">NIH MIRA and NSF Grants Totaling $2.25 Million</div>
               <div class="news-excerpt">Funding will support our molecular investigations into chromatin modifier complex mechanics and cellular heterochromatin pathways.</div>
             </div>
-
+            
             <div class="glass-card news-card" id="news-students">
               <img src="/assets/news_students.png" alt="New Students" class="news-img">
               <div class="news-date">September 2025</div>
@@ -148,12 +156,12 @@
         <!-- Key Questions Column -->
         <div class="questions-section">
           <h2 class="section-title">Core Research Themes</h2>
-
+          
           <div class="glass-card question-card" id="question-1">
             <div class="question-title">How do chromatin modifier complexes establish heterochromatin?</div>
             <p class="news-excerpt">We analyze how complexes like PRC2 interact with RNA molecules and specific histone modifications to silence target genomic sites.</p>
           </div>
-
+          
           <div class="glass-card question-card alt" id="question-2">
             <div class="question-title">How do homologous chromosomes pair and interact?</div>
             <p class="news-excerpt">Using state-of-the-art cryo-ET and cryo-FIB milling, we capture the physical organization of synaptonemal complexes directly in situ.</p>
@@ -234,7 +242,7 @@
       </p>
 
       <div class="structure-viewer-container" id="solved-structures-interactive">
-
+        
         <!-- Sidebar controls -->
         <div class="structure-list" id="structures-selector">
           <button class="structure-btn active" data-pdb="6WKR" id="btn-struct-6wkr">
@@ -242,13 +250,13 @@
             <span>PRC2 Dinucleosome Complex</span>
             <span>Resolution: 3.5 Å</span>
           </button>
-
+          
           <button class="structure-btn" data-pdb="6C23" id="btn-struct-6c23">
             <h4>PDB 6C23</h4>
             <span>PRC2 bound to AEBP2 cofactor</span>
             <span>Resolution: 4.2 Å</span>
           </button>
-
+          
           <button class="structure-btn" data-pdb="6C24" id="btn-struct-6c24">
             <h4>PDB 6C24</h4>
             <span>PRC2 with AEBP2 & JARID2</span>
@@ -284,7 +292,7 @@
          ========================================== -->
     <section class="tab-section" id="publications">
       <h2 class="section-title">Selected Publications</h2>
-
+      
       <!-- Filters -->
       <div class="pub-filters" id="publications-filters">
         <button class="pub-filter-btn active" id="filter-all">All Publications</button>
@@ -293,7 +301,7 @@
       </div>
 
       <div class="publications-list" id="publications-content">
-
+        
         <!-- Pub 1 -->
         <div class="glass-card publication-item" data-category="recent prc" id="pub-2025-nsmb">
           <div class="pub-year">2025</div>
@@ -491,7 +499,7 @@
       </p>
 
       <div class="contact-grid" id="contact-panel">
-
+        
         <!-- Left Side: Contact details -->
         <div class="contact-info-list" id="contact-details">
           <div class="glass-card contact-item-box">
@@ -529,7 +537,7 @@
               <label for="input-name">Name</label>
               <input type="text" id="input-name" class="form-control" placeholder="Enter your full name" required>
             </div>
-
+            
             <div class="form-group">
               <label for="input-email">Email Address</label>
               <input type="email" id="input-email" class="form-control" placeholder="name@domain.com" required>
@@ -555,7 +563,7 @@
         <div class="footer-logo">VIGNESH KASINATH LAB</div>
         <div class="footer-meta">© 2026 Vignesh Kasinath Lab. All rights reserved.</div>
       </div>
-
+      
       <!-- Social Media & external networks -->
       <div class="social-links" id="footer-social-links">
         <a href="https://www.linkedin.com/pub/vignesh-kasinath/5/b67/960" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin-in"></i></a>
@@ -565,23 +573,13 @@
     </div>
   </footer>
 
-  <!-- Squarespace CMS content injection point. This template is a fully hand-coded
-       single page, so the CMS main-content is kept present (Squarespace expects the
-       data-content-field anchor) but hidden. Leave it here. -->
-  <div class="sqs-main-content" data-content-field="main-content" aria-hidden="true" style="display:none">{squarespace.main-content}</div>
-
-  <!-- Dependencies: jQuery and 3Dmol.js (external CDNs) -->
+  <!-- Dependencies: jQuery and 3Dmol.js -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://3dmol.org/build/3Dmol-min.js"></script>
-
-  <!-- Site script, served as a raw static asset with a plain <script> tag so it loads
-       synchronously and registers its DOMContentLoaded handler before the event fires.
-       (Do NOT switch this to <squarespace:script>, whose async combo-loader can run
-       after DOMContentLoaded and silently skip the handler.) -->
+  
+  <!-- JavaScript Files -->
   <script src="/assets/index.js"></script>
-
-  <!-- REQUIRED by Squarespace: must be the last element before </body>. Injects
-       deferred system scripts and any Footer Code Injection. Do not remove. -->
+  <div class="sqs-main-content" data-content-field="main-content" aria-hidden="true" style="display:none">{squarespace.main-content}</div>
   {squarespace-footers}
 </body>
 </html>
