@@ -91,8 +91,8 @@ function initCanvasBackground() {
       this.radius = Math.random() * 3 + 1.5;
       this.speedX = (Math.random() - 0.5) * 0.45;
       this.speedY = (Math.random() - 0.5) * 0.45;
-      // Bioluminescent colors (cyan, magenta, slate)
-      this.color = Math.random() > 0.5 ? 'rgba(0, 229, 255, 0.4)' : 'rgba(189, 0, 255, 0.3)';
+      // Bioluminescent colors adjusted for light mode (teal and violet)
+      this.color = Math.random() > 0.5 ? 'rgba(0, 119, 182, 0.4)' : 'rgba(114, 9, 183, 0.3)';
     }
 
     update() {
@@ -131,7 +131,7 @@ function initCanvasBackground() {
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(156, 154, 174, ${alpha})`;
+          ctx.strokeStyle = `rgba(30, 41, 59, ${alpha})`;
           ctx.lineWidth = 0.8;
           ctx.stroke();
         }
