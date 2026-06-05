@@ -20,6 +20,18 @@ now — see below). You can delete your local copy: `rm -f dev_server.py`.
 
 ---
 
+## ✅ Live preview is already set up (GitHub Pages)
+
+The repo is **public** and GitHub Pages is **live** — no setup needed on your end. Every push to
+`master` rebuilds it (~1 min), so you can see real changes on the web:
+
+**→ https://kasinathlab.github.io/Kasinath_Laboratory_Website/**
+
+This is a **preview only** (it serves `index.html`). It is **not** the production lab site — that's
+Squarespace, and it's untouched. Pages and Squarespace are separate.
+
+---
+
 ## The model — ONE source, ONE generated file
 
 ```

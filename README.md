@@ -74,12 +74,13 @@ git add site.region && git commit -m "Sync site.region" && git push
 
 ---
 
-## Enable GitHub Pages (one-time, repo admin)
+## GitHub Pages preview (already live)
 
-GitHub → repo **Settings → Pages** → **Build and deployment** → Source: **Deploy from a branch**
-→ Branch: **`master`**, folder **`/ (root)`** → **Save**. After ~1 minute the site is live at the
-URL above. Every push to `master` rebuilds it. (This is separate from Squarespace and does not
-touch the live lab site.)
+Pages is **enabled and live** at the URL above. The repo is **public**, and Source is set to
+**Deploy from a branch → `master` → `/ (root)`**. Every push to `master` rebuilds it (~1 min).
+It is separate from Squarespace and does not touch the live lab site.
+
+(To reconfigure if ever needed: repo **Settings → Pages**.)
 
 ---
 
