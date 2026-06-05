@@ -133,11 +133,19 @@ header.main-header {
 
 .logo-container a {
   text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
+/* Circular logo badge (ported from coworker's master version; replaces old cyan dot) */
 .logo-container a::before {
   display: none;
 }
@@ -161,13 +169,6 @@ header.main-header {
 }
 
 .logo-container .logo-text {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.4rem;
-  letter-spacing: 1px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   display: inline-block;
   transition: opacity 0.3s ease;
 }
@@ -175,8 +176,6 @@ header.main-header {
 .logo-container a:hover .logo-text {
   opacity: 0.9;
 }
-
-
 
 nav.nav-tabs {
   display: flex;
@@ -255,9 +254,10 @@ main.content-container {
   -webkit-backdrop-filter: blur(12px);
   border-radius: 16px;
   padding: 24px;
-  transition: all var(--transition-speed) cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: background var(--transition-speed), border-color var(--transition-speed), box-shadow var(--transition-speed), transform 0.1s ease;
   position: relative;
   overflow: hidden;
+  transform-style: preserve-3d;
 }
 
 .glass-card::before {
@@ -274,14 +274,49 @@ main.content-container {
 }
 
 .glass-card:hover {
-  transform: translateY(-5px);
   background: var(--bg-card-hover);
   border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(0, 229, 255, 0.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 25px rgba(0, 229, 255, 0.1);
 }
 
 .glass-card:hover::before {
   opacity: 1;
+}
+
+/* 3D Depth Child Float Effects */
+.glass-card h3, 
+.glass-card h4, 
+.glass-card p, 
+.glass-card .research-icon, 
+.glass-card img, 
+.glass-card .btn,
+.glass-card .news-img,
+.glass-card .news-date,
+.glass-card .news-headline,
+.glass-card .news-excerpt,
+.glass-card .question-title,
+.glass-card .team-photo-container,
+.glass-card .team-info {
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: translateZ(0);
+}
+
+.glass-card:hover h3, 
+.glass-card:hover h4, 
+.glass-card:hover .research-icon,
+.glass-card:hover .news-img,
+.glass-card:hover .team-photo-container,
+.glass-card:hover .question-title,
+.glass-card:hover .news-headline {
+  transform: translateZ(40px);
+}
+
+.glass-card:hover p,
+.glass-card:hover .btn,
+.glass-card:hover .team-info,
+.glass-card:hover .news-excerpt,
+.glass-card:hover .news-date {
+  transform: translateZ(20px);
 }
 
 /* Typography & Titles */

@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initPublicationsFilter();
   initContactForm();
   initCarousels();
+  init3DTilt();
 });
 
 /* =========================================================================
@@ -419,3 +420,40 @@ function initCarousels() {
     let newsInterval = setInterval(nextNewsSlide, 6000); // 6 seconds per slide
   }
 }
+
+/* =========================================================================
+   3D Mouse Tilt Parallax Effect
+   ========================================================================= */
+function init3DTilt() {
+  const cards = document.querySelectorAll('.glass-card, .research-card, .team-card, .position-card');
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      // Maximum tilt in degrees
+      const maxRotate = 8;
+      
+      const rotateX = ((centerY - y) / centerY) * maxRotate;
+      const rotateY = ((x - centerX) / centerX) * maxRotate;
+      
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(12px) translateY(-5px)`;
+      card.style.boxShadow = `0 20px 40px rgba(0, 0, 0, 0.45), 0 0 30px rgba(0, 229, 255, 0.15)`;
+    });
+    
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0) translateY(0)';
+      card.style.boxShadow = '';
+      card.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.5s ease';
+    });
+    
+    card.addEventListener('mouseenter', () => {
+      card.style.transition = 'transform 0.1s ease, box-shadow 0.1s ease';
+    });
+  });
+}
+
