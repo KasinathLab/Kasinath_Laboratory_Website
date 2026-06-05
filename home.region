@@ -36,7 +36,9 @@
   <!-- Main Navigation Header -->
   <header class="main-header" id="site-header">
     <div class="logo-container" id="brand-logo">
-      <a href="#" onclick="document.querySelector('[data-target=home]').click(); return false;">KASINATH LAB</a>
+      <a href="#" onclick="document.querySelector('[data-target=home]').click(); return false;">
+        <img src="assets/lab_logo.png" alt="Vignesh Kasinath Lab Logo" class="header-logo">
+      </a>
     </div>
     
     <button class="mobile-nav-toggle" id="mobile-toggle" aria-label="Toggle Menu" aria-expanded="false">

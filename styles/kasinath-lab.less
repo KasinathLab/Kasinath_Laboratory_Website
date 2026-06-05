@@ -133,27 +133,32 @@ header.main-header {
 
 .logo-container a {
   text-decoration: none;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.4rem;
-  letter-spacing: 1px;
-  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   display: flex;
   align-items: center;
-  gap: 10px;
 }
 
 .logo-container a::before {
-  content: "";
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  background-color: var(--color-primary);
-  border-radius: 50%;
-  box-shadow: 0 0 10px var(--color-primary);
+  display: none;
 }
+
+.header-logo {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.header-logo:hover {
+  transform: scale(1.03);
+  background: #ffffff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4), 0 0 15px rgba(0, 229, 255, 0.2);
+}
+
 
 nav.nav-tabs {
   display: flex;
