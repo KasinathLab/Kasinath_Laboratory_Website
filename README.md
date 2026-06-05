@@ -183,9 +183,14 @@ jQuery 3.6, 3Dmol.js, Google Fonts.
 
 ---
 
-## The other branches
-- **`master`** — production (this branch's content; what deploys).
+## Branches
+- **`master`** — the single canonical branch and (eventual) deploy target. All work merges here
+  via Pull Request. This is the minimal custom template described above.
 - **`main`** — the original standalone static-site version (`index.html`-based), kept for
   reference/history. Not used for deployment.
-- **`master`'s original commit** — the stock Squarespace "Bedford" template export that the
-  site shipped with. Replaced by this minimal custom template.
+- _(removed)_ `squarespace-template` — was the staging branch for the conversion; merged into
+  `master` and deleted. Don't recreate it; branch off `master`.
+- _History note:_ `master` previously held the stock "Bedford" template and, briefly, a
+  Bedford-layered variant; both were superseded by this minimal template (still in git history).
+
+New here? Read **`HANDOFF.md`** for the re-sync steps and collaboration workflow.
