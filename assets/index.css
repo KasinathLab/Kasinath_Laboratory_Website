@@ -750,11 +750,65 @@ h2.section-title::after {
   color: var(--color-secondary);
 }
 
+/* Principal Investigator feature (top of Team) */
+.pi-feature {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  padding: 36px;
+  margin-bottom: 44px;
+}
+
+.pi-photo {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+  padding: 5px;
+  flex-shrink: 0;
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.pi-feature:hover .pi-photo {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-glow);
+}
+
+.pi-info h3 {
+  font-size: 1.7rem;
+  margin-bottom: 6px;
+}
+
+.pi-title {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  margin: 4px 0 18px;
+}
+
+.pi-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+}
+
+.pi-contact a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-text);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color var(--transition-speed);
+}
+
+.pi-contact a:hover { color: var(--color-primary); }
+.pi-contact i { color: var(--color-primary); }
+
 /* Team Grid */
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
 }
 
 .team-card {
@@ -765,8 +819,8 @@ h2.section-title::after {
 }
 
 .team-photo-container {
-  width: 140px;
-  height: 140px;
+  width: 165px;
+  height: 165px;
   border-radius: 50%;
   border: 2px solid var(--border-color);
   padding: 4px;
@@ -1147,6 +1201,16 @@ footer.main-footer {
 
   .team-grid {
     grid-template-columns: 1fr;
+  }
+
+  .pi-feature {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .pi-contact {
+    justify-content: center;
   }
 }
 
