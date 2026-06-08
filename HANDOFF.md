@@ -1,118 +1,68 @@
 # HANDOFF — Kasinath Lab Website (read me first)
 
-What changed, what to do right now to get back in sync, and how we work together so our changes
-never conflict.
+## ⚠️ How deploys actually work (this caused a problem — please read)
 
----
+The repo's **`master` branch is connected to the LIVE Squarespace site** (Developer Mode GitHub
+sync). **Every push to `master` auto-deploys to the public lab site.** There is no separate
+"upload" step — `dev/build-region.sh` only regenerates a local file; the **push/merge to `master`**
+is the deploy. We learned this the hard way (our in-progress redesign briefly went live). It's now
+reverted and re-structured so it can't happen by accident.
 
-## ⚠️ DO THIS FIRST — re-sync
+## The model — two branches
 
-Your local copy is behind and the workflow changed. Reset to match GitHub:
+```
+  preview branch  ──►  GitHub Pages   = WORKING COPY. Push here freely → only the Pages preview
+                                        changes. Squarespace is untouched.
+  master branch   ──►  Squarespace    = LIVE PUBLIC SITE. Frozen on the OLD site. Protected.
+                                        Updated ONLY by a deliberate, reviewed merge preview → master.
+```
+
+**Push to `preview`. Never push `master`.** Updating `master` is the only thing that changes the
+public site, and it's protected so it can only happen via a reviewed PR.
+
+## ⚠️ Re-sync your local copy
 
 ```bash
 git fetch origin --prune
-git checkout master
-git reset --hard origin/master
+git checkout preview          # the working branch (NOT master)
+git reset --hard origin/preview
 ```
-
-Also: the local **`dev_server.py`** is no longer part of the workflow (we preview on GitHub Pages
-now — see below). You can delete your local copy: `rm -f dev_server.py`.
-
----
-
-## ✅ Live preview is already set up (GitHub Pages)
-
-The repo is **public** and GitHub Pages is **live** — no setup needed on your end. Every push to
-`master` rebuilds it (~1 min), so you can see real changes on the web:
-
-**→ https://kasinathlab.github.io/Kasinath_Laboratory_Website/**
-
-This is a **preview only** (it serves `index.html`). It is **not** the production lab site — that's
-Squarespace, and it's untouched. Pages and Squarespace are separate.
-
----
-
-## The model — ONE source, ONE generated file
-
-```
-  index.html   ← EDIT THIS. The page source. Relative asset paths, no Squarespace tags.
-       │           Preview it on GitHub Pages (push → see it on the web).
-       │
-       │   bash dev/build-region.sh   (generator)
-       ▼
-  site.region  ← GENERATED. DO NOT EDIT BY HAND. This is what Squarespace deploys.
-```
-
-- `index.html` → relative `assets/...` → renders on **GitHub Pages**.
-- `site.region` → absolute `/assets/...` + `{squarespace-*}` tags → renders on **Squarespace**.
-- `assets/index.css` + `assets/index.js` are **shared** — edit once, both pages update.
-
-**Rule: only ever hand-edit `index.html` and the files in `assets/`. Never touch `site.region`
-directly — run `bash dev/build-region.sh` to regenerate it.** (If you edit `site.region` by hand,
-the next regenerate overwrites you, and the two files drift — the exact thing we're avoiding.)
-
----
+Do your work on `preview` (or feature branches off it). `master` is the old site / production —
+leave it alone.
 
 ## Your workflow
 
 ```bash
-git checkout master && git pull            # always start fresh
-git checkout -b feature/your-thing         # work on a branch
-
+git checkout preview && git pull
+git checkout -b feature/your-thing
 # edit index.html / assets/index.css / assets/index.js
-
 git add -A && git commit -m "..." && git push -u origin feature/your-thing
-# open a Pull Request into master on GitHub; we review, then merge.
-
-# before it goes to Squarespace, sync the generated file:
-bash dev/build-region.sh
-git add site.region && git commit -m "Sync site.region"
+# open a PR INTO preview → after merge it shows on the Pages URL:
+#   https://kasinathlab.github.io/Kasinath_Laboratory_Website/
 ```
 
-**Preview:** push your branch and look at GitHub Pages, or just open `index.html` in a browser
-locally. Pages URL: `https://kasinathlab.github.io/Kasinath_Laboratory_Website/`
+## How the page is built
+- **`index.html`** = the source you hand-edit (relative paths, no Squarespace tags). Pages serves it.
+- **`site.region`** = GENERATED from it via `bash dev/build-region.sh` (adds Squarespace tags +
+  absolute paths). **Never hand-edit it.** Only needed when we publish.
+- **`assets/index.css` / `assets/index.js`** = shared by both.
 
----
+## Going live (only when we both agree it's ready)
+```bash
+bash dev/build-region.sh
+git add site.region && git commit -m "Sync site.region"
+# PR: preview → master, review, merge → THAT publishes to Squarespace.
+```
 
-## What I changed in this pass
+## Please follow / for your agent
+- Canonical format = **minimal static template**: one `index.html` source + `assets/`,
+  `site.region` generated. Do **not** reintroduce the Bedford template, LESS, `home.region`, or a
+  second hand-edited page file.
+- **Team photos: use the REAL headshots** from the old site's photoshoot — please **don't** generate
+  AI "3D avatars" (the `feature/team-avatars` ones are fake faces, e.g. "Dr. Evan Chen"). George is
+  mapping the real photos now.
+- Your `feature/fix-logo-hover` looks like a genuine bug fix — let's fold it into `preview`.
+- Add JS as a new `initX()` called in the `DOMContentLoaded` block (like `init3DTilt` /
+  `initThemeToggle`).
 
-- **Reconciled the two divergent templates into one clean format** (your logo badge + 3D card-tilt
-  were kept; the Bedford-layered version was dropped — see the prior commits/history).
-- **Added a light/dark theme toggle** (🌙/☀️ in the nav). Default = your light theme; toggles to the
-  original dark bioluminescent theme. Persists via `localStorage`, no flash, and the particle canvas
-  recolors automatically. Light lives in `:root`; dark in the `html[data-theme="dark"]` block at the
-  bottom of `assets/index.css`.
-- **Set up the `index.html` (source) → `site.region` (generated) pipeline** via `dev/build-region.sh`.
-- **Standardized preview on GitHub Pages** and removed the local `dev_server.py` from the workflow.
-
----
-
-## To avoid conflicts (please follow)
-
-- **One source of truth:** edit `index.html` + `assets/`. Never hand-edit `site.region`.
-- **Branch + PR**, don't commit straight to `master`; never force-push `master`.
-- **Pull `master` before starting**, keep branches small, merge often.
-- Rough file ownership to stay out of each other's way: `index.html` (markup/content),
-  `assets/index.css` (styles), `assets/index.js` (behavior — add a new `initX()` and call it in the
-  `DOMContentLoaded` block, like `init3DTilt` / `initThemeToggle`).
-- **For your agent:** the canonical format is the minimal static template (single `index.html`
-  source + `assets/`, `site.region` generated). Do **not** reintroduce the Bedford template, LESS,
-  `home.region`, or a second hand-edited page file.
-
----
-
-## Deploy status
-
-The **live Squarespace site is still the old one** — pushing `master` does not change it yet (the
-GitHub→Squarespace connection isn't actively deploying). GitHub Pages is our preview. We'll
-activate the real Squarespace deploy together when we're ready to replace the old site.
-
----
-
-## Open TODOs
-- [ ] Contact form is a stub (fakes "sent") — wire to a real endpoint.
-- [ ] Footer Twitter/X link is a placeholder.
-- [ ] `og:image` uses the `*.squarespace.com` URL; update to the custom domain when connected.
-- [ ] Team avatars are initials-only.
-
-Full details in `README.md`. Questions → ping me.
+**TL;DR: push to `preview` (safe, Pages preview). Never push `master` (that's the live site).**

@@ -1,48 +1,57 @@
 # Vignesh Kasinath Lab — Website
 
-Single hand-coded page for the Vignesh Kasinath Lab (CU Boulder), deployed on **Squarespace
-Developer Mode**, with **GitHub Pages** used as a live preview.
+Single hand-coded page for the Vignesh Kasinath Lab (CU Boulder). It deploys to **Squarespace
+Developer Mode**, and we use **GitHub Pages** as a safe working preview.
 
 ---
 
-## The model (read this first)
-
-There are **two** copies of the page, and only **one** is edited by hand:
+## ⚠️ The two branches — this is the most important thing
 
 ```
-  index.html   ← THE SOURCE. You hand-edit this. Relative asset paths, no Squarespace tags.
-       │           Previewed on GitHub Pages (push → see it on the web).
-       │
-       │   bash dev/build-region.sh   (generator: adds Squarespace tags + absolute paths)
+  preview branch  ──►  GitHub Pages   = WORKING COPY. Push here freely; only the Pages preview
+                                        changes. Squarespace is NOT affected.
+  master branch   ──►  Squarespace    = LIVE PUBLIC SITE. Updated ONLY by a deliberate, reviewed
+                                        merge of preview → master. Never push to it directly.
+```
+
+The Squarespace Developer Mode GitHub connection **auto-deploys every push to `master`** to the
+public site. So **all day-to-day work happens on `preview`** (previewed on Pages), and the public
+site only changes when we intentionally merge `preview → master`.
+
+- **`preview`** — working copy. GitHub Pages serves it. This is where you build.
+- **`master`** — production. Currently frozen on the **old site** (original Bedford template) until
+  the new site is ready. Protected — changes require a PR.
+- **`main`** — original standalone static version, kept for history. Unused.
+
+---
+
+## How the page is built (source vs generated)
+
+```
+  index.html   ← THE SOURCE you hand-edit. Relative asset paths, no Squarespace tags.
+       │           Previewed on GitHub Pages.
+       │   bash dev/build-region.sh   (generator)
        ▼
-  site.region  ← GENERATED. Never edit by hand. This is what Squarespace deploys.
+  site.region  ← GENERATED for Squarespace (adds tags + absolute paths). Don't hand-edit.
 ```
-
-- **`index.html`** uses **relative** `assets/...` paths → works on **GitHub Pages** (a project
-  page is served from a sub-path).
-- **`site.region`** uses **absolute** `/assets/...` paths + the required `{squarespace-*}` tags →
-  works on **Squarespace** (served from the domain root).
-- `assets/index.css` and `assets/index.js` are **shared** by both — edit them once, both update.
-
-**Golden rule: edit `index.html` (and the shared `assets/`). Never edit `site.region` by hand —
-regenerate it with `bash dev/build-region.sh`.**
+`assets/index.css` + `assets/index.js` are **shared** by both. `build-region.sh` only regenerates
+the local `site.region` file — it does **not** deploy anything; pushing/merging to `master` is what
+deploys.
 
 ---
 
 ## Repo structure
-
 ```
-index.html            SOURCE — the whole page (edit this). Relative paths, no SQSP tags.
+index.html            SOURCE — the page (edit this). Relative paths, no SQSP tags.
 assets/
   index.css             shared styles (incl. light/dark themes)
   index.js              shared behavior (tabs, carousels, 3D viewer, tilt, theme toggle)
-  lab_logo.png          header logo
-  *.png                 hero / news / research images
-site.region           GENERATED from index.html for Squarespace. Do not hand-edit.
+  *.png / *.jpg         logo, hero/news images, team photos
+site.region           GENERATED for Squarespace. Do not hand-edit.
 template.conf         Squarespace template manifest.
 dev/build-region.sh   Generator: index.html → site.region.
-.nojekyll             Tells GitHub Pages to serve files as-is.
-README.md / HANDOFF.md
+photos.html           (temporary) picker for mapping the real team headshots.
+.nojekyll
 ```
 
 ---
@@ -50,82 +59,46 @@ README.md / HANDOFF.md
 ## Daily workflow
 
 ```bash
-# 1. start from latest
-git checkout master && git pull
+# 1. start from the working branch
+git checkout preview && git pull
 
-# 2. edit the SOURCE + shared assets
-#    index.html  /  assets/index.css  /  assets/index.js
+# 2. feature branch off preview
+git checkout -b feature/your-thing
 
-# 3. preview on the web (GitHub Pages) — push and look:
-git add -A && git commit -m "..." && git push
-#    → wait ~30–60s, refresh the Pages URL (below)
+# 3. edit index.html / assets/index.css / assets/index.js, commit, push
+git add -A && git commit -m "..." && git push -u origin feature/your-thing
 
-# 4. when the page looks right, sync the Squarespace file:
-bash dev/build-region.sh        # regenerates site.region from index.html
-git add site.region && git commit -m "Sync site.region" && git push
+# 4. open a PR INTO preview → it shows on the Pages URL after merge
+```
+Pages preview URL: `https://kasinathlab.github.io/Kasinath_Laboratory_Website/`
+(Quick local check: open `index.html` in a browser.)
+
+### Going live (publishing to Squarespace — only when we agree it's ready)
+```bash
+bash dev/build-region.sh                       # sync site.region from index.html
+git add site.region && git commit -m "Sync site.region"
+# open a PR: preview → master, review, merge.  THE MERGE is what publishes to Squarespace.
 ```
 
-> Quick local check (optional, no push): just open `index.html` in a browser, or use VS Code's
-> *Simple Browser*. Pages is the shareable web preview.
-
-### GitHub Pages preview URL
-`https://kasinathlab.github.io/Kasinath_Laboratory_Website/`
-(See "Enable GitHub Pages" below — one-time repo setting.)
-
 ---
 
-## GitHub Pages preview (already live)
+## GitHub Pages
+Pages serves the **`preview`** branch (repo → Settings → Pages → Deploy from a branch → `preview` →
+`/ (root)`). Every push to `preview` rebuilds it (~1 min). Pages is the public-but-staging preview;
+it is separate from the Squarespace production site.
 
-Pages is **enabled and live** at the URL above. The repo is **public**, and Source is set to
-**Deploy from a branch → `master` → `/ (root)`**. Every push to `master` rebuilds it (~1 min).
-It is separate from Squarespace and does not touch the live lab site.
-
-(To reconfigure if ever needed: repo **Settings → Pages**.)
-
----
-
-## Required Squarespace tags (in the GENERATED site.region)
-
-The generator injects these; don't remove them from `dev/build-region.sh`:
-
-| Tag | Location | Purpose |
-|-----|----------|---------|
-| `{squarespace-headers}` | last in `<head>` | system scripts + page meta |
-| `{squarespace-footers}` | last before `</body>` | deferred system scripts |
-| `{squarespace.main-content}` | hidden `<div>` | CMS anchor Squarespace expects |
-| `{squarespace.page-id}` / `{squarespace.page-classes}` | on `<body>` | styling hooks |
-
----
+## Required Squarespace tags (injected into the generated site.region)
+`{squarespace-headers}` (last in `<head>`), `{squarespace-footers}` (last before `</body>`),
+`{squarespace.main-content}` (hidden CMS anchor), and `{squarespace.page-id}`/`{squarespace.page-classes}`
+on `<body>`. The generator adds these — don't remove them from `dev/build-region.sh`.
 
 ## Theme toggle
-
-The page ships a **light/dark toggle** (🌙/☀️ button in the nav):
-- Default is the **light** ("Quantum Bio-Light") theme; toggling switches to the original **dark**
-  bioluminescent theme.
-- Choice persists via `localStorage` (`kaslab-theme`) and applies before paint (no flash).
-- The animated particle canvas recolors with the theme automatically.
-- Light is the default in `:root`; dark lives in the `html[data-theme="dark"]` block at the bottom
-  of `assets/index.css`. To make dark the default, set `<html data-theme="dark">` in `index.html`.
-
----
-
-## Deploy status — important
-
-The **live site is still the old Squarespace CMS site.** Pushing to `master` does **not** currently
-change it — the GitHub→Squarespace Developer-Mode connection isn't actively deploying yet. So
-`master` is a safe staging area, and GitHub Pages is the preview. **When you're ready to replace
-the old site, verify/activate that connection** — until then, pushes don't go live on Squarespace.
-
----
-
-## Branches
-- **`master`** — canonical; GitHub Pages + (eventual) Squarespace deploy. All work merges here.
-- **`main`** — original standalone static version, kept for history. Not used.
-
----
+Light/dark toggle (🌙/☀️ in the nav). Default light; toggles to the original dark bioluminescent
+theme; persists via `localStorage`; canvas recolors with it. Dark lives in `html[data-theme="dark"]`
+at the bottom of `assets/index.css`.
 
 ## Open TODOs
-- [ ] Contact form is a front-end stub (fakes "sent"). Wire to Formspree / a real endpoint / `mailto:`.
-- [ ] Footer Twitter/X link is a placeholder (`https://KasLab-Twitter/`).
-- [ ] `og:image` uses the `*.squarespace.com` URL; update to the custom domain if one is connected.
-- [ ] Team avatars are initials-only; swap in real photos when available.
+- [ ] Map the real team headshots onto the Team cards (see `photos.html`), then remove the picker.
+- [ ] Contact form is a stub — wire to a real endpoint.
+- [ ] Footer Twitter/X link is a placeholder.
+- [ ] Fold in the `feature/fix-logo-hover` fix (logo text vanishing on hover).
