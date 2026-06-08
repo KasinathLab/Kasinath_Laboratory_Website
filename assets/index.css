@@ -754,14 +754,15 @@ h2.section-title::after {
 .pi-feature {
   display: flex;
   align-items: center;
-  gap: 36px;
-  padding: 36px;
-  margin-bottom: 44px;
+  gap: 28px;
+  padding: 28px;
+  margin: 0 auto 44px;
+  max-width: 600px;
 }
 
 .pi-photo {
-  width: 190px;
-  height: 190px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   border: 2px solid var(--border-color);
   padding: 5px;
@@ -775,7 +776,7 @@ h2.section-title::after {
 }
 
 .pi-info h3 {
-  font-size: 1.7rem;
+  font-size: 1.4rem;
   margin-bottom: 6px;
 }
 
@@ -807,8 +808,8 @@ h2.section-title::after {
 /* Team Grid */
 .team-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 36px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
 }
 
 .team-card {
@@ -819,8 +820,8 @@ h2.section-title::after {
 }
 
 .team-photo-container {
-  width: 165px;
-  height: 165px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   border: 2px solid var(--border-color);
   padding: 4px;
