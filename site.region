@@ -369,7 +369,7 @@
         We are a dedicated group of molecular biophysicists, biochemists, and computer scientists working together to answer fundamental questions about gene regulation.
       </p>
 
-      <div class="team-grid" id="team-members">
+      <div class="team-list" id="team-members">
         <!-- PI -->
         <div class="glass-card team-card" id="team-member-pi">
           <div class="team-photo-container">
