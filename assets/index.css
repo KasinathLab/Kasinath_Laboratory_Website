@@ -137,6 +137,9 @@ header.main-header {
   font-weight: 700;
   font-size: 1.4rem;
   letter-spacing: 1px;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -166,15 +169,12 @@ header.main-header {
 }
 
 .logo-container .logo-text {
-  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   display: inline-block;
   transition: opacity 0.3s ease;
 }
 
 .logo-container a:hover .logo-text {
-  opacity: 1;
+  opacity: 0.9;
 }
 
 nav.nav-tabs {
