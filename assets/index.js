@@ -276,14 +276,15 @@ function loadStructure(pdbId) {
   // Set up loader indicator
   const loader = document.createElement('div');
   loader.className = 'loader-indicator';
-  loader.style.position = 'absolute';
-  loader.style.top = '50%';
-  loader.style.left = '50%';
-  loader.style.transform = 'translate(-50%, -50%)';
-  loader.style.color = '#00e5ff';
-  loader.style.fontFamily = 'Outfit, sans-serif';
-  loader.style.fontSize = '0.9rem';
-  loader.textContent = `Fetching Structure ${pdbId} from PDB...`;
+  loader.innerHTML = `
+    <div class="bio-spinner">
+      <div class="nucleus"></div>
+      <div class="orbit orbit-1"></div>
+      <div class="orbit orbit-2"></div>
+      <div class="orbit orbit-3"></div>
+    </div>
+    <div class="loader-text">Fetching Structure ${pdbId} from PDB...</div>
+  `;
   container.appendChild(loader);
 
   try {
