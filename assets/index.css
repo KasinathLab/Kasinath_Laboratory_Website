@@ -851,29 +851,33 @@ h2.section-title::after {
   color: var(--color-secondary);
 }
 
-/* Team Grid */
-.team-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
+/* Team List */
+.team-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .team-card {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  text-align: center;
+  text-align: left;
+  gap: 28px;
+  padding: 24px;
 }
 
 .team-photo-container {
-  width: 140px;
-  height: 140px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   border: 2px solid var(--border-color);
-  padding: 4px;
-  margin-bottom: 20px;
+  padding: 3px;
   position: relative;
   transition: border-color var(--transition-speed);
+  flex-shrink: 0;
 }
 
 .team-card:hover .team-photo-container {
@@ -889,9 +893,14 @@ h2.section-title::after {
   background: rgba(0,0,0,0.03);
 }
 
+.team-info {
+  flex-grow: 1;
+}
+
 .team-info h3 {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   margin-bottom: 4px;
+  color: var(--color-highlight);
 }
 
 .team-role {
@@ -904,8 +913,50 @@ h2.section-title::after {
 }
 
 .team-bio-short {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--color-text-muted);
+}
+
+/* Prominent PI Card Styling */
+#team-member-pi {
+  border-left: 5px solid var(--color-primary);
+  background: linear-gradient(135deg, var(--bg-card) 60%, rgba(0, 119, 182, 0.04) 100%);
+  padding: 32px;
+  box-shadow: var(--shadow-glow);
+}
+
+html[data-theme="dark"] #team-member-pi {
+  background: linear-gradient(135deg, var(--bg-card) 60%, rgba(0, 229, 255, 0.04) 100%);
+}
+
+#team-member-pi:hover {
+  border-left-color: var(--color-secondary);
+  box-shadow: var(--shadow-glow), var(--shadow-glow-violet);
+}
+
+#team-member-pi .team-photo-container {
+  width: 130px;
+  height: 130px;
+  border-color: var(--color-primary);
+}
+
+#team-member-pi .team-info h3 {
+  font-size: 1.45rem;
+  font-weight: 700;
+}
+
+#team-member-pi .team-role {
+  font-size: 0.85rem;
+  color: var(--color-secondary);
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 4px;
+  display: inline-block;
+}
+
+#team-member-pi .team-bio-short {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  margin-top: 6px;
 }
 
 /* Openings Callout Card */
@@ -1207,10 +1258,6 @@ footer.main-footer {
     grid-template-columns: 1fr;
   }
   
-  .team-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  
   .openings-layout {
     grid-template-columns: 1fr;
   }
@@ -1246,8 +1293,23 @@ footer.main-footer {
     display: block;
   }
 
-  .team-grid {
-    grid-template-columns: 1fr;
+  .team-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    padding: 20px;
+  }
+  
+  #team-member-pi {
+    padding: 24px;
+    border-left: none;
+    border-top: 5px solid var(--color-primary);
+  }
+  
+  #team-member-pi .team-photo-container {
+    width: 110px;
+    height: 110px;
   }
 }
 
