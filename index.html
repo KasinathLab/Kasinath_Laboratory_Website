@@ -370,62 +370,293 @@
         A glimpse into the daily life, research activities, and environment of the Kasinath Laboratory at CU Boulder.
       </p>
 
-      <div class="gallery-grid" id="lab-gallery-grid">
-        <div class="gallery-item glass-card">
-          <img src="assets/lab_group.jpg" alt="Kasinath Lab Group Photo">
-          <div class="gallery-caption">
-            <h4>Kasinath Lab Team</h4>
-            <p>The research team in JSCBB at University of Colorado Boulder</p>
-          </div>
+      <!-- Gallery Section: Lab Photos -->
+      <div class="gallery-section" id="section-lab-photos">
+        <div class="gallery-section-header">
+          <h3>Lab Photos</h3>
+          <a href="https://vigneshkasinath.org/lab-photos" target="_blank" rel="noopener" class="btn btn-secondary btn-sm gallery-ext-btn">
+            Lab Photos <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
         </div>
-        <div class="gallery-item glass-card">
-          <img src="assets/cryo_em_microscope.png" alt="Cryo-EM Microscope">
-          <div class="gallery-caption">
-            <h4>Krios G4 Cryo-TEM</h4>
-            <p>Our state-of-the-art cryo-electron microscope facility</p>
+        <div class="carousel-container" id="carousel-lab-photos">
+          <button class="carousel-control prev" aria-label="Previous image"><i class="fa-solid fa-chevron-left"></i></button>
+          <div class="carousel-track">
+            <div class="carousel-item glass-card" data-index="0" data-gallery="lab-photos" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1704743130462-IHP3IYQR30VERJ1UPN02/labpohto.jpg" alt="Kasinath Lab Fall 2023" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Kasinath Lab Fall 2023</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="1" data-gallery="lab-photos" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1671690662816-6LV6J6ZWHZJBE3DEABRS/image-asset.jpg" alt="Kasinath Lab (June 2022)" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Kasinath Lab (June 2022)</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="2" data-gallery="lab-photos" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1647190789721-EIGN3B52PJUQ0PWMOA79/IMG_3759.jpg" alt="First  Annual Joint-Lab Ski Trip" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>First  Annual Joint-Lab Ski Trip</h4>
+                <p>(Left to Right) Niraj, Andrew, Lottie, Mark, Kelly, Jeremy, Danielle (virtual), Halil, Vignesh, Jessica, Gracie, Liqi. Mark (behind the camera) and Akhil our guiding Sun (virtual)!</p>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="3" data-gallery="lab-photos" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1623554707086-EEQZHKACVV1TS7SFPZ8R/IMG_0959.JPG" alt="Kasinath Lab (June 2021)" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Kasinath Lab (June 2021)</h4>
+                <p>(Left to Right) Danielle, Ryan, Troy, Vignesh, Akhil, Liqi</p>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="4" data-gallery="lab-photos" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1623554710778-UEI40TQOTQSG01KW6M2T/IMG_0966.JPG" alt="Joint Lab Photo (Aydin and Kasinath Labs)" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Joint Lab Photo (Aydin and Kasinath Labs)</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="5" data-gallery="lab-photos" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1643413004328-2PE65DCJGBL2FHB37P3G/IMG_1462.JPG" alt="Potluck at Vignesh's house (Fall 2021)" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Potluck at Vignesh's house (Fall 2021)</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="6" data-gallery="lab-photos" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1643412509816-OAA0S1F71FAEFN3J88XM/IMG_1852.jpg" alt="Kasinath - Aydin Joint Lab Christmas Dinner" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Kasinath - Aydin Joint Lab Christmas Dinner</h4>
+              </div>
+            </div>
           </div>
+          <button class="carousel-control next" aria-label="Next image"><i class="fa-solid fa-chevron-right"></i></button>
         </div>
-        <div class="gallery-item glass-card">
-          <img src="assets/hero_cryo_et.png" alt="Cryo-ET Tomography">
-          <div class="gallery-caption">
-            <h4>In Situ Cryo-ET</h4>
-            <p>High-resolution tomographic views of chromatin inside cells</p>
-          </div>
+      </div>
+
+      <!-- Gallery Section: Lab Shenanigans -->
+      <div class="gallery-section" id="section-lab-shenanigans">
+        <div class="gallery-section-header">
+          <h3>Lab Shenanigans</h3>
+          <a href="https://vigneshkasinath.org/labshenanigans" target="_blank" rel="noopener" class="btn btn-secondary btn-sm gallery-ext-btn">
+            Lab Shenanigans <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
         </div>
-        <div class="gallery-item glass-card">
-          <img src="assets/hero_chromatin.png" alt="Reconstituted Chromatin">
-          <div class="gallery-caption">
-            <h4>Reconstituted Chromatin Arrays</h4>
-            <p>In vitro assemblies of nucleosome-linker histone complexes</p>
+        <div class="carousel-container" id="carousel-lab-shenanigans">
+          <button class="carousel-control prev" aria-label="Previous image"><i class="fa-solid fa-chevron-left"></i></button>
+          <div class="carousel-track">
+            <div class="carousel-item glass-card" data-index="0" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1769111815305-VQ2ZDNKLGZIWAYJEL69N/image-asset.jpeg" alt="Kasinath Lab at 13,146 ft!" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Kasinath Lab at 13,146 ft!</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="1" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1769111645078-VASN036MLKDC6G4QKX37/image-asset.jpeg" alt="Vignesh winning the CU Boulder Badminton tournament!" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Vignesh winning the CU Boulder Badminton tournament!</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="2" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1738615175540-IG3LNCOPS5EOUKYG4F5U/image-asset.jpeg" alt="Lab Image" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Lab Image</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="3" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1738613440056-6QUTL2GU605CKWJJLZBE/IMG_4789.jpeg" alt="IMG_4789.jpeg" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>IMG_4789.jpeg</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="4" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1722893591760-43N2HG4ZUY0ZJTJRD1VL/IMG_6561.jpg" alt="IMG_6561.jpg" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>IMG_6561.jpg</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="5" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1722893550611-PDD31VR60924GLV7PV9G/IMG_6565.jpg" alt="IMG_6565.jpg" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>IMG_6565.jpg</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="6" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1738613634445-ZCKSV993E7ANERXW0FW6/IMG_7261.PNG" alt="IMG_7261.PNG" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>IMG_7261.PNG</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="7" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1667754649222-CAFQQMD6NCVP1B5XJCEV/image-asset.jpeg" alt="Halloween 2022" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Halloween 2022</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="8" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1738613432259-OKL8DV4QSKKXMZJZN67R/IMG_6826.JPG" alt="IMG_6826.JPG" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>IMG_6826.JPG</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="9" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1738613589885-WD81VMZUY879HCX94BML/IMG_0357.jpg" alt="IMG_0357.jpg" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>IMG_0357.jpg</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="10" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1667755329216-1O9EWK0QEB7FUVW6J73F/image-asset.jpeg" alt="Lab Image" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Lab Image</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="11" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1667754865806-7DVUXLARNBQAQA3DBFGW/image-asset.jpeg" alt="Grad students with their Lego Krios sets! - Spring 2022" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Grad students with their Lego Krios sets! - Spring 2022</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="12" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1671690842712-41F06OVW1T2NC0LK9SOS/image.jpg" alt="Lab outing to Color Me Mine!!" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Lab outing to Color Me Mine!!</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="13" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1648589872159-VE2GNQP5AACV5QV329YD/Screen+Shot+2022-03-29+at+3.34.29+PM.png" alt="How NOT to drink Guinness Guide" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>How NOT to drink Guinness Guide</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="14" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1648589883537-JJQST0I8EFDNAQGSHQEP/Image+from+iOS+%282%29.jpg" alt="PI approved LN2 chocolate ice cream" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>PI approved LN2 chocolate ice cream</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="15" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1648590027204-5E45E3Z2F5IAOST5OGSE/Image%2Bfrom%2BiOS.jpg" alt="Ryan and Jeremy thrilled to see the Pink glow discharge - Easily pleased." loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Ryan and Jeremy thrilled to see the Pink glow discharge - Easily pleased.</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="16" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1649955648261-4FZKUZK0G495AO964DBV/Image+from+iOS%282%29.jpg" alt="Image from iOS(2).jpg" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Image from iOS(2).jpg</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="17" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1667754569168-5YVLJE6SI1IXTBVAFNAF/image-asset.jpeg" alt="Halloween 2021" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Halloween 2021</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="18" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1667754733653-OAAOVRE6PLDCY5LEOJ8P/image-asset.jpeg" alt="Lab Social Hour - Spring 2022" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Lab Social Hour - Spring 2022</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="19" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1667754762386-VSH7J00F77GPKGBWSTYJ/image-asset.jpeg" alt="Canadian Thanksgiving - Fall 2022" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Canadian Thanksgiving - Fall 2022</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="20" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1667754785321-8X34DJD5KGZXN4NPBVBS/image-asset.jpeg" alt="Piku wants to split cells" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Piku wants to split cells</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="21" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1667755272687-WOTA2ROWL21KOJD4L2KC/image-asset.jpeg" alt="Mark and Ash @ CCET" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Mark and Ash @ CCET</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="22" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1667755358093-3JZK8HYOU1R7KM3WNYX4/image-asset.jpeg" alt="Smudge just wants to pick particles" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Smudge just wants to pick particles</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="23" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1667756251308-PS0LOCEOZ84J5VVR2HWW/image-asset.jpeg" alt="Lab Image" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Lab Image</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="24" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1667755388446-QNJYHJV5P7OB95FMSPNT/image-asset.jpeg" alt="Lab Image" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Lab Image</h4>
+              </div>
+            </div>
           </div>
+          <button class="carousel-control next" aria-label="Next image"><i class="fa-solid fa-chevron-right"></i></button>
         </div>
-        <div class="gallery-item glass-card">
-          <img src="assets/molecular_header.png" alt="Macromolecular Complex">
-          <div class="gallery-caption">
-            <h4>Epigenetic Assemblies</h4>
-            <p>Atomic-resolution architectural model of macromolecular machinery</p>
-          </div>
+      </div>
+
+      <!-- Gallery Section: Life outside the lab -->
+      <div class="gallery-section" id="section-life-outside-the-lab">
+        <div class="gallery-section-header">
+          <h3>Life outside the lab</h3>
+          <a href="https://vigneshkasinath.org/lifeoutsidelab" target="_blank" rel="noopener" class="btn btn-secondary btn-sm gallery-ext-btn">
+            Life outside the lab <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
         </div>
-        <div class="gallery-item glass-card">
-          <img src="assets/news_grants.png" alt="Celebrating Milestones">
-          <div class="gallery-caption">
-            <h4>Lab Celebrations</h4>
-            <p>Marking new research funding milestones and achievements</p>
+        <div class="carousel-container" id="carousel-life-outside-the-lab">
+          <button class="carousel-control prev" aria-label="Previous image"><i class="fa-solid fa-chevron-left"></i></button>
+          <div class="carousel-track">
+            <div class="carousel-item glass-card" data-index="0" data-gallery="life-outside-the-lab" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1623555506746-V7V24ZRYWNWST5PLT5T5/IMG_0900_3.JPG" alt="Top of Mt. Ida (12,900 ft) - RMNP" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Top of Mt. Ida (12,900 ft) - RMNP</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="1" data-gallery="life-outside-the-lab" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1623555496031-1L55Z5VL4RCQXX480EUZ/IMG_0599.jpg" alt="Boulder Flatirons - US 36" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Boulder Flatirons - US 36</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="2" data-gallery="life-outside-the-lab" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1623555588291-387EZ8GKEH5BJEWNOZQB/IMG_0983+2.jpg" alt="Sunset at Lost Gulch Lookout - Indian Peak Wilderness" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Sunset at Lost Gulch Lookout - Indian Peak Wilderness</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="3" data-gallery="life-outside-the-lab" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1623555678097-SCDHYLEW1DMXEE7J5MO1/IMG_0899.JPG" alt="Never Summer Mountains - RMNP" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Never Summer Mountains - RMNP</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="4" data-gallery="life-outside-the-lab" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1623556426117-BTR3TC1OUKFZHEL5YO0T/IMG_0678_3.JPG" alt="Top of Beak Peak - 8500 ft (Boulder Flatirons)" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Top of Beak Peak - 8500 ft (Boulder Flatirons)</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="5" data-gallery="life-outside-the-lab" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1624317042449-7F6NF0SJ7WVI1ILXQDJ9/IMG_1049.JPG" alt="Emerald Lake &amp; Hallett Peak (12,700 ft) - RMNP" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Emerald Lake &amp; Hallett Peak (12,700 ft) - RMNP</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="6" data-gallery="life-outside-the-lab" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1624317042357-YIPB6NQLFEGD8QWBXYAQ/IMG_1061.JPG" alt="Hallett Peak (12,700 ft) - RMNP" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>Hallett Peak (12,700 ft) - RMNP</h4>
+              </div>
+            </div>
+            <div class="carousel-item glass-card" data-index="7" data-gallery="life-outside-the-lab" onclick="openLightbox(this)">
+              <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1643412704083-V2LGZB18QU89CGJA8CQY/IMG_2194.jpg" alt="IMG_2194.jpg" loading="lazy">
+              <div class="carousel-item-caption">
+                <h4>IMG_2194.jpg</h4>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="gallery-item glass-card">
-          <img src="assets/news_pew.png" alt="Biomedical Scholar Recognition">
-          <div class="gallery-caption">
-            <h4>Pew Scholarship Recognition</h4>
-            <p>Celebrating the Pew Biomedical Scholar recognition</p>
-          </div>
-        </div>
-        <div class="gallery-item glass-card">
-          <img src="assets/news_students.png" alt="Student Mentorship">
-          <div class="gallery-caption">
-            <h4>Mentorship and Collaboration</h4>
-            <p>Graduate students working on cryo-EM data processing workflows</p>
-          </div>
+          <button class="carousel-control next" aria-label="Next image"><i class="fa-solid fa-chevron-right"></i></button>
         </div>
       </div>
     </section>
@@ -435,33 +666,91 @@
          ========================================== -->
     <section class="tab-section" id="outreach">
       <h2 class="section-title">STEM Outreach & Education</h2>
-      <p style="margin-bottom: 35px; color: var(--color-text-muted); max-width: 800px;">
-        At the Kasinath Lab, we believe that sharing the wonder of structural biology with our community is key to inspiring the next generation of scientific leaders. We are active in several educational and community outreach projects at CU Boulder.
-      </p>
+      
+      <div class="outreach-intro">
+        <p>
+          The Kasinath lab is committed to growing and improving the scientific community and mentoring the future generation of scientists. We have hosted and mentored students from CU and specifically the <a href="https://www.colorado.edu/program/b2b" target="_blank" rel="noopener">Bridges to Biosciences (B2B) program</a>, <a href="https://www.colorado.edu/studentgroups/stemroutes/uplift-research-program" target="_blank" rel="noopener">STEM UpLIFT program</a>, community college, and high school.
+        </p>
+        <p>
+          We have partnered with <a href="https://www.aims.edu/" target="_blank" rel="noopener">AIMS Community College</a> and <a href="https://eca.greeleyschools.org/" target="_blank" rel="noopener">Early College Academy</a> by hosting a summer workshop for students as well as seminars at AIMS. We hosted one such workshop in July 2024 (see below), another for Early College Academy students in October 2024 (see below), as well as hosted tours of our lab for Science Colloquium.
+        </p>
+      </div>
 
-      <div class="outreach-grid" id="stem-outreach-grid">
-        <div class="glass-card outreach-card">
-          <div class="outreach-icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
-          <h3>CU Science Discovery Collaboration</h3>
-          <p>
-            We partner with CU Boulder's Science Discovery program to host hands-on workshops for high school and middle school students. Our interactive sessions let young scientists build physical models of chromatin and explore atomic structures in virtual reality.
-          </p>
+      <!-- Full-Width Group Showcase Card -->
+      <div class="glass-card outreach-hero-card">
+        <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/476bec46-bd4c-469b-b20a-7be0f290400f/B2B+%26+Kasinath+Lab+Group+Photo.jpg" alt="B2B & Kasinath Lab Group Photo July 2024">
+        <div class="outreach-hero-caption">
+          <p>July 2024 - Presenting our scientific journeys to the Bridges to Bioscience (B2B) Program!</p>
+        </div>
+      </div>
+
+      <!-- 2x2 Photo Grid -->
+      <div class="outreach-photo-grid">
+        <div class="glass-card outreach-photo-item">
+          <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/ab6e8e5d-f8b3-4189-919e-685086e9be22/image002.jpg" alt="Science Colloquium Lab Tour">
+          <div class="outreach-photo-caption">
+            <p>February 2025 - Lab tour for Science Colloquium students</p>
+          </div>
         </div>
 
-        <div class="glass-card outreach-card">
-          <div class="outreach-icon-box"><i class="fa-solid fa-people-group"></i></div>
-          <h3>STEM Mentorship Programs</h3>
-          <p>
-            Our laboratory participates in local mentoring pipelines, providing dedicated training and research opportunities to undergraduate students from diverse backgrounds. Mentees gain practical experience in protein biochemistry, sample preparation, and computational image processing.
-          </p>
+        <div class="glass-card outreach-photo-item">
+          <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/5a370a94-82ad-4f89-a0ab-adfed80f48cd/image-asset.jpg" alt="Early College Academy Tour">
+          <div class="outreach-photo-caption">
+            <p>October 2024 - The lab presented our scientific journeys and research projects, as well as gave tours of the lab and core facilities to Early College Academy students</p>
+          </div>
         </div>
 
-        <div class="glass-card outreach-card">
-          <div class="outreach-icon-box"><i class="fa-solid fa-earth-americas"></i></div>
-          <h3>Public Science Communication</h3>
-          <p>
-            We organize open-house lab tours at the Caruthers Biotechnology Building (JSCBB) and present at public seminars to demystify complex biophysical methods like cryo-electron microscopy and cellular tomography for non-scientific audiences.
-          </p>
+        <div class="glass-card outreach-photo-item">
+          <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/6088215b-1537-46ab-9e53-01442979ebc8/image003.jpg" alt="Vitrobot Demonstration">
+          <div class="outreach-photo-caption">
+            <p>Danielle showed students the Vitrobot and how we use it to make cryo-EM grids.</p>
+          </div>
+        </div>
+
+        <div class="glass-card outreach-photo-item">
+          <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/4889ce68-148c-4715-ba11-b265debb68d0/IMG_9722.jpg" alt="C. elegans Demonstration">
+          <div class="outreach-photo-caption">
+            <p>Robert and Malia showed students the C. elegans we keep in the lab and how we utilize this model organism.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Alumni / Previous Program Participants -->
+      <div class="outreach-alumni-section">
+        <h3 class="outreach-alumni-title">Previous Program Participants</h3>
+        <div class="alumni-grid">
+          
+          <div class="glass-card alumni-card">
+            <h4>Bridges to Bioscience (B2B)</h4>
+            <ul>
+              <li><i class="fa-solid fa-circle-notch"></i> Iona Kelly (Summer 2025)</li>
+            </ul>
+          </div>
+
+          <div class="glass-card alumni-card">
+            <h4>STEM UpLIFT Program</h4>
+            <ul>
+              <li><i class="fa-solid fa-circle-notch"></i> Malavika Vinod (2022-2025)</li>
+              <li><i class="fa-solid fa-circle-notch"></i> Elijah Ortivez (Fall 2021)</li>
+              <li><i class="fa-solid fa-circle-notch"></i> Carson McKenna (Summer 2022)</li>
+              <li><i class="fa-solid fa-circle-notch"></i> Catrina Day (2023-2024)</li>
+            </ul>
+          </div>
+
+          <div class="glass-card alumni-card">
+            <h4>Community College</h4>
+            <ul>
+              <li><i class="fa-solid fa-circle-notch"></i> Ryan Otten (Summer 2022)</li>
+            </ul>
+          </div>
+
+          <div class="glass-card alumni-card">
+            <h4>High School</h4>
+            <ul>
+              <li><i class="fa-solid fa-circle-notch"></i> Kaylor Huang (Summer 2024)</li>
+            </ul>
+          </div>
+          
         </div>
       </div>
     </section>
@@ -733,6 +1022,24 @@
       </div>
     </div>
   </footer>
+
+  <!-- Lightbox Modal for Gallery Images -->
+  <div class="lightbox-modal" id="gallery-lightbox" aria-hidden="true" role="dialog">
+    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <button class="lightbox-control prev" onclick="changeLightboxImage(-1)" aria-label="Previous image">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+    <div class="lightbox-content">
+      <img id="lightbox-img" src="" alt="">
+      <div class="lightbox-caption">
+        <h4 id="lightbox-title"></h4>
+        <p id="lightbox-desc" style="display: none;"></p>
+      </div>
+    </div>
+    <button class="lightbox-control next" onclick="changeLightboxImage(1)" aria-label="Next image">
+      <i class="fa-solid fa-chevron-right"></i>
+    </button>
+  </div>
 
   <!-- Dependencies: jQuery and 3Dmol.js -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

@@ -431,6 +431,50 @@ function initCarousels() {
 
     let newsInterval = setInterval(nextNewsSlide, 6000); // 6 seconds per slide
   }
+
+  // Lab Gallery Carousels (Lab Photos, Shenanigans, Life Outside)
+  const galleryCarousels = document.querySelectorAll('.carousel-container');
+  galleryCarousels.forEach(container => {
+    // Ignore the hero media container if styled similarly
+    if (container.id === 'hero-media') return;
+
+    const track = container.querySelector('.carousel-track');
+    const prevBtn = container.querySelector('.carousel-control.prev');
+    const nextBtn = container.querySelector('.carousel-control.next');
+
+    if (!track || !prevBtn || !nextBtn) return;
+
+    const getScrollAmount = () => {
+      const firstItem = track.querySelector('.carousel-item');
+      if (firstItem) {
+        return firstItem.getBoundingClientRect().width + 20; // width + gap
+      }
+      return 340;
+    };
+
+    nextBtn.addEventListener('click', () => {
+      track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+    });
+
+    prevBtn.addEventListener('click', () => {
+      track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+    });
+
+    // Hide control arrows at scroll boundaries
+    const toggleControls = () => {
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      prevBtn.style.opacity = track.scrollLeft <= 5 ? '0.2' : '1';
+      prevBtn.style.pointerEvents = track.scrollLeft <= 5 ? 'none' : 'auto';
+      nextBtn.style.opacity = track.scrollLeft >= maxScroll - 5 ? '0.2' : '1';
+      nextBtn.style.pointerEvents = track.scrollLeft >= maxScroll - 5 ? 'none' : 'auto';
+    };
+
+    track.addEventListener('scroll', toggleControls);
+    // Run initial check after rendering
+    setTimeout(toggleControls, 200);
+    // Also run on resize since width changes
+    window.addEventListener('resize', toggleControls);
+  });
 }
 
 /* =========================================================================
@@ -492,4 +536,96 @@ function initThemeToggle() {
     syncIcon();
   });
 }
+
+/* =========================================================================
+   Interactive Lightbox Modal for Gallery Images
+   ========================================================================= */
+let activeGalleryItems = [];
+let currentLightboxIndex = -1;
+
+window.openLightbox = function(itemElement) {
+  const galleryType = itemElement.getAttribute('data-gallery');
+  const index = parseInt(itemElement.getAttribute('data-index'), 10);
+  
+  // Find all items in this gallery to enable next/prev navigation
+  activeGalleryItems = Array.from(document.querySelectorAll(`.carousel-item[data-gallery="${galleryType}"]`));
+  currentLightboxIndex = index;
+  
+  updateLightbox();
+  
+  const lightbox = document.getElementById('gallery-lightbox');
+  if (lightbox) {
+    lightbox.setAttribute('aria-hidden', 'false');
+  }
+};
+
+window.closeLightbox = function() {
+  const lightbox = document.getElementById('gallery-lightbox');
+  if (lightbox) {
+    lightbox.setAttribute('aria-hidden', 'true');
+  }
+};
+
+window.changeLightboxImage = function(direction) {
+  if (activeGalleryItems.length === 0) return;
+  
+  currentLightboxIndex = (currentLightboxIndex + direction + activeGalleryItems.length) % activeGalleryItems.length;
+  updateLightbox();
+};
+
+function updateLightbox() {
+  if (currentLightboxIndex < 0 || currentLightboxIndex >= activeGalleryItems.length) return;
+  
+  const item = activeGalleryItems[currentLightboxIndex];
+  const img = item.querySelector('img');
+  const title = item.querySelector('h4');
+  const desc = item.querySelector('p');
+  
+  const lbImg = document.getElementById('lightbox-img');
+  const lbTitle = document.getElementById('lightbox-title');
+  const lbDesc = document.getElementById('lightbox-desc');
+  
+  if (lbImg && img) {
+    lbImg.src = img.src;
+    lbImg.alt = img.alt || 'Lab image';
+  }
+  
+  if (lbTitle && title) {
+    lbTitle.textContent = title.textContent;
+  }
+  
+  if (lbDesc) {
+    if (desc) {
+      lbDesc.textContent = desc.textContent;
+      lbDesc.style.display = 'block';
+    } else {
+      lbDesc.textContent = '';
+      lbDesc.style.display = 'none';
+    }
+  }
+}
+
+// Add Keyboard Support for Lightbox
+document.addEventListener('keydown', (e) => {
+  const lightbox = document.getElementById('gallery-lightbox');
+  if (lightbox && lightbox.getAttribute('aria-hidden') === 'false') {
+    if (e.key === 'ArrowLeft') {
+      window.changeLightboxImage(-1);
+    } else if (e.key === 'ArrowRight') {
+      window.changeLightboxImage(1);
+    } else if (e.key === 'Escape') {
+      window.closeLightbox();
+    }
+  }
+});
+
+// Close lightbox when clicking outside the image container
+document.addEventListener('click', (e) => {
+  const lightbox = document.getElementById('gallery-lightbox');
+  if (lightbox && lightbox.getAttribute('aria-hidden') === 'false') {
+    if (e.target === lightbox || e.target.classList.contains('lightbox-content')) {
+      window.closeLightbox();
+    }
+  }
+});
 
