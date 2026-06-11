@@ -590,13 +590,19 @@ function updateLightbox() {
     lbImg.alt = img.alt || 'Lab image';
   }
   
-  if (lbTitle && title) {
-    lbTitle.textContent = title.textContent;
+  if (lbTitle) {
+    if (title && title.textContent.trim()) {
+      lbTitle.textContent = title.textContent.trim();
+      lbTitle.style.display = 'block';
+    } else {
+      lbTitle.textContent = '';
+      lbTitle.style.display = 'none';
+    }
   }
   
   if (lbDesc) {
-    if (desc) {
-      lbDesc.textContent = desc.textContent;
+    if (desc && desc.textContent.trim()) {
+      lbDesc.textContent = desc.textContent.trim();
       lbDesc.style.display = 'block';
     } else {
       lbDesc.textContent = '';

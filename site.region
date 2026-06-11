@@ -1,5 +1,5 @@
 <!-- GENERATED from index.html by dev/build-region.sh — DO NOT EDIT BY HAND. Edit index.html, then re-run. -->
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -17,14 +17,14 @@
   </script>
 
   <!-- SEO Meta Tags -->
-  <title>Vignesh Kasinath Lab — Regulation of Gene Silencing by RNA and Chromatin</title>
+  <title>Vignesh Kasinath Lab â€” Regulation of Gene Silencing by RNA and Chromatin</title>
   <meta name="description" content="We investigate the structural and biochemical mechanisms of gene silencing, chromatin organization, and chromosome pairing using state-of-the-art cryo-EM, cryo-ET, and biochemistry at CU Boulder.">
   <meta name="keywords" content="Vignesh Kasinath, Cryo-EM, Cryo-ET, Chromatin, Gene Silencing, PRC2, Biochemistry, Structural Biology, CU Boulder">
   <meta name="author" content="Vignesh Kasinath Lab">
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Vignesh Kasinath Lab — Regulation of Gene Silencing">
+  <meta property="og:title" content="Vignesh Kasinath Lab â€” Regulation of Gene Silencing">
   <meta property="og:description" content="Investigating the structures of gene silencing complexes and chromatin architecture at the University of Colorado Boulder.">
   <meta property="og:image" content="https://vignesh-kasinath.squarespace.com/assets/molecular_header.png">
   
@@ -114,7 +114,7 @@
           <div class="stat-label">NIH & NSF Funding</div>
         </div>
         <div class="glass-card stat-item">
-          <div class="stat-number">3.5Å</div>
+          <div class="stat-number">3.5Ã…</div>
           <div class="stat-label">Cryo-EM Resolutions</div>
         </div>
         <div class="glass-card stat-item">
@@ -251,19 +251,19 @@
           <button class="structure-btn active" data-pdb="6WKR" id="btn-struct-6wkr">
             <h4>PDB 6WKR</h4>
             <span>PRC2 Dinucleosome Complex</span>
-            <span>Resolution: 3.5 Å</span>
+            <span>Resolution: 3.5 Ã…</span>
           </button>
           
           <button class="structure-btn" data-pdb="6C23" id="btn-struct-6c23">
             <h4>PDB 6C23</h4>
             <span>PRC2 bound to AEBP2 cofactor</span>
-            <span>Resolution: 4.2 Å</span>
+            <span>Resolution: 4.2 Ã…</span>
           </button>
           
           <button class="structure-btn" data-pdb="6C24" id="btn-struct-6c24">
             <h4>PDB 6C24</h4>
             <span>PRC2 with AEBP2 & JARID2</span>
-            <span>Resolution: 3.9 Å</span>
+            <span>Resolution: 3.9 Ã…</span>
           </button>
         </div>
 
@@ -283,7 +283,7 @@
           <!-- Info Box on active structure -->
           <div class="viewer-info" id="viewer-info-box">
             <h5 id="struct-info-title">PRC2-AEBP2-JARID2 Bound to Dinucleosome</h5>
-            <p id="struct-info-method" style="color: var(--color-primary); font-weight: 500; margin-bottom: 5px;">Single Particle Cryo-EM (3.5 Å)</p>
+            <p id="struct-info-method" style="color: var(--color-primary); font-weight: 500; margin-bottom: 5px;">Single Particle Cryo-EM (3.5 Ã…)</p>
             <p id="struct-info-desc">Human Polycomb Repressive Complex 2 (PRC2) in complex with cofactor AEBP2 and JARID2, engaged on a dinucleosome substrate showing methylation state.</p>
           </div>
         </div>
@@ -456,31 +456,31 @@
             <div class="carousel-item glass-card" data-index="2" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
               <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1738615175540-IG3LNCOPS5EOUKYG4F5U/image-asset.jpeg" alt="Lab Image" loading="lazy">
               <div class="carousel-item-caption">
-                <h4>Lab Image</h4>
+                <h4></h4>
               </div>
             </div>
             <div class="carousel-item glass-card" data-index="3" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
               <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1738613440056-6QUTL2GU605CKWJJLZBE/IMG_4789.jpeg" alt="IMG_4789.jpeg" loading="lazy">
               <div class="carousel-item-caption">
-                <h4>IMG_4789.jpeg</h4>
+                <h4></h4>
               </div>
             </div>
             <div class="carousel-item glass-card" data-index="4" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
               <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1722893591760-43N2HG4ZUY0ZJTJRD1VL/IMG_6561.jpg" alt="IMG_6561.jpg" loading="lazy">
               <div class="carousel-item-caption">
-                <h4>IMG_6561.jpg</h4>
+                <h4></h4>
               </div>
             </div>
             <div class="carousel-item glass-card" data-index="5" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
               <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1722893550611-PDD31VR60924GLV7PV9G/IMG_6565.jpg" alt="IMG_6565.jpg" loading="lazy">
               <div class="carousel-item-caption">
-                <h4>IMG_6565.jpg</h4>
+                <h4></h4>
               </div>
             </div>
             <div class="carousel-item glass-card" data-index="6" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
               <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1738613634445-ZCKSV993E7ANERXW0FW6/IMG_7261.PNG" alt="IMG_7261.PNG" loading="lazy">
               <div class="carousel-item-caption">
-                <h4>IMG_7261.PNG</h4>
+                <h4></h4>
               </div>
             </div>
             <div class="carousel-item glass-card" data-index="7" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
@@ -492,19 +492,19 @@
             <div class="carousel-item glass-card" data-index="8" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
               <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1738613432259-OKL8DV4QSKKXMZJZN67R/IMG_6826.JPG" alt="IMG_6826.JPG" loading="lazy">
               <div class="carousel-item-caption">
-                <h4>IMG_6826.JPG</h4>
+                <h4></h4>
               </div>
             </div>
             <div class="carousel-item glass-card" data-index="9" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
               <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1738613589885-WD81VMZUY879HCX94BML/IMG_0357.jpg" alt="IMG_0357.jpg" loading="lazy">
               <div class="carousel-item-caption">
-                <h4>IMG_0357.jpg</h4>
+                <h4></h4>
               </div>
             </div>
             <div class="carousel-item glass-card" data-index="10" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
               <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1667755329216-1O9EWK0QEB7FUVW6J73F/image-asset.jpeg" alt="Lab Image" loading="lazy">
               <div class="carousel-item-caption">
-                <h4>Lab Image</h4>
+                <h4></h4>
               </div>
             </div>
             <div class="carousel-item glass-card" data-index="11" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
@@ -540,7 +540,7 @@
             <div class="carousel-item glass-card" data-index="16" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
               <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1649955648261-4FZKUZK0G495AO964DBV/Image+from+iOS%282%29.jpg" alt="Image from iOS(2).jpg" loading="lazy">
               <div class="carousel-item-caption">
-                <h4>Image from iOS(2).jpg</h4>
+                <h4></h4>
               </div>
             </div>
             <div class="carousel-item glass-card" data-index="17" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
@@ -582,13 +582,13 @@
             <div class="carousel-item glass-card" data-index="23" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
               <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1667756251308-PS0LOCEOZ84J5VVR2HWW/image-asset.jpeg" alt="Lab Image" loading="lazy">
               <div class="carousel-item-caption">
-                <h4>Lab Image</h4>
+                <h4></h4>
               </div>
             </div>
             <div class="carousel-item glass-card" data-index="24" data-gallery="lab-shenanigans" onclick="openLightbox(this)">
               <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1667755388446-QNJYHJV5P7OB95FMSPNT/image-asset.jpeg" alt="Lab Image" loading="lazy">
               <div class="carousel-item-caption">
-                <h4>Lab Image</h4>
+                <h4></h4>
               </div>
             </div>
           </div>
@@ -652,7 +652,7 @@
             <div class="carousel-item glass-card" data-index="7" data-gallery="life-outside-the-lab" onclick="openLightbox(this)">
               <img src="https://images.squarespace-cdn.com/content/v1/5619903ee4b0b6c3336fd529/1643412704083-V2LGZB18QU89CGJA8CQY/IMG_2194.jpg" alt="IMG_2194.jpg" loading="lazy">
               <div class="carousel-item-caption">
-                <h4>IMG_2194.jpg</h4>
+                <h4></h4>
               </div>
             </div>
           </div>
@@ -1011,7 +1011,7 @@
     <div class="footer-inner">
       <div>
         <div class="footer-logo">VIGNESH KASINATH LAB</div>
-        <div class="footer-meta">© 2026 Vignesh Kasinath Lab. All rights reserved.</div>
+        <div class="footer-meta">Â© 2026 Vignesh Kasinath Lab. All rights reserved.</div>
       </div>
       
       <!-- Social Media & external networks -->
@@ -1051,3 +1051,4 @@
   {squarespace-footers}
 </body>
 </html>
+
