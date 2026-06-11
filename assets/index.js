@@ -707,7 +707,8 @@ function initMascotPiku() {
 
   const scheduleNextPiku = () => {
     if (nextTimeout) clearTimeout(nextTimeout);
-    const randomDelay = (Math.random() * 45 + 30) * 1000; // 30s to 75s
+    // Easter egg frequency: between 8 to 18 minutes (480s to 1080s)
+    const randomDelay = (Math.random() * 600 + 480) * 1000;
     nextTimeout = setTimeout(showPiku, randomDelay);
   };
 
@@ -742,7 +743,8 @@ function initMascotPiku() {
     }, 150);
   };
 
-  // Start the schedule (first pop-in after 10 seconds)
-  nextTimeout = setTimeout(showPiku, 10000);
+  // Start the schedule (first pop-in after 2 to 5 minutes as an easter egg)
+  const initialDelay = (Math.random() * 180 + 120) * 1000;
+  nextTimeout = setTimeout(showPiku, initialDelay);
 }
 
