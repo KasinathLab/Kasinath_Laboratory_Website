@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCarousels();
   init3DTilt();
   initThemeToggle();
+  initMascotPiku();
 });
 
 /* =========================================================================
@@ -634,4 +635,114 @@ document.addEventListener('click', (e) => {
     }
   }
 });
+
+/* =========================================================================
+   Mascot Piku cardboard cutout popup (Stopmotion)
+   ========================================================================= */
+function initMascotPiku() {
+  const container = document.getElementById('piku-mascot-container');
+  const bubbleText = document.getElementById('piku-bubble-text');
+  if (!container || !bubbleText) return;
+
+  const barks = [
+    "Bark!",
+    "Woof woof!",
+    "Arf arf!",
+    "Awooooo!",
+    "Piku is here! 🐾",
+    "Time to split cells? 🧫",
+    "Did someone say treats? 🦴",
+    "Cryo-EM grid check! 🔍",
+    "Keep up the great research!",
+    "Sniff... sniff... 🐶",
+    "Bark! 🐾"
+  ];
+
+  let pikuActive = false;
+  let nextTimeout = null;
+
+  const showPiku = () => {
+    if (pikuActive) return;
+    pikuActive = true;
+
+    // Reset classes
+    container.className = '';
+    
+    // Choose random side: bottom-right or bottom-left
+    const side = Math.random() > 0.5 ? 'piku-bottom-right' : 'piku-bottom-left';
+    container.classList.add(side, 'enter');
+
+    // Trigger random bark
+    const randomBark = barks[Math.floor(Math.random() * barks.length)];
+    bubbleText.textContent = randomBark;
+
+    // After entry animation is done, show bubble and start wiggling
+    setTimeout(() => {
+      container.classList.remove('enter');
+      container.classList.add('wiggling', 'show-bubble');
+    }, 800);
+
+    // Keep active for 5.5 seconds, then hide
+    setTimeout(() => {
+      hidePiku();
+    }, 5500);
+  };
+
+  const hidePiku = () => {
+    if (!pikuActive) return;
+    
+    container.classList.remove('show-bubble', 'wiggling');
+    container.classList.add('leave');
+
+    setTimeout(() => {
+      container.classList.remove('leave');
+      // Hide completely
+      container.className = 'piku-hidden';
+      pikuActive = false;
+      
+      // Schedule next random pop in (between 30 to 75 seconds)
+      scheduleNextPiku();
+    }, 600);
+  };
+
+  const scheduleNextPiku = () => {
+    if (nextTimeout) clearTimeout(nextTimeout);
+    const randomDelay = (Math.random() * 45 + 30) * 1000; // 30s to 75s
+    nextTimeout = setTimeout(showPiku, randomDelay);
+  };
+
+  // Allow clicking Piku to trigger a spin and a bark!
+  window.triggerPikuInteractive = function() {
+    if (!pikuActive) return;
+    
+    // Play a quick wiggle effect and update the speech bubble
+    container.classList.remove('show-bubble');
+    
+    setTimeout(() => {
+      const activeBarks = [
+        "Bark bark! 🎉",
+        "Piku spin! 🌀",
+        "Awooo! 🐕",
+        "Back to the lab! 🧪",
+        "Happy pipetting!"
+      ];
+      bubbleText.textContent = activeBarks[Math.floor(Math.random() * activeBarks.length)];
+      container.classList.add('show-bubble');
+      
+      // Jitter spin effect
+      const img = container.querySelector('.piku-cutout-img');
+      if (img) {
+        img.style.transition = 'transform 0.5s steps(10)';
+        img.style.transform = 'rotate(360deg)';
+        setTimeout(() => {
+          img.style.transition = 'none';
+          img.style.transform = '';
+        }, 500);
+      }
+    }, 150);
+  };
+
+  // Start the schedule (first pop-in after 15 seconds)
+  nextTimeout = setTimeout(showPiku, 15000);
+}
 

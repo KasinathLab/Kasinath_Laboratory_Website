@@ -1744,3 +1744,165 @@ html[data-theme="dark"] .outreach-icon-box { background: rgba(212, 175, 55, 0.1)
 @media (max-width: 768px) {
   html[data-theme="dark"] nav.nav-tabs { box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); }
 }
+
+/* =========================================================================
+   MASCOT PIKU POP-UP (Stopmotion Cardboard Cutout)
+   ========================================================================= */
+#piku-mascot-container {
+  position: fixed;
+  bottom: 0;
+  z-index: 10000;
+  width: 140px;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateY(110%);
+}
+
+#piku-mascot-container.piku-hidden {
+  display: none !important;
+}
+
+#piku-mascot-container.piku-bottom-right {
+  right: 50px;
+}
+
+#piku-mascot-container.piku-bottom-left {
+  left: 50px;
+}
+
+.piku-cutout-wrapper {
+  cursor: pointer;
+  pointer-events: auto;
+  position: relative;
+  width: 100%;
+}
+
+.piku-cutout-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(3px 3px 0px rgba(0,0,0,0.15)) drop-shadow(6px 6px 8px rgba(0,0,0,0.2));
+  transform-origin: bottom center;
+}
+
+/* Speech Bubble styling (Handmade/Cardboard style) */
+.piku-bubble-wrapper {
+  opacity: 0;
+  transform: scale(0.8) translateY(10px);
+  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  margin-bottom: 5px;
+  position: relative;
+  width: max-content;
+  max-width: 160px;
+}
+
+#piku-mascot-container.show-bubble .piku-bubble-wrapper {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.piku-bubble {
+  background: #ffffff;
+  color: #111111;
+  border: 3px solid #111111;
+  padding: 8px 14px;
+  border-radius: 16px;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-align: center;
+  box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.15);
+  position: relative;
+  border-style: solid;
+}
+
+/* Speech Bubble Arrow */
+.piku-bubble::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 10px 10px 0;
+  border-style: solid;
+  border-color: #ffffff transparent;
+  display: block;
+  width: 0;
+}
+
+.piku-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 12px 12px 0;
+  border-style: solid;
+  border-color: #111111 transparent;
+  display: block;
+  width: 0;
+  z-index: -1;
+}
+
+/* Animations */
+#piku-mascot-container.enter.piku-bottom-right {
+  animation: piku-stopmotion-enter-br 0.8s steps(8) forwards;
+}
+
+#piku-mascot-container.enter.piku-bottom-left {
+  animation: piku-stopmotion-enter-bl 0.8s steps(8) forwards;
+}
+
+#piku-mascot-container.leave.piku-bottom-right {
+  animation: piku-stopmotion-leave-br 0.6s steps(6) forwards;
+}
+
+#piku-mascot-container.leave.piku-bottom-left {
+  animation: piku-stopmotion-leave-bl 0.6s steps(6) forwards;
+}
+
+#piku-mascot-container.wiggling .piku-cutout-img {
+  animation: piku-stopmotion-wiggle 1.5s steps(12) infinite;
+}
+
+/* Keyframes for Stop-Motion movement */
+@keyframes piku-stopmotion-enter-br {
+  0% { transform: translateY(110%) rotate(15deg); }
+  25% { transform: translateY(50%) rotate(-10deg); }
+  50% { transform: translateY(20%) rotate(5deg); }
+  75% { transform: translateY(-8px) rotate(-3deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes piku-stopmotion-leave-br {
+  0% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(-5deg); }
+  66% { transform: translateY(40%) rotate(10deg); }
+  100% { transform: translateY(110%) rotate(15deg); }
+}
+
+@keyframes piku-stopmotion-enter-bl {
+  0% { transform: translateY(110%) rotate(-15deg); }
+  25% { transform: translateY(50%) rotate(10deg); }
+  50% { transform: translateY(20%) rotate(-5deg); }
+  75% { transform: translateY(-8px) rotate(3deg); }
+  100% { transform: translateY(0) rotate(0deg); }
+}
+
+@keyframes piku-stopmotion-leave-bl {
+  0% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(5deg); }
+  66% { transform: translateY(40%) rotate(-10deg); }
+  100% { transform: translateY(110%) rotate(-15deg); }
+}
+
+@keyframes piku-stopmotion-wiggle {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  16% { transform: rotate(-5deg) translateY(-6px) scale(0.97); }
+  33% { transform: rotate(4deg) translateY(2px) scale(1.03); }
+  50% { transform: rotate(-3deg) translateY(-4px) scale(0.99); }
+  66% { transform: rotate(5deg) translateY(0px) scale(1.02); }
+  83% { transform: rotate(-2deg) translateY(-2px) scale(1.01); }
+}
