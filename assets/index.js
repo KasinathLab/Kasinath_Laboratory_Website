@@ -182,10 +182,10 @@ const structuresData = {
     method: 'Single Particle Cryo-EM (3.9 Å)',
     description: 'Complex details containing both cofactors AEBP2 and JARID2, providing architectural clues into gene silencing regulation.'
   },
-  'EMDB-7306': {
-    name: 'PRC2 simultaneously engaged with two functionally distinct nucleosomes',
-    method: 'Single Particle Cryo-EM (3.5 - 4.2 Å)',
-    description: 'Cryo-EM density maps (EMD-7306, EMD-7310, EMD-7312) detailing how human PRC2 simultaneously bridges and interacts with H3K27me3-modified and unmodified nucleosome substrates.'
+  '5HYN': {
+    name: 'Human PRC2 Core (Fitted in EMD-7306/7310/7312)',
+    method: 'X-Ray Crystallography (2.7 Å)',
+    description: 'Since only the 3D EM density maps were deposited for the dual-nucleosome engaged state, this viewer displays the human PRC2 core structure (PDB 5HYN) that was used for rigid-body fitting into the cryo-EM envelopes. View maps on EMDB: <a href="https://www.ebi.ac.uk/emdb/EMD-7306" target="_blank" rel="noopener noreferrer" style="color: var(--color-primary); text-decoration: underline; font-weight: 600;">EMD-7306</a>, <a href="https://www.ebi.ac.uk/emdb/EMD-7310" target="_blank" rel="noopener noreferrer" style="color: var(--color-primary); text-decoration: underline; font-weight: 600;">EMD-7310</a>, and <a href="https://www.ebi.ac.uk/emdb/EMD-7312" target="_blank" rel="noopener noreferrer" style="color: var(--color-primary); text-decoration: underline; font-weight: 600;">EMD-7312</a>.'
   }
 };
 
@@ -215,7 +215,7 @@ function initStructureViewer() {
       if (structuresData[pdbId]) {
         infoTitle.textContent = structuresData[pdbId].name;
         infoMethod.textContent = structuresData[pdbId].method;
-        infoDesc.textContent = structuresData[pdbId].description;
+        infoDesc.innerHTML = structuresData[pdbId].description;
       }
       
       loadStructure(pdbId);
@@ -279,43 +279,6 @@ function loadStructure(pdbId) {
 
   // Clear previous element content
   container.innerHTML = '';
-  
-  const controls = document.getElementById('viewer-controls');
-
-  if (pdbId === 'EMDB-7306') {
-    // Hide controls for map-only entry
-    if (controls) controls.style.display = 'none';
-
-    // Render EMDB placeholder panel
-    const panel = document.createElement('div');
-    panel.className = 'emdb-placeholder-panel';
-    panel.innerHTML = `
-      <div class="emdb-placeholder-content">
-        <div class="emdb-icon-box">
-          <i class="fa-solid fa-circle-info"></i>
-        </div>
-        <h3>Cryo-EM Density Maps Only</h3>
-        <p>No single coordinate atomic model (PDB file) was deposited for this entry. Instead, the authors performed <strong>rigid-body fitting</strong> of existing coordinate models (such as human PRC2 PDB <strong>5HYN</strong> and nucleosome PDB <strong>1AOI</strong>) into 3D density maps.</p>
-        <p class="emdb-subtext">View and download the primary density maps directly on the EMDB database:</p>
-        <div class="emdb-links">
-          <a href="https://www.ebi.ac.uk/emdb/EMD-7306" target="_blank" rel="noopener noreferrer" class="emdb-link-btn">
-            <span>EMD-7306</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
-          </a>
-          <a href="https://www.ebi.ac.uk/emdb/EMD-7310" target="_blank" rel="noopener noreferrer" class="emdb-link-btn">
-            <span>EMD-7310</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
-          </a>
-          <a href="https://www.ebi.ac.uk/emdb/EMD-7312" target="_blank" rel="noopener noreferrer" class="emdb-link-btn">
-            <span>EMD-7312</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>
-          </a>
-        </div>
-      </div>
-    `;
-    container.appendChild(panel);
-    return;
-  }
-
-  // Show controls for normal structures
-  if (controls) controls.style.display = 'flex';
   
   // Set up loader indicator
   const loader = document.createElement('div');
