@@ -89,8 +89,8 @@ function initCanvasBackground() {
   function themePalette() {
     const dark = document.documentElement.getAttribute('data-theme') === 'dark';
     return dark
-      ? { a: 'rgba(0, 229, 255, 0.4)', b: 'rgba(189, 0, 255, 0.3)', line: '156, 154, 174' }
-      : { a: 'rgba(0, 119, 182, 0.4)', b: 'rgba(114, 9, 183, 0.3)', line: '30, 41, 59' };
+      ? { a: 'rgba(212, 175, 55, 0.55)', b: 'rgba(255, 242, 178, 0.4)', line: '212, 175, 55' }
+      : { a: 'rgba(138, 109, 59, 0.4)', b: 'rgba(15, 23, 42, 0.35)', line: '138, 109, 59' };
   }
 
   class Particle {
@@ -280,7 +280,7 @@ function loadStructure(pdbId) {
   loader.style.top = '50%';
   loader.style.left = '50%';
   loader.style.transform = 'translate(-50%, -50%)';
-  loader.style.color = '#00e5ff';
+  loader.style.color = 'var(--color-primary)';
   loader.style.fontFamily = 'Outfit, sans-serif';
   loader.style.fontSize = '0.9rem';
   loader.textContent = `Fetching Structure ${pdbId} from PDB...`;
@@ -453,7 +453,7 @@ function init3DTilt() {
       const rotateY = ((x - centerX) / centerX) * maxRotate;
       
       card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(12px) translateY(-5px)`;
-      card.style.boxShadow = `0 20px 40px rgba(0, 0, 0, 0.45), 0 0 30px rgba(0, 229, 255, 0.15)`;
+      card.style.boxShadow = `0 20px 40px rgba(0, 0, 0, 0.45), 0 0 30px rgba(212, 175, 55, 0.25)`;
     });
     
     card.addEventListener('mouseleave', () => {
