@@ -20,6 +20,7 @@ function initTabs() {
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const targetSection = tab.getAttribute('data-target');
+      if (!targetSection) return;
 
       // Update active nav buttons
       tabs.forEach(t => t.classList.remove('active'));

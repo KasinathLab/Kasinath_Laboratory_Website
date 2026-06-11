@@ -62,9 +62,12 @@
       <button class="nav-tab" data-target="research" id="tab-btn-research">Research</button>
       <button class="nav-tab" data-target="structures" id="tab-btn-structures">Structures</button>
       <button class="nav-tab" data-target="publications" id="tab-btn-publications">Publications</button>
+      <button class="nav-tab" data-target="gallery" id="tab-btn-gallery">Lab Gallery</button>
+      <button class="nav-tab" data-target="outreach" id="tab-btn-outreach">Outreach</button>
       <button class="nav-tab" data-target="team" id="tab-btn-team">Team</button>
       <button class="nav-tab" data-target="openings" id="tab-btn-openings">Openings</button>
       <button class="nav-tab" data-target="contact" id="tab-btn-contact">Contact</button>
+      <a href="https://kasinath-aydin-lab.atlassian.net/wiki/spaces/KAL/overview" target="_blank" rel="noopener" class="nav-tab" id="tab-btn-confluence" style="text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">Confluence <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.7rem;"></i></a>
       <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark theme" title="Toggle light/dark theme"><i class="fa-solid fa-moon"></i></button>
     </nav>
   </header>
@@ -356,6 +359,111 @@
               <a href="https://pubmed.ncbi.nlm.nih.gov/31061526/" target="_blank" rel="noopener" class="pub-link"><i class="fa-solid fa-book-open"></i> PubMed (31061526)</a>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         LAB GALLERY SECTION
+         ========================================== -->
+    <section class="tab-section" id="gallery">
+      <h2 class="section-title">Lab Gallery</h2>
+      <p style="margin-bottom: 30px; color: var(--color-text-muted); max-width: 800px;">
+        A glimpse into the daily life, research activities, and environment of the Kasinath Laboratory at CU Boulder.
+      </p>
+
+      <div class="gallery-grid" id="lab-gallery-grid">
+        <div class="gallery-item glass-card">
+          <img src="/assets/lab_group.jpg" alt="Kasinath Lab Group Photo">
+          <div class="gallery-caption">
+            <h4>Kasinath Lab Team</h4>
+            <p>The research team in JSCBB at University of Colorado Boulder</p>
+          </div>
+        </div>
+        <div class="gallery-item glass-card">
+          <img src="/assets/cryo_em_microscope.png" alt="Cryo-EM Microscope">
+          <div class="gallery-caption">
+            <h4>Krios G4 Cryo-TEM</h4>
+            <p>Our state-of-the-art cryo-electron microscope facility</p>
+          </div>
+        </div>
+        <div class="gallery-item glass-card">
+          <img src="/assets/hero_cryo_et.png" alt="Cryo-ET Tomography">
+          <div class="gallery-caption">
+            <h4>In Situ Cryo-ET</h4>
+            <p>High-resolution tomographic views of chromatin inside cells</p>
+          </div>
+        </div>
+        <div class="gallery-item glass-card">
+          <img src="/assets/hero_chromatin.png" alt="Reconstituted Chromatin">
+          <div class="gallery-caption">
+            <h4>Reconstituted Chromatin Arrays</h4>
+            <p>In vitro assemblies of nucleosome-linker histone complexes</p>
+          </div>
+        </div>
+        <div class="gallery-item glass-card">
+          <img src="/assets/molecular_header.png" alt="Macromolecular Complex">
+          <div class="gallery-caption">
+            <h4>Epigenetic Assemblies</h4>
+            <p>Atomic-resolution architectural model of macromolecular machinery</p>
+          </div>
+        </div>
+        <div class="gallery-item glass-card">
+          <img src="/assets/news_grants.png" alt="Celebrating Milestones">
+          <div class="gallery-caption">
+            <h4>Lab Celebrations</h4>
+            <p>Marking new research funding milestones and achievements</p>
+          </div>
+        </div>
+        <div class="gallery-item glass-card">
+          <img src="/assets/news_pew.png" alt="Biomedical Scholar Recognition">
+          <div class="gallery-caption">
+            <h4>Pew Scholarship Recognition</h4>
+            <p>Celebrating the Pew Biomedical Scholar recognition</p>
+          </div>
+        </div>
+        <div class="gallery-item glass-card">
+          <img src="/assets/news_students.png" alt="Student Mentorship">
+          <div class="gallery-caption">
+            <h4>Mentorship and Collaboration</h4>
+            <p>Graduate students working on cryo-EM data processing workflows</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         OUTREACH SECTION
+         ========================================== -->
+    <section class="tab-section" id="outreach">
+      <h2 class="section-title">STEM Outreach & Education</h2>
+      <p style="margin-bottom: 35px; color: var(--color-text-muted); max-width: 800px;">
+        At the Kasinath Lab, we believe that sharing the wonder of structural biology with our community is key to inspiring the next generation of scientific leaders. We are active in several educational and community outreach projects at CU Boulder.
+      </p>
+
+      <div class="outreach-grid" id="stem-outreach-grid">
+        <div class="glass-card outreach-card">
+          <div class="outreach-icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
+          <h3>CU Science Discovery Collaboration</h3>
+          <p>
+            We partner with CU Boulder's Science Discovery program to host hands-on workshops for high school and middle school students. Our interactive sessions let young scientists build physical models of chromatin and explore atomic structures in virtual reality.
+          </p>
+        </div>
+
+        <div class="glass-card outreach-card">
+          <div class="outreach-icon-box"><i class="fa-solid fa-people-group"></i></div>
+          <h3>STEM Mentorship Programs</h3>
+          <p>
+            Our laboratory participates in local mentoring pipelines, providing dedicated training and research opportunities to undergraduate students from diverse backgrounds. Mentees gain practical experience in protein biochemistry, sample preparation, and computational image processing.
+          </p>
+        </div>
+
+        <div class="glass-card outreach-card">
+          <div class="outreach-icon-box"><i class="fa-solid fa-earth-americas"></i></div>
+          <h3>Public Science Communication</h3>
+          <p>
+            We organize open-house lab tours at the Caruthers Biotechnology Building (JSCBB) and present at public seminars to demystify complex biophysical methods like cryo-electron microscopy and cellular tomography for non-scientific audiences.
+          </p>
         </div>
       </div>
     </section>
