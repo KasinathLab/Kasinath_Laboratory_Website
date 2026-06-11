@@ -682,10 +682,10 @@ function initMascotPiku() {
       container.classList.add('wiggling', 'show-bubble');
     }, 800);
 
-    // Keep active for 5.5 seconds, then hide
+    // Keep active for 12 seconds, then hide
     setTimeout(() => {
       hidePiku();
-    }, 5500);
+    }, 12000);
   };
 
   const hidePiku = () => {
@@ -742,7 +742,7 @@ function initMascotPiku() {
     }, 150);
   };
 
-  // Start the schedule (first pop-in after 15 seconds)
-  nextTimeout = setTimeout(showPiku, 15000);
+  // Start the schedule (first pop-in after 10 seconds)
+  nextTimeout = setTimeout(showPiku, 10000);
 }
 

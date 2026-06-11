@@ -1766,10 +1766,12 @@ html[data-theme="dark"] .outreach-icon-box { background: rgba(212, 175, 55, 0.1)
 
 #piku-mascot-container.piku-bottom-right {
   right: 50px;
+  left: auto !important;
 }
 
 #piku-mascot-container.piku-bottom-left {
   left: 50px;
+  right: auto !important;
 }
 
 .piku-cutout-wrapper {
@@ -1861,6 +1863,10 @@ html[data-theme="dark"] .outreach-icon-box { background: rgba(212, 175, 55, 0.1)
 
 #piku-mascot-container.leave.piku-bottom-left {
   animation: piku-stopmotion-leave-bl 0.6s steps(6) forwards;
+}
+
+#piku-mascot-container.wiggling {
+  transform: translateY(0);
 }
 
 #piku-mascot-container.wiggling .piku-cutout-img {
