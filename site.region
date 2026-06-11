@@ -251,19 +251,25 @@
           <button class="structure-btn active" data-pdb="6WKR" id="btn-struct-6wkr">
             <h4>PDB 6WKR</h4>
             <span>PRC2 Dinucleosome Complex</span>
-            <span>Resolution: 3.5 Ã…</span>
+            <span>Resolution: 3.5 Å</span>
           </button>
           
           <button class="structure-btn" data-pdb="6C23" id="btn-struct-6c23">
             <h4>PDB 6C23</h4>
             <span>PRC2 bound to AEBP2 cofactor</span>
-            <span>Resolution: 4.2 Ã…</span>
+            <span>Resolution: 4.2 Å</span>
           </button>
           
           <button class="structure-btn" data-pdb="6C24" id="btn-struct-6c24">
             <h4>PDB 6C24</h4>
             <span>PRC2 with AEBP2 & JARID2</span>
-            <span>Resolution: 3.9 Ã…</span>
+            <span>Resolution: 3.9 Å</span>
+          </button>
+
+          <button class="structure-btn" data-pdb="EMDB-7306" id="btn-struct-emdb7306">
+            <h4>EMDB-7306/7310/7312</h4>
+            <span>PRC2 on Dinucleosome Substrate</span>
+            <span>Resolution: 3.5 - 4.2 Å</span>
           </button>
         </div>
 
@@ -283,7 +289,7 @@
           <!-- Info Box on active structure -->
           <div class="viewer-info" id="viewer-info-box">
             <h5 id="struct-info-title">PRC2-AEBP2-JARID2 Bound to Dinucleosome</h5>
-            <p id="struct-info-method" style="color: var(--color-primary); font-weight: 500; margin-bottom: 5px;">Single Particle Cryo-EM (3.5 Ã…)</p>
+            <p id="struct-info-method" style="color: var(--color-primary); font-weight: 500; margin-bottom: 5px;">Single Particle Cryo-EM (3.5 Å)</p>
             <p id="struct-info-desc">Human Polycomb Repressive Complex 2 (PRC2) in complex with cofactor AEBP2 and JARID2, engaged on a dinucleosome substrate showing methylation state.</p>
           </div>
         </div>
