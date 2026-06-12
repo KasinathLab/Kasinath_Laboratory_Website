@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   init3DTilt();
   initThemeToggle();
   initMascotPiku();
+  initTeamModal();
 });
 
 /* =========================================================================
@@ -770,5 +771,107 @@ function initMascotPiku() {
   // Start the schedule (first pop-in after 2 to 5 minutes as an easter egg)
   const initialDelay = (Math.random() * 180 + 120) * 1000;
   nextTimeout = setTimeout(showPiku, initialDelay);
+
+  // Expose showPiku globally so other modules can trigger the easter egg
+  window.triggerPikuMascotPopup = showPiku;
+}
+
+/* =========================================================================
+   Interactive Modal for Team Members
+   ========================================================================= */
+function initTeamModal() {
+  const modal = document.getElementById('team-details-modal');
+  const modalImg = document.getElementById('team-modal-img');
+  const modalName = document.getElementById('team-modal-name');
+  const modalRole = document.getElementById('team-modal-role');
+  const modalBio = document.getElementById('team-modal-bio');
+  const closeBtn = document.getElementById('btn-team-modal-close');
+
+  if (!modal || !modalImg || !modalName || !modalRole || !modalBio) return;
+
+  const teamCards = document.querySelectorAll('.team-card, .pi-feature');
+
+  teamCards.forEach(card => {
+    // Add pointer cursor to PI card to indicate it is clickable
+    if (card.classList.contains('pi-feature')) {
+      card.style.cursor = 'pointer';
+    }
+
+    card.addEventListener('click', (e) => {
+      // Don't trigger modal if clicking contact links inside the PI card
+      if (e.target.closest('a') || e.target.closest('.pi-contact')) {
+        return;
+      }
+
+      const imgEl = card.querySelector('.team-photo');
+      const nameEl = card.querySelector('h3');
+      const roleEl = card.querySelector('.team-role');
+
+      if (!imgEl || !nameEl || !roleEl) return;
+
+      const name = nameEl.textContent.trim();
+      const role = roleEl.textContent.trim();
+      const imgSrc = imgEl.src;
+
+      modalImg.src = imgSrc;
+      modalImg.alt = name;
+      modalName.textContent = name;
+      modalRole.textContent = role;
+
+      // Populate bio
+      if (name.toLowerCase() === 'piku') {
+        modalBio.innerHTML = `
+          <p>Piku is the official laboratory mascot and moral officer at the Kasinath Lab. With a background in sniff-testing, tail-wagging, and crumb-detection, Piku provides essential support to the research team during long cryo-EM data collection sessions.</p>
+          <p>Piku's primary duties include supervising laboratory breaks, reminding researchers to stay hydrated, and requesting belly rubs. In his free time, he enjoys chasing squirrels outside the JSCBB building, checking if the Vitrobot has left any tasty treats, and barking at the cardboard cutout version of himself.</p>
+          <p><strong>Favorite molecule:</strong> Bone-like collagen. &nbsp; <strong>Favorite method:</strong> Sit-and-stay crystallography.</p>
+        `;
+        // Trigger Mascot Easter Egg!
+        if (typeof window.triggerPikuMascotPopup === 'function') {
+          window.triggerPikuMascotPopup();
+        }
+      } else if (name.toLowerCase().includes('vignesh')) {
+        modalBio.innerHTML = `
+          <p>Dr. Vignesh Kasinath is an Assistant Professor of Biochemistry at the University of Colorado Boulder. The Kasinath Laboratory is focused on understanding the molecular mechanisms of gene silencing and chromatin regulation, with a particular interest in Polycomb Repressive Complex 2 (PRC2).</p>
+          <p>Using single-particle cryo-electron microscopy (cryo-EM) and cryo-electron tomography (cryo-ET), Dr. Kasinath's research group aims to visualize chromatin-bound macromolecular complexes in atomic detail. By resolving these structures, the lab seeks to elucidate how epigenetic modifications are established and maintained in health and disease.</p>
+          <p>Dr. Kasinath completed his postdoctoral training at UC Berkeley / LBNL, where he determined pioneering cryo-EM structures of PRC2 engaged on dinucleosomes. He established his independent research group at CU Boulder in 2021 to continue pushing the boundaries of structural molecular biology.</p>
+        `;
+      } else {
+        modalBio.innerHTML = `
+          <p>${name} is a key member of the Kasinath Laboratory, serving as a ${role}. Their research is focused on unraveling the molecular mechanisms of chromatin regulation and gene silencing using structural biology approaches.</p>
+          <p>At the Kasinath Lab, we leverage state-of-the-art single-particle cryo-EM and cryo-ET techniques to visualize large macromolecular complexes in native and reconstituted environments. ${name} contributes to our collaborative efforts by investigating how cofactors and chromatin substrates interface with epigenetic regulators like PRC2.</p>
+          <p>Prior to joining the laboratory, ${name} pursued academic training in molecular biophysics, biochemistry, or related computational disciplines, developing a passion for understanding the physical principles of molecular machinery at the atomic scale.</p>
+        `;
+      }
+
+      // Show modal
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    });
+  });
+
+  const closeModal = () => {
+    modal.classList.remove('show');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = ''; // Restore background scrolling
+  };
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  // Close when clicking outside container
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal || e.target.classList.contains('team-modal')) {
+      closeModal();
+    }
+  });
+
+  // Keyboard close
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('show')) {
+      closeModal();
+    }
+  });
 }
 

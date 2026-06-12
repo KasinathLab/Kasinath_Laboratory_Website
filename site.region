@@ -1065,6 +1065,27 @@
     </div>
   </div>
 
+  <!-- Team Member Details Modal -->
+  <div class="team-modal" id="team-details-modal" aria-hidden="true" role="dialog">
+    <div class="team-modal-container">
+      <button class="team-modal-close" id="btn-team-modal-close" aria-label="Close details">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="team-modal-content">
+        <div class="team-modal-left">
+          <img class="team-modal-img" id="team-modal-img" src="" alt="">
+        </div>
+        <div class="team-modal-right">
+          <h2 class="team-modal-name" id="team-modal-name"></h2>
+          <div class="team-modal-role" id="team-modal-role"></div>
+          <div class="team-modal-bio" id="team-modal-bio">
+            <!-- Loaded dynamically -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Dependencies: jQuery and 3Dmol.js -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://3dmol.org/build/3Dmol-min.js"></script>
