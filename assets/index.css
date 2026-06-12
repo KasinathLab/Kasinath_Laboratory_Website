@@ -1518,9 +1518,14 @@ footer.main-footer {
 }
 
 /* Carousel Base Styles */
-.hero-carousel, .news-carousel {
+.hero-carousel {
   position: relative;
   overflow: hidden;
+}
+
+.news-carousel {
+  position: relative;
+  overflow: visible;
 }
 
 .hero-carousel {
