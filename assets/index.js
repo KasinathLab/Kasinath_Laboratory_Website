@@ -837,7 +837,7 @@ function initTeamModal() {
         `;
       } else if (name.toLowerCase().includes('george')) {
         modalBio.innerHTML = `
-          <p>George S. Stephenson is a Biochemistry PhD student at the University of Colorado Boulder. His research interests lie at the intersection of RNA structural molecular biology, bioinformatics, and transcriptomics.</p>
+          <p>George S. Stephenson is a Computer Science PhD student and an IQ Biology Fellow at the University of Colorado Boulder. His research interests lie at the intersection of RNA structural molecular biology, bioinformatics, and transcriptomics.</p>
           <p>Before joining the Kasinath Laboratory, George served as an RNA structural and transcriptomic bioinformatician and system administrator at the Laederach Laboratory at the University of North Carolina at Chapel Hill (UNC). There, he analyzed RNA-seq and structural datasets and managed the laboratory’s server infrastructure.</p>
           <p>George earned his undergraduate degree in Quantitative Biology from UNC Chapel Hill, where he also conducted research in the Burch Lab. Prior to UNC, he began his scientific journey with Lehigh University's SEA-PHAGES program. At the Kasinath Lab, George is excited to leverage computational and experimental tools to decipher epigenetic and chromatin regulation.</p>
         `;
