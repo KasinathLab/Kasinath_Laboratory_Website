@@ -866,6 +866,17 @@
           </div>
         </div>
 
+        <div class="glass-card team-card" id="team-member-12">
+          <div class="team-photo-container">
+            <img class="team-photo" src="/assets/team_george.jpg" alt="George S. Stephenson">
+          </div>
+          <div class="team-info">
+            <h3>George S. Stephenson</h3>
+            <div class="team-role">Biochemistry PhD Student</div>
+          </div>
+        </div>
+
+
         <div class="glass-card team-card" id="team-member-8">
           <div class="team-photo-container">
             <img class="team-photo" src="/assets/team_robert.jpg" alt="Robert Mair">

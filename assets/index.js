@@ -835,6 +835,12 @@ function initTeamModal() {
           <p>Using single-particle cryo-electron microscopy (cryo-EM) and cryo-electron tomography (cryo-ET), Dr. Kasinath's research group aims to visualize chromatin-bound macromolecular complexes in atomic detail. By resolving these structures, the lab seeks to elucidate how epigenetic modifications are established and maintained in health and disease.</p>
           <p>Dr. Kasinath completed his postdoctoral training at UC Berkeley / LBNL, where he determined pioneering cryo-EM structures of PRC2 engaged on dinucleosomes. He established his independent research group at CU Boulder in 2021 to continue pushing the boundaries of structural molecular biology.</p>
         `;
+      } else if (name.toLowerCase().includes('george')) {
+        modalBio.innerHTML = `
+          <p>George S. Stephenson is a Biochemistry PhD student at the University of Colorado Boulder. His research interests lie at the intersection of RNA structural molecular biology, bioinformatics, and transcriptomics.</p>
+          <p>Before joining the Kasinath Laboratory, George served as an RNA structural and transcriptomic bioinformatician and system administrator at the Laederach Laboratory at the University of North Carolina at Chapel Hill (UNC). There, he analyzed RNA-seq and structural datasets and managed the laboratory’s server infrastructure.</p>
+          <p>George earned his undergraduate degree in Quantitative Biology from UNC Chapel Hill, where he also conducted research in the Burch Lab. Prior to UNC, he began his scientific journey with Lehigh University's SEA-PHAGES program. At the Kasinath Lab, George is excited to leverage computational and experimental tools to decipher epigenetic and chromatin regulation.</p>
+        `;
       } else {
         modalBio.innerHTML = `
           <p>${name} is a key member of the Kasinath Laboratory, serving as a ${role}. Their research is focused on unraveling the molecular mechanisms of chromatin regulation and gene silencing using structural biology approaches.</p>
