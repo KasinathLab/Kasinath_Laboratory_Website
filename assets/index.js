@@ -303,14 +303,10 @@ function loadStructure(pdbId) {
   // Set up loader indicator
   const loader = document.createElement('div');
   loader.className = 'loader-indicator';
-  loader.style.position = 'absolute';
-  loader.style.top = '50%';
-  loader.style.left = '50%';
-  loader.style.transform = 'translate(-50%, -50%)';
-  loader.style.color = 'var(--color-primary)';
-  loader.style.fontFamily = 'Outfit, sans-serif';
-  loader.style.fontSize = '0.9rem';
-  loader.textContent = `Fetching Structure ${pdbId} from PDB...`;
+  loader.innerHTML = `
+    <img src="assets/piku_cutout.png" class="piku-loader-img" alt="Piku loading molecular structure">
+    <div class="piku-loader-text">Piku is retrieving structure ${pdbId} from PDB...</div>
+  `;
   container.appendChild(loader);
 
   try {

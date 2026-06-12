@@ -2168,3 +2168,47 @@ html[data-theme="dark"] .team-modal-close {
     font-size: 1.75rem;
   }
 }
+
+/* =========================================================================
+   Piku Spinning Structure Loader
+   ========================================================================= */
+.loader-indicator {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.piku-loader-img {
+  width: 80px;
+  height: auto;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+  animation: piku-spin 2s linear infinite;
+}
+
+.piku-loader-text {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  animation: piku-pulse 1.5s ease-in-out infinite alternate;
+  text-align: center;
+}
+
+@keyframes piku-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes piku-pulse {
+  from { opacity: 0.6; }
+  to { opacity: 1; }
+}
