@@ -1037,24 +1037,95 @@ h2.section-title::after {
   color: var(--color-primary);
 }
 
-.viewer-info {
+/* Info Toggle Button */
+.viewer-info-toggle-btn {
   position: absolute;
   top: 20px;
   right: 20px;
   background: rgba(255, 255, 255, 0.85);
   border: 1px solid var(--border-color);
-  padding: 12px 16px;
-  border-radius: 8px;
+  color: var(--color-text);
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 9;
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease, border-color 0.2s ease, color 0.2s ease;
+  backdrop-filter: blur(5px);
+  font-size: 1.1rem;
+}
+
+html[data-theme="dark"] .viewer-info-toggle-btn {
+  background: rgba(15, 15, 15, 0.85);
+}
+
+.viewer-info-toggle-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: scale(1.08);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+/* Close Button inside Info Box */
+.viewer-info-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+  padding: 4px;
+}
+
+.viewer-info-close-btn:hover {
+  color: var(--color-primary);
+}
+
+/* Adjust Info Box for Hide/Show behavior */
+.viewer-info {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid var(--border-color);
+  padding: 16px 20px;
+  border-radius: 12px;
   font-size: 0.85rem;
   max-width: 300px;
   z-index: 10;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  
+  /* Animation states */
+  opacity: 0;
+  transform: scale(0.9) translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.25, 1, 0.5, 1), transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.viewer-info.show {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: auto;
+}
+
+html[data-theme="dark"] .viewer-info {
+  background: rgba(15, 15, 15, 0.92);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(212, 175, 55, 0.05);
 }
 
 .viewer-info h5 {
   font-size: 0.95rem;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
   color: var(--color-highlight);
+  padding-right: 20px; /* Leave room for close button */
 }
 
 .viewer-info p {
@@ -1731,7 +1802,7 @@ html[data-theme="dark"] .structure-btn:hover { background: rgba(255, 255, 255, 0
 html[data-theme="dark"] .structure-btn.active { background: rgba(212, 175, 55, 0.08); box-shadow: inset 0 0 10px rgba(212, 175, 55, 0.1); }
 html[data-theme="dark"] .viewer-window { background: #0a0a0a; }
 html[data-theme="dark"] .viewer-control-btn { background: rgba(15, 15, 15, 0.85); }
-html[data-theme="dark"] .viewer-info { background: rgba(15, 15, 15, 0.85); }
+/* Already styled inline with the main class above */
 html[data-theme="dark"] .team-photo { background: rgba(255, 255, 255, 0.05); }
 html[data-theme="dark"] .contact-icon { background: rgba(255, 255, 255, 0.03); }
 html[data-theme="dark"] .form-control { background: rgba(255, 255, 255, 0.02); }

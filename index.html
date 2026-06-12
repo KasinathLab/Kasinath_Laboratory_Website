@@ -277,6 +277,11 @@
             <!-- Programmatic canvas loaded by 3Dmol.js -->
           </div>
 
+          <!-- Info Toggle Button -->
+          <button class="viewer-info-toggle-btn" id="btn-info-toggle" aria-label="Toggle structure info">
+            <i class="fa-solid fa-circle-info"></i>
+          </button>
+
           <!-- Custom overlay controls -->
           <div class="viewer-overlay-ui" id="viewer-controls">
             <button class="viewer-control-btn" id="btn-spin">Pause Rotation</button>
@@ -286,6 +291,9 @@
 
           <!-- Info Box on active structure -->
           <div class="viewer-info" id="viewer-info-box">
+            <button class="viewer-info-close-btn" id="btn-info-close" aria-label="Close info">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
             <h5 id="struct-info-title">PRC2-AEBP2-JARID2 Bound to Dinucleosome</h5>
             <p id="struct-info-method" style="color: var(--color-primary); font-weight: 500; margin-bottom: 5px;">Single Particle Cryo-EM (3.5 Å)</p>
             <p id="struct-info-desc">Human Polycomb Repressive Complex 2 (PRC2) in complex with cofactor AEBP2 and JARID2, engaged on a dinucleosome substrate showing methylation state.</p>

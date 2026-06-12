@@ -271,6 +271,25 @@ function initStructureViewer() {
       }
     });
   }
+
+  // Toggle info box functionality
+  const infoBox = document.getElementById('viewer-info-box');
+  const infoToggle = document.getElementById('btn-info-toggle');
+  const infoClose = document.getElementById('btn-info-close');
+
+  if (infoBox && infoToggle && infoClose) {
+    infoToggle.addEventListener('click', () => {
+      infoBox.classList.add('show');
+      infoToggle.style.opacity = '0';
+      infoToggle.style.pointerEvents = 'none';
+    });
+
+    infoClose.addEventListener('click', () => {
+      infoBox.classList.remove('show');
+      infoToggle.style.opacity = '1';
+      infoToggle.style.pointerEvents = 'auto';
+    });
+  }
 }
 
 function loadStructure(pdbId) {
