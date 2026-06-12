@@ -1822,7 +1822,7 @@ html[data-theme="dark"] .outreach-icon-box { background: rgba(212, 175, 55, 0.1)
 #piku-mascot-container {
   position: fixed;
   bottom: 0;
-  z-index: 10000;
+  z-index: 30000;
   width: 140px;
   pointer-events: none;
   display: flex;
