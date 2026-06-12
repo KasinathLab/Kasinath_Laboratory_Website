@@ -92,34 +92,14 @@
         </div>
         <div class="glass-card hero-carousel" id="hero-media">
           <div class="carousel-slide active">
-            <img src="/assets/molecular_header.png" alt="PRC2 complex bound to a dinucleosome structure">
+            <img src="/assets/hero_molecular_fit.jpg" alt="Molecular structure fitted in cryo-EM density envelope">
           </div>
           <div class="carousel-slide">
-            <img src="/assets/hero_chromatin.png" alt="Chromatin Architecture">
+            <img src="/assets/hero_quadruplex.png" alt="G-quadruplex molecular wireframe structure with central coordination ions">
           </div>
           <div class="carousel-slide">
-            <img src="/assets/hero_cryo_et.png" alt="Cryo-Electron Tomography">
+            <img src="/assets/hero_macromolecule.png" alt="Complete macromolecular assembly in cryo-EM reconstruction">
           </div>
-        </div>
-      </div>
-
-      <!-- Quick Metrics Row -->
-      <div class="stats-row" id="quick-metrics">
-        <div class="glass-card stat-item">
-          <div class="stat-number">Pew</div>
-          <div class="stat-label">Scholar Lab</div>
-        </div>
-        <div class="glass-card stat-item">
-          <div class="stat-number">$2.25M</div>
-          <div class="stat-label">NIH & NSF Funding</div>
-        </div>
-        <div class="glass-card stat-item">
-          <div class="stat-number">3.5Ã…</div>
-          <div class="stat-label">Cryo-EM Resolutions</div>
-        </div>
-        <div class="glass-card stat-item">
-          <div class="stat-number">3D</div>
-          <div class="stat-label">Chromosome Architecture</div>
         </div>
       </div>
 
