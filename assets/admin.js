@@ -270,7 +270,42 @@
   // TAB 1: GENERAL TEXT EDITING
   // ==========================================
   function renderGeneralTab(container) {
-    container.innerHTML = `<h3 class="cms-section-title">Hero Section Headline</h3>`;
+    // Parse Logo & Branding
+    const virtLogoImg = cmsVirtualDoc.querySelector("#brand-logo img");
+    let logoImgSrc = "assets/lab_logo.png";
+    if (virtLogoImg) {
+      logoImgSrc = virtLogoImg.getAttribute("src").replace("/assets/", "assets/");
+    }
+
+    const virtLogoText = cmsVirtualDoc.querySelector("#brand-logo .logo-text");
+    let logoText = "KASINATH LAB";
+    if (virtLogoText) {
+      logoText = virtLogoText.textContent.trim();
+    }
+
+    const virtFooterLogo = cmsVirtualDoc.querySelector("footer .footer-logo");
+    let footerLogoText = "VIGNESH KASINATH LAB";
+    if (virtFooterLogo) {
+      footerLogoText = virtFooterLogo.textContent.trim();
+    }
+
+    container.innerHTML = `
+      <h3 class="cms-section-title">Logo & Branding</h3>
+      <div class="cms-field">
+        <label>Logo Image Path</label>
+        <input type="text" id="cms-logo-img" class="cms-input" value="${escapeHtml(logoImgSrc)}">
+      </div>
+      <div class="cms-field">
+        <label>Header Logo Text</label>
+        <input type="text" id="cms-logo-text" class="cms-input" value="${escapeHtml(logoText)}">
+      </div>
+      <div class="cms-field">
+        <label>Footer Logo Text</label>
+        <input type="text" id="cms-footer-logo-text" class="cms-input" value="${escapeHtml(footerLogoText)}">
+      </div>
+      
+      <h3 class="cms-section-title" style="margin-top: 35px;">Hero Section Headline</h3>
+    `;
     
     // Parse h1 content
     const virtH1 = cmsVirtualDoc.querySelector("#home .hero-content h1");
@@ -576,6 +611,37 @@
 
       [vHeaderLink, lHeaderLink, vContactLink, lContactLink].forEach(el => {
         if (el) el.setAttribute("href", url);
+      });
+      saveToSession();
+    });
+
+    // 6. Wire Logo & Branding Inputs
+    document.getElementById("cms-logo-img").addEventListener("input", (e) => {
+      const src = e.target.value;
+      const vImg = cmsVirtualDoc.querySelector("#brand-logo img");
+      const lImg = document.querySelector("#brand-logo img");
+      [vImg, lImg].forEach(el => {
+        if (el) el.setAttribute("src", src);
+      });
+      saveToSession();
+    });
+
+    document.getElementById("cms-logo-text").addEventListener("input", (e) => {
+      const text = e.target.value;
+      const vText = cmsVirtualDoc.querySelector("#brand-logo .logo-text");
+      const lText = document.querySelector("#brand-logo .logo-text");
+      [vText, lText].forEach(el => {
+        if (el) el.textContent = text;
+      });
+      saveToSession();
+    });
+
+    document.getElementById("cms-footer-logo-text").addEventListener("input", (e) => {
+      const text = e.target.value;
+      const vText = cmsVirtualDoc.querySelector("footer .footer-logo");
+      const lText = document.querySelector("footer .footer-logo");
+      [vText, lText].forEach(el => {
+        if (el) el.textContent = text;
       });
       saveToSession();
     });
@@ -3006,6 +3072,25 @@
       const liveContactLink = document.querySelector("#contact-details .contact-item-box:nth-child(3) a");
       if (virtContactLink && liveContactLink) {
         liveContactLink.setAttribute("href", virtContactLink.getAttribute("href"));
+      }
+
+      // Sync Logo & Branding
+      const virtLogoImg = cmsVirtualDoc.querySelector("#brand-logo img");
+      const liveLogoImg = document.querySelector("#brand-logo img");
+      if (virtLogoImg && liveLogoImg) {
+        liveLogoImg.setAttribute("src", virtLogoImg.getAttribute("src"));
+      }
+
+      const virtLogoText = cmsVirtualDoc.querySelector("#brand-logo .logo-text");
+      const liveLogoText = document.querySelector("#brand-logo .logo-text");
+      if (virtLogoText && liveLogoText) {
+        liveLogoText.textContent = virtLogoText.textContent;
+      }
+
+      const virtFooterLogo = cmsVirtualDoc.querySelector("footer .footer-logo");
+      const liveFooterLogo = document.querySelector("footer .footer-logo");
+      if (virtFooterLogo && liveFooterLogo) {
+        liveFooterLogo.textContent = virtFooterLogo.textContent;
       }
     }
   }
