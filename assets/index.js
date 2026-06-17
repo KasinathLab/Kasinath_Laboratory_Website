@@ -922,4 +922,9 @@ function initAdminModeTrigger() {
   window.addEventListener('hashchange', checkHash);
 }
 
+// Expose filter & carousel rebinding globally for CMS use
+window.initPublicationsFilter = initPublicationsFilter;
+window.initCarousels = initCarousels;
+
+
 

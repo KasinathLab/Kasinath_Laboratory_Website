@@ -127,9 +127,12 @@
         
         <div class="cms-nav">
           <button class="cms-nav-item active" data-tab="tab-general"><i class="fa-solid fa-paragraph"></i>Text</button>
+          <button class="cms-nav-item" data-tab="tab-research"><i class="fa-solid fa-flask-vial"></i>Research</button>
+          <button class="cms-nav-item" data-tab="tab-pubs"><i class="fa-solid fa-book"></i>Pubs</button>
           <button class="cms-nav-item" data-tab="tab-news"><i class="fa-solid fa-bullhorn"></i>News</button>
           <button class="cms-nav-item" data-tab="tab-team"><i class="fa-solid fa-user-gear"></i>Team</button>
           <button class="cms-nav-item" data-tab="tab-alumni"><i class="fa-solid fa-graduation-cap"></i>Alumni</button>
+          <button class="cms-nav-item" data-tab="tab-openings"><i class="fa-solid fa-briefcase"></i>Openings</button>
           <button class="cms-nav-item" data-tab="tab-gallery"><i class="fa-solid fa-images"></i>Galleries</button>
           <button class="cms-nav-item" data-tab="tab-export"><i class="fa-solid fa-cloud-arrow-down"></i>Export</button>
         </div>
@@ -193,7 +196,18 @@
       '#team-members .team-card',
       '#team-pi',
       '.alumni-card',
-      '.carousel-container .carousel-item'
+      '.carousel-container .carousel-item',
+      '#research > p',
+      '#research-pillars .research-card',
+      '#research-methodology h3',
+      '#research-methodology p',
+      '#research-methodology ul li',
+      '#publications-content .publication-item',
+      '#openings > p',
+      '#opportunities-list .position-card',
+      '#contact .section-title',
+      '#contact > p',
+      '#contact-details .contact-item-box p'
     ];
     
     selectors.forEach(sel => {
@@ -233,12 +247,18 @@
 
     if (activeTab === "tab-general") {
       renderGeneralTab(contentArea);
+    } else if (activeTab === "tab-research") {
+      renderResearchTab(contentArea);
+    } else if (activeTab === "tab-pubs") {
+      renderPubsTab(contentArea);
     } else if (activeTab === "tab-news") {
       renderNewsTab(contentArea);
     } else if (activeTab === "tab-team") {
       renderTeamTab(contentArea);
     } else if (activeTab === "tab-alumni") {
       renderAlumniTab(contentArea);
+    } else if (activeTab === "tab-openings") {
+      renderOpeningsTab(contentArea);
     } else if (activeTab === "tab-gallery") {
       renderGalleryTab(contentArea);
     } else if (activeTab === "tab-export") {
@@ -271,6 +291,42 @@
       }
     }
 
+    // Parse Contact details
+    const virtContact = cmsVirtualDoc.querySelector("#contact");
+    let contactTitle = "Contact & Location";
+    let contactDesc = "Our laboratory is located within the Department of Biochemistry...";
+    let contactAddress = "Jennie Smoly Caruthers Biotechnology Building (JSCBB)\nUniversity of Colorado Boulder\n3415 Colorado Ave, Boulder, CO 80303";
+    let contactEmail = "vignesh.kasinath@colorado.edu";
+
+    if (virtContact) {
+      if (virtContact.querySelector(".section-title")) {
+        contactTitle = virtContact.querySelector(".section-title").textContent.trim();
+      }
+      if (virtContact.querySelector("p")) {
+        contactDesc = virtContact.querySelector("p").textContent.trim();
+      }
+    }
+
+    const virtAddressEl = cmsVirtualDoc.querySelector("#contact-details .contact-item-box:nth-child(1) p");
+    if (virtAddressEl) {
+      contactAddress = virtAddressEl.innerHTML
+        .replace(/<br\s*\/?>/gi, "\n")
+        .replace(/&amp;/g, "&")
+        .trim();
+    }
+
+    const virtEmailEl = cmsVirtualDoc.querySelector("#contact-details .contact-item-box:nth-child(2) a");
+    if (virtEmailEl) {
+      contactEmail = virtEmailEl.textContent.trim();
+    }
+
+    // Parse Confluence URL
+    const virtConfluenceEl = cmsVirtualDoc.querySelector("#tab-btn-confluence");
+    let confluenceUrl = "https://kasinath-aydin-lab.atlassian.net/wiki/spaces/KAL/overview";
+    if (virtConfluenceEl) {
+      confluenceUrl = virtConfluenceEl.getAttribute("href") || confluenceUrl;
+    }
+
     container.innerHTML += `
       <div class="cms-field">
         <label>Heading Prefix (Normal Text)</label>
@@ -289,9 +345,33 @@
 
       <h3 class="cms-section-title" style="margin-top: 15px;">Outreach Introduction</h3>
       <div id="cms-outreach-paragraphs-container"></div>
-      <button class="cms-btn cms-btn-secondary cms-btn-sm" id="cms-outreach-add-p" style="margin-bottom: 20px;">
+      <button class="cms-btn cms-btn-secondary cms-btn-sm" id="cms-outreach-add-p" style="margin-bottom: 30px;">
         <i class="fa-solid fa-plus"></i> Add Outreach Paragraph
       </button>
+
+      <h3 class="cms-section-title" style="margin-top: 35px; border-top:1px solid rgba(255,255,255,0.08); padding-top:20px;">Contact & Location</h3>
+      <div class="cms-field">
+        <label>Contact Section Title</label>
+        <input type="text" id="cms-contact-title" class="cms-input" value="${escapeHtml(contactTitle)}">
+      </div>
+      <div class="cms-field">
+        <label>Contact Section Description</label>
+        <textarea id="cms-contact-desc" class="cms-textarea" rows="3">${escapeHtml(contactDesc)}</textarea>
+      </div>
+      <div class="cms-field">
+        <label>Mailing & Lab Address (Use newlines)</label>
+        <textarea id="cms-contact-address" class="cms-textarea" rows="4">${escapeHtml(contactAddress)}</textarea>
+      </div>
+      <div class="cms-field">
+        <label>Contact Email Address</label>
+        <input type="text" id="cms-contact-email" class="cms-input" value="${escapeHtml(contactEmail)}">
+      </div>
+
+      <h3 class="cms-section-title" style="margin-top: 35px; border-top:1px solid rgba(255,255,255,0.08); padding-top:20px;">Wiki Link (Confluence)</h3>
+      <div class="cms-field">
+        <label>Lab Intranet Confluence URL</label>
+        <input type="text" id="cms-confluence-url" class="cms-input" value="${escapeHtml(confluenceUrl)}">
+      </div>
     `;
 
     // 1. Wire Hero Headline Inputs
@@ -312,7 +392,6 @@
 
     // 2. Wire Hero Paragraph Textareas
     const pContainer = document.getElementById("cms-hero-paragraphs-container");
-    const virtParagraphs = cmsVirtualDoc.querySelectorAll("#home .hero-description");
     
     function refreshHeroParagraphsUI() {
       pContainer.innerHTML = "";
@@ -333,11 +412,9 @@
         pContainer.appendChild(row);
 
         document.getElementById(pId).addEventListener("input", (e) => {
-          // Update virtual
           const currentVirt = cmsVirtualDoc.querySelectorAll("#home .hero-description");
           if (currentVirt[idx]) currentVirt[idx].textContent = e.target.value;
           
-          // Update live
           const currentLive = document.querySelectorAll("#home .hero-description");
           if (currentLive[idx]) currentLive[idx].textContent = e.target.value;
           
@@ -350,17 +427,14 @@
 
     // Add Hero Paragraph
     document.getElementById("cms-hero-add-p").addEventListener("click", () => {
-      // 1. Add to virtual
       const heroSec = cmsVirtualDoc.querySelector("#home .hero-content");
       const refBtnGroup = heroSec.querySelector(".button-group");
       
       const newP = cmsVirtualDoc.createElement("p");
       newP.className = "hero-description";
       newP.textContent = "New paragraph content here.";
-      
       heroSec.insertBefore(newP, refBtnGroup);
 
-      // 2. Add to live
       const liveHeroSec = document.querySelector("#home .hero-content");
       const liveRefBtnGroup = liveHeroSec.querySelector(".button-group");
       const liveNewP = document.createElement("p");
@@ -378,11 +452,9 @@
       if (!delBtn) return;
       const idx = parseInt(delBtn.getAttribute("data-index"), 10);
 
-      // Remove from virtual
       const currentVirt = cmsVirtualDoc.querySelectorAll("#home .hero-description");
       if (currentVirt[idx]) currentVirt[idx].remove();
 
-      // Remove from live
       const currentLive = document.querySelectorAll("#home .hero-description");
       if (currentLive[idx]) currentLive[idx].remove();
 
@@ -412,11 +484,9 @@
         outContainer.appendChild(row);
 
         document.getElementById(pId).addEventListener("input", (e) => {
-          // Update virtual
           const currentVirt = cmsVirtualDoc.querySelectorAll(".outreach-intro p");
           if (currentVirt[idx]) currentVirt[idx].textContent = e.target.value;
           
-          // Update live
           const currentLive = document.querySelectorAll(".outreach-intro p");
           if (currentLive[idx]) currentLive[idx].textContent = e.target.value;
           
@@ -429,13 +499,11 @@
 
     // Add Outreach Paragraph
     document.getElementById("cms-outreach-add-p").addEventListener("click", () => {
-      // 1. Add to virtual
       const sec = cmsVirtualDoc.querySelector(".outreach-intro");
       const newP = cmsVirtualDoc.createElement("p");
       newP.textContent = "New outreach detail text.";
       sec.appendChild(newP);
 
-      // 2. Add to live
       const liveSec = document.querySelector(".outreach-intro");
       const liveNewP = document.createElement("p");
       liveNewP.textContent = "New outreach detail text.";
@@ -451,15 +519,64 @@
       if (!delBtn) return;
       const idx = parseInt(delBtn.getAttribute("data-index"), 10);
 
-      // Remove from virtual
       const currentVirt = cmsVirtualDoc.querySelectorAll(".outreach-intro p");
       if (currentVirt[idx]) currentVirt[idx].remove();
 
-      // Remove from live
       const currentLive = document.querySelectorAll(".outreach-intro p");
       if (currentLive[idx]) currentLive[idx].remove();
 
       refreshOutreachUI();
+      saveToSession();
+    });
+
+    // 4. Wire Contact Inputs
+    document.getElementById("cms-contact-title").addEventListener("input", (e) => {
+      updateElementText("#contact .section-title", e.target.value);
+    });
+
+    document.getElementById("cms-contact-desc").addEventListener("input", (e) => {
+      updateElementText("#contact > p", e.target.value);
+    });
+
+    document.getElementById("cms-contact-address").addEventListener("input", (e) => {
+      const formatted = e.target.value.replace(/\n/g, "<br>");
+      
+      const vAddress = cmsVirtualDoc.querySelector("#contact-details .contact-item-box:nth-child(1) p");
+      const lAddress = document.querySelector("#contact-details .contact-item-box:nth-child(1) p");
+      
+      [vAddress, lAddress].forEach(el => {
+        if (el) el.innerHTML = formatted;
+      });
+      saveToSession();
+    });
+
+    document.getElementById("cms-contact-email").addEventListener("input", (e) => {
+      const email = e.target.value;
+      const vMail = cmsVirtualDoc.querySelector("#contact-details .contact-item-box:nth-child(2) a");
+      const lMail = document.querySelector("#contact-details .contact-item-box:nth-child(2) a");
+      
+      [vMail, lMail].forEach(el => {
+        if (el) {
+          el.setAttribute("href", `mailto:${email}`);
+          el.textContent = email;
+        }
+      });
+      saveToSession();
+    });
+
+    // 5. Wire Confluence Link
+    document.getElementById("cms-confluence-url").addEventListener("input", (e) => {
+      const url = e.target.value;
+      
+      const vHeaderLink = cmsVirtualDoc.querySelector("#tab-btn-confluence");
+      const lHeaderLink = document.querySelector("#tab-btn-confluence");
+      
+      const vContactLink = cmsVirtualDoc.querySelector("#contact-details .contact-item-box:nth-child(3) a");
+      const lContactLink = document.querySelector("#contact-details .contact-item-box:nth-child(3) a");
+
+      [vHeaderLink, lHeaderLink, vContactLink, lContactLink].forEach(el => {
+        if (el) el.setAttribute("href", url);
+      });
       saveToSession();
     });
   }
@@ -1559,6 +1676,898 @@
   }
 
   // ==========================================
+  // TAB 4B: RESEARCH PRIORITIES
+  // ==========================================
+  function renderResearchTab(container) {
+    const virtIntro = cmsVirtualDoc.querySelector("#research > p");
+    const introText = virtIntro ? virtIntro.textContent.trim() : "";
+
+    // Parse Methodology details
+    const virtMethod = cmsVirtualDoc.querySelector("#research-methodology");
+    let methodTitle = "Visualizing Biological Architectures";
+    let methodDesc = "";
+    let methodImg = "assets/cryo_em_microscope.png";
+    if (virtMethod) {
+      const h3 = virtMethod.querySelector("h3");
+      if (h3) methodTitle = h3.textContent.trim();
+      const p = virtMethod.querySelector("p");
+      if (p) methodDesc = p.textContent.trim();
+      const img = virtMethod.querySelector("img");
+      if (img) methodImg = img.getAttribute("src").replace("/assets/", "assets/");
+    }
+
+    container.innerHTML = `
+      <h3 class="cms-section-title">Research Priorities Intro</h3>
+      <div class="cms-field">
+        <label>Section Description</label>
+        <textarea id="cms-research-intro" class="cms-textarea" rows="4">${escapeHtml(introText)}</textarea>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:40px; margin-bottom:20px; border-top:1px solid rgba(255,255,255,0.08); padding-top:20px;">
+        <h3 class="cms-section-title" style="margin-bottom:0;">Research Pillars</h3>
+        <button class="cms-btn cms-btn-primary cms-btn-sm" id="cms-pillar-add-btn">
+          <i class="fa-solid fa-plus"></i> Add Pillar
+        </button>
+      </div>
+
+      <!-- Pillars List -->
+      <div class="cms-items-list" id="cms-pillars-list"></div>
+
+      <!-- Add/Edit Pillar Form Panel -->
+      <div class="cms-editor-pane" id="cms-pillar-form-pane">
+        <div class="cms-editor-pane-header">
+          <h4 id="cms-pillar-form-title">Edit Pillar</h4>
+          <button class="cms-close-btn" id="cms-pillar-form-cancel">&times;</button>
+        </div>
+        <input type="hidden" id="cms-pillar-edit-id">
+        <div class="cms-field">
+          <label>Pillar Title</label>
+          <input type="text" id="cms-pillar-title" class="cms-input">
+        </div>
+        <div class="cms-field">
+          <label>Icon Class (FontAwesome)</label>
+          <input type="text" id="cms-pillar-icon" class="cms-input" placeholder="fa-solid fa-dna">
+        </div>
+        <div class="cms-field">
+          <label>Description</label>
+          <textarea id="cms-pillar-desc" class="cms-textarea" rows="4"></textarea>
+        </div>
+        <div class="cms-button-row">
+          <button class="cms-btn cms-btn-primary cms-btn-sm" id="cms-pillar-save-btn">Save</button>
+          <button class="cms-btn cms-btn-secondary cms-btn-sm" id="cms-pillar-cancel-btn">Cancel</button>
+        </div>
+      </div>
+
+      <h3 class="cms-section-title" style="margin-top:40px; border-top:1px solid rgba(255,255,255,0.08); padding-top:20px;">Methodology Detail Card</h3>
+      <div class="cms-field">
+        <label>Detail Card Title</label>
+        <input type="text" id="cms-method-title" class="cms-input" value="${escapeHtml(methodTitle)}">
+      </div>
+      <div class="cms-field">
+        <label>Detail Card Description</label>
+        <textarea id="cms-method-desc" class="cms-textarea" rows="3">${escapeHtml(methodDesc)}</textarea>
+      </div>
+      <div class="cms-field">
+        <label>Detail Card Image Path</label>
+        <input type="text" id="cms-method-img" class="cms-input" value="${escapeHtml(methodImg)}">
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:25px; margin-bottom:15px;">
+        <h4 style="margin-bottom:0; font-size:0.9rem; color:var(--admin-gold);">Methodology Highlights</h4>
+        <button class="cms-btn cms-btn-secondary cms-btn-sm" id="cms-method-add-bullet-btn">
+          <i class="fa-solid fa-plus"></i> Add Highlight
+        </button>
+      </div>
+      <div class="cms-items-list" id="cms-method-bullets-list" style="margin-bottom: 30px;"></div>
+    `;
+
+    // 1. Wire Intro Textarea
+    document.getElementById("cms-research-intro").addEventListener("input", (e) => {
+      updateElementText("#research > p", e.target.value);
+    });
+
+    // 2. Wire Methodology Card inputs
+    document.getElementById("cms-method-title").addEventListener("input", (e) => {
+      updateElementText("#research-methodology h3", e.target.value);
+    });
+    document.getElementById("cms-method-desc").addEventListener("input", (e) => {
+      updateElementText("#research-methodology p", e.target.value);
+    });
+    document.getElementById("cms-method-img").addEventListener("input", (e) => {
+      const url = e.target.value;
+      const vImg = cmsVirtualDoc.querySelector("#research-methodology img");
+      const lImg = document.querySelector("#research-methodology img");
+      [vImg, lImg].forEach(el => {
+        if (el) el.setAttribute("src", url);
+      });
+      saveToSession();
+    });
+
+    // 3. Pillars management
+    const pillarsListDiv = document.getElementById("cms-pillars-list");
+    const pillarFormPane = document.getElementById("cms-pillar-form-pane");
+
+    function refreshPillarsList() {
+      pillarsListDiv.innerHTML = "";
+      const cards = cmsVirtualDoc.querySelectorAll("#research-pillars .research-card");
+      cards.forEach((card, idx) => {
+        const title = card.querySelector("h3") ? card.querySelector("h3").textContent.trim() : "Pillar " + idx;
+        const iconEl = card.querySelector(".research-icon i");
+        const iconClass = iconEl ? iconEl.className : "";
+        const row = document.createElement("div");
+        row.className = "cms-item-row";
+        row.innerHTML = `
+          <div class="cms-item-info">
+            <div class="cms-item-title">${escapeHtml(title)}</div>
+            <div class="cms-item-subtitle" style="font-family:monospace; font-size:0.75rem;"><i class="${iconClass}" style="margin-right:5px;"></i>${iconClass}</div>
+          </div>
+          <div class="cms-item-actions">
+            <button class="cms-btn-action edit cms-pillar-edit-btn" data-index="${idx}" title="Edit"><i class="fa-solid fa-pen"></i></button>
+            <button class="cms-btn-action cms-pillar-moveup-btn" data-index="${idx}" title="Move Up"><i class="fa-solid fa-chevron-up"></i></button>
+            <button class="cms-btn-action cms-pillar-movedown-btn" data-index="${idx}" title="Move Down"><i class="fa-solid fa-chevron-down"></i></button>
+            <button class="cms-btn-action delete cms-pillar-del-btn" data-index="${idx}" title="Delete"><i class="fa-solid fa-trash-can"></i></button>
+          </div>
+        `;
+        pillarsListDiv.appendChild(row);
+      });
+    }
+
+    refreshPillarsList();
+
+    // Edit pillar
+    pillarsListDiv.addEventListener("click", (e) => {
+      const editBtn = e.target.closest(".cms-pillar-edit-btn");
+      if (!editBtn) return;
+      const idx = parseInt(editBtn.getAttribute("data-index"), 10);
+      const cards = cmsVirtualDoc.querySelectorAll("#research-pillars .research-card");
+      const card = cards[idx];
+      if (!card) return;
+
+      document.getElementById("cms-pillar-edit-id").value = idx;
+      document.getElementById("cms-pillar-title").value = card.querySelector("h3") ? card.querySelector("h3").textContent.trim() : "";
+      document.getElementById("cms-pillar-desc").value = card.querySelector("p") ? card.querySelector("p").textContent.trim() : "";
+      const iconEl = card.querySelector(".research-icon i");
+      document.getElementById("cms-pillar-icon").value = iconEl ? iconEl.className : "fa-solid fa-dna";
+
+      document.getElementById("cms-pillar-form-title").textContent = "Edit Research Pillar";
+      pillarFormPane.style.display = "block";
+      pillarFormPane.scrollIntoView({ behavior: "smooth" });
+    });
+
+    // Add pillar
+    document.getElementById("cms-pillar-add-btn").addEventListener("click", () => {
+      document.getElementById("cms-pillar-edit-id").value = "-1";
+      document.getElementById("cms-pillar-title").value = "New Research Focus";
+      document.getElementById("cms-pillar-icon").value = "fa-solid fa-dna";
+      document.getElementById("cms-pillar-desc").value = "Describe this research area in detail...";
+
+      document.getElementById("cms-pillar-form-title").textContent = "Add Research Pillar";
+      pillarFormPane.style.display = "block";
+      pillarFormPane.scrollIntoView({ behavior: "smooth" });
+    });
+
+    // Save pillar
+    document.getElementById("cms-pillar-save-btn").addEventListener("click", () => {
+      const idx = parseInt(document.getElementById("cms-pillar-edit-id").value, 10);
+      const titleVal = document.getElementById("cms-pillar-title").value;
+      const iconVal = document.getElementById("cms-pillar-icon").value;
+      const descVal = document.getElementById("cms-pillar-desc").value;
+
+      if (idx === -1) {
+        // Add new
+        const newCard = cmsVirtualDoc.createElement("div");
+        newCard.className = "glass-card research-card";
+        newCard.innerHTML = `
+          <div class="research-icon"><i class="${iconVal}"></i></div>
+          <h3>${titleVal}</h3>
+          <p>${descVal}</p>
+        `;
+        const pillarsGrid = cmsVirtualDoc.querySelector("#research-pillars");
+        if (pillarsGrid) pillarsGrid.appendChild(newCard);
+      } else {
+        // Edit existing
+        const cards = cmsVirtualDoc.querySelectorAll("#research-pillars .research-card");
+        const card = cards[idx];
+        if (card) {
+          const h3 = card.querySelector("h3");
+          if (h3) h3.textContent = titleVal;
+          const p = card.querySelector("p");
+          if (p) p.textContent = descVal;
+          const i = card.querySelector(".research-icon i");
+          if (i) i.className = iconVal;
+        }
+      }
+
+      syncResearchPillarsDOM();
+      pillarFormPane.style.display = "none";
+      refreshPillarsList();
+      saveToSession();
+    });
+
+    const closePillarForm = () => { pillarFormPane.style.display = "none"; };
+    document.getElementById("cms-pillar-form-cancel").addEventListener("click", closePillarForm);
+    document.getElementById("cms-pillar-cancel-btn").addEventListener("click", closePillarForm);
+
+    // Delete pillar
+    pillarsListDiv.addEventListener("click", (e) => {
+      const delBtn = e.target.closest(".cms-pillar-del-btn");
+      if (!delBtn) return;
+      if (!confirm("Are you sure you want to delete this research pillar?")) return;
+
+      const idx = parseInt(delBtn.getAttribute("data-index"), 10);
+      const cards = cmsVirtualDoc.querySelectorAll("#research-pillars .research-card");
+      if (cards[idx]) cards[idx].remove();
+
+      syncResearchPillarsDOM();
+      refreshPillarsList();
+      saveToSession();
+    });
+
+    // Reorder pillars
+    pillarsListDiv.addEventListener("click", (e) => {
+      const moveUpBtn = e.target.closest(".cms-pillar-moveup-btn");
+      const moveDownBtn = e.target.closest(".cms-pillar-movedown-btn");
+      if (!moveUpBtn && !moveDownBtn) return;
+
+      const btn = moveUpBtn || moveDownBtn;
+      const idx = parseInt(btn.getAttribute("data-index"), 10);
+      const isUp = !!moveUpBtn;
+
+      const grid = cmsVirtualDoc.querySelector("#research-pillars");
+      const cards = Array.from(grid.querySelectorAll(".research-card"));
+
+      if (isUp && idx > 0) {
+        grid.insertBefore(cards[idx], cards[idx - 1]);
+      } else if (!isUp && idx < cards.length - 1) {
+        grid.insertBefore(cards[idx + 1], cards[idx]);
+      }
+
+      syncResearchPillarsDOM();
+      refreshPillarsList();
+      saveToSession();
+    });
+
+    // 4. Bullet Points management
+    const bulletsListDiv = document.getElementById("cms-method-bullets-list");
+
+    function refreshBulletsList() {
+      bulletsListDiv.innerHTML = "";
+      const items = cmsVirtualDoc.querySelectorAll("#research-methodology ul li");
+      items.forEach((item, idx) => {
+        // Extract text excluding the FontAwesome check icon
+        const tempLi = item.cloneNode(true);
+        const icon = tempLi.querySelector("i");
+        if (icon) icon.remove();
+        const text = tempLi.textContent.trim();
+
+        const row = document.createElement("div");
+        row.className = "cms-item-row";
+        row.style.padding = "8px 12px";
+        row.innerHTML = `
+          <div class="cms-item-info" style="flex:1;">
+            <input type="text" class="cms-input cms-bullet-input" value="${escapeHtml(text)}" data-index="${idx}" style="font-size:0.8rem; padding:4px 8px;">
+          </div>
+          <div class="cms-item-actions">
+            <button class="cms-btn-action delete cms-bullet-del-btn" data-index="${idx}" title="Delete Highlight"><i class="fa-solid fa-trash-can"></i></button>
+          </div>
+        `;
+        bulletsListDiv.appendChild(row);
+      });
+
+      // Wire inputs
+      bulletsListDiv.querySelectorAll(".cms-bullet-input").forEach(input => {
+        input.addEventListener("change", (e) => {
+          const idx = parseInt(e.target.getAttribute("data-index"), 10);
+          const vList = cmsVirtualDoc.querySelectorAll("#research-methodology ul li");
+          const lList = document.querySelectorAll("#research-methodology ul li");
+          const text = e.target.value;
+          const html = `<i class="fa-solid fa-circle-check" style="color: var(--color-primary); margin-right: 8px;"></i> ${text}`;
+
+          [vList[idx], lList[idx]].forEach(el => {
+            if (el) el.innerHTML = html;
+          });
+          saveToSession();
+        });
+      });
+    }
+
+    refreshBulletsList();
+
+    // Add bullet
+    document.getElementById("cms-method-add-bullet-btn").addEventListener("click", () => {
+      const vUl = cmsVirtualDoc.querySelector("#research-methodology ul");
+      const lUl = document.querySelector("#research-methodology ul");
+      if (vUl && lUl) {
+        const text = "New methodology focus area";
+        const html = `<i class="fa-solid fa-circle-check" style="color: var(--color-primary); margin-right: 8px;"></i> ${text}`;
+        
+        const newVLi = cmsVirtualDoc.createElement("li");
+        newVLi.innerHTML = html;
+        vUl.appendChild(newVLi);
+
+        const newLLi = document.createElement("li");
+        newLLi.innerHTML = html;
+        lUl.appendChild(newLLi);
+
+        highlightEditableElements(true);
+        refreshBulletsList();
+        saveToSession();
+      }
+    });
+
+    // Delete bullet
+    bulletsListDiv.addEventListener("click", (e) => {
+      const delBtn = e.target.closest(".cms-bullet-del-btn");
+      if (!delBtn) return;
+      const idx = parseInt(delBtn.getAttribute("data-index"), 10);
+
+      const vLis = cmsVirtualDoc.querySelectorAll("#research-methodology ul li");
+      const lLis = document.querySelectorAll("#research-methodology ul li");
+
+      if (vLis[idx]) vLis[idx].remove();
+      if (lLis[idx]) lLis[idx].remove();
+
+      refreshBulletsList();
+      saveToSession();
+    });
+  }
+
+  function syncResearchPillarsDOM() {
+    const liveGrid = document.getElementById("research-pillars");
+    if (!liveGrid) return;
+    const virtGrid = cmsVirtualDoc.querySelector("#research-pillars");
+    if (virtGrid) {
+      liveGrid.innerHTML = virtGrid.innerHTML;
+    }
+    highlightEditableElements(true);
+  }
+
+  // ==========================================
+  // TAB 4C: SELECTED PUBLICATIONS
+  // ==========================================
+  function renderPubsTab(container) {
+    container.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+        <h3 class="cms-section-title" style="margin-bottom:0;">Selected Publications</h3>
+        <button class="cms-btn cms-btn-primary cms-btn-sm" id="cms-pub-add-btn">
+          <i class="fa-solid fa-plus"></i> Add Publication
+        </button>
+      </div>
+
+      <!-- Publications List -->
+      <div class="cms-items-list" id="cms-pubs-list"></div>
+
+      <!-- Add/Edit Publication Form Panel -->
+      <div class="cms-editor-pane" id="cms-pub-form-pane">
+        <div class="cms-editor-pane-header">
+          <h4 id="cms-pub-form-title">Edit Publication</h4>
+          <button class="cms-close-btn" id="cms-pub-form-cancel">&times;</button>
+        </div>
+        <input type="hidden" id="cms-pub-edit-id">
+        
+        <div class="cms-field">
+          <label>Year (e.g. 2025)</label>
+          <input type="text" id="cms-pub-year" class="cms-input">
+        </div>
+        <div class="cms-field">
+          <label>Publication Title</label>
+          <textarea id="cms-pub-title" class="cms-textarea" rows="2"></textarea>
+        </div>
+        <div class="cms-field">
+          <label>Authors (HTML allowed, e.g. <strong>Kasinath V.</strong>)</label>
+          <input type="text" id="cms-pub-authors" class="cms-input">
+        </div>
+        <div class="cms-field">
+          <label>Journal, Volume & DOI Citation Details</label>
+          <input type="text" id="cms-pub-journal" class="cms-input">
+        </div>
+        <div class="cms-field">
+          <label>Category Tags (Space separated, e.g. "recent prc")</label>
+          <input type="text" id="cms-pub-category" class="cms-input" placeholder="recent prc">
+        </div>
+        
+        <div style="margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.08);">
+          <h5 style="color:var(--admin-gold); font-size:0.8rem; margin-bottom:10px;">Publisher Link</h5>
+          <div class="cms-field">
+            <label>Link Text (e.g. Publisher Link, Science Link)</label>
+            <input type="text" id="cms-pub-link1-text" class="cms-input" value="Publisher Link">
+          </div>
+          <div class="cms-field">
+            <label>Link URL</label>
+            <input type="text" id="cms-pub-link1-url" class="cms-input">
+          </div>
+        </div>
+
+        <div style="margin-top: 15px; padding-top: 10px; border-top: 1px solid rgba(255,255,255,0.08); margin-bottom: 20px;">
+          <h5 style="color:var(--admin-gold); font-size:0.8rem; margin-bottom:10px;">PubMed Link</h5>
+          <div class="cms-field">
+            <label>Link Text (e.g. PubMed, PubMed (33446524))</label>
+            <input type="text" id="cms-pub-link2-text" class="cms-input" value="PubMed">
+          </div>
+          <div class="cms-field">
+            <label>Link URL</label>
+            <input type="text" id="cms-pub-link2-url" class="cms-input">
+          </div>
+        </div>
+
+        <div class="cms-button-row">
+          <button class="cms-btn cms-btn-primary cms-btn-sm" id="cms-pub-save-btn">Save</button>
+          <button class="cms-btn cms-btn-secondary cms-btn-sm" id="cms-pub-cancel-btn">Cancel</button>
+        </div>
+      </div>
+    `;
+
+    const pubsListDiv = document.getElementById("cms-pubs-list");
+    const pubFormPane = document.getElementById("cms-pub-form-pane");
+
+    function refreshPubsList() {
+      pubsListDiv.innerHTML = "";
+      const items = cmsVirtualDoc.querySelectorAll("#publications-content .publication-item");
+
+      items.forEach((item, idx) => {
+        const title = item.querySelector(".pub-title") ? item.querySelector(".pub-title").textContent.trim() : "Publication " + idx;
+        const year = item.querySelector(".pub-year") ? item.querySelector(".pub-year").textContent.trim() : "";
+        const categories = item.getAttribute("data-category") || "";
+
+        const row = document.createElement("div");
+        row.className = "cms-item-row";
+        row.innerHTML = `
+          <div class="cms-item-info">
+            <div class="cms-item-title">${escapeHtml(title)}</div>
+            <div class="cms-item-subtitle" style="font-size:0.75rem;">Year: ${year} | Tags: <span style="color:var(--admin-gold);">${categories}</span></div>
+          </div>
+          <div class="cms-item-actions">
+            <button class="cms-btn-action edit cms-pub-edit-btn" data-index="${idx}" title="Edit"><i class="fa-solid fa-pen"></i></button>
+            <button class="cms-btn-action cms-pub-moveup-btn" data-index="${idx}" title="Move Up"><i class="fa-solid fa-chevron-up"></i></button>
+            <button class="cms-btn-action cms-pub-movedown-btn" data-index="${idx}" title="Move Down"><i class="fa-solid fa-chevron-down"></i></button>
+            <button class="cms-btn-action delete cms-pub-del-btn" data-index="${idx}" title="Delete"><i class="fa-solid fa-trash-can"></i></button>
+          </div>
+        `;
+        pubsListDiv.appendChild(row);
+      });
+    }
+
+    refreshPubsList();
+
+    // Edit publication trigger
+    pubsListDiv.addEventListener("click", (e) => {
+      const editBtn = e.target.closest(".cms-pub-edit-btn");
+      if (!editBtn) return;
+      const idx = parseInt(editBtn.getAttribute("data-index"), 10);
+      const items = cmsVirtualDoc.querySelectorAll("#publications-content .publication-item");
+      const item = items[idx];
+      if (!item) return;
+
+      document.getElementById("cms-pub-edit-id").value = idx;
+      document.getElementById("cms-pub-year").value = item.querySelector(".pub-year") ? item.querySelector(".pub-year").textContent.trim() : "";
+      document.getElementById("cms-pub-title").value = item.querySelector(".pub-title") ? item.querySelector(".pub-title").textContent.trim() : "";
+      document.getElementById("cms-pub-authors").value = item.querySelector(".pub-authors") ? item.querySelector(".pub-authors").innerHTML.trim() : "";
+      document.getElementById("cms-pub-journal").value = item.querySelector(".pub-journal") ? item.querySelector(".pub-journal").textContent.trim() : "";
+      document.getElementById("cms-pub-category").value = item.getAttribute("data-category") || "";
+
+      // Parse links
+      const links = item.querySelectorAll(".pub-links a");
+      
+      // Default reset
+      document.getElementById("cms-pub-link1-text").value = "Publisher Link";
+      document.getElementById("cms-pub-link1-url").value = "";
+      document.getElementById("cms-pub-link2-text").value = "PubMed";
+      document.getElementById("cms-pub-link2-url").value = "";
+
+      if (links[0]) {
+        document.getElementById("cms-pub-link1-url").value = links[0].getAttribute("href") || "";
+        const temp = links[0].cloneNode(true);
+        const icon = temp.querySelector("i");
+        if (icon) icon.remove();
+        document.getElementById("cms-pub-link1-text").value = temp.textContent.trim();
+      }
+
+      if (links[1]) {
+        document.getElementById("cms-pub-link2-url").value = links[1].getAttribute("href") || "";
+        const temp = links[1].cloneNode(true);
+        const icon = temp.querySelector("i");
+        if (icon) icon.remove();
+        document.getElementById("cms-pub-link2-text").value = temp.textContent.trim();
+      }
+
+      document.getElementById("cms-pub-form-title").textContent = "Edit Publication";
+      pubFormPane.style.display = "block";
+      pubFormPane.scrollIntoView({ behavior: "smooth" });
+    });
+
+    // Add publication trigger
+    document.getElementById("cms-pub-add-btn").addEventListener("click", () => {
+      document.getElementById("cms-pub-edit-id").value = "-1";
+      document.getElementById("cms-pub-year").value = new Date().getFullYear();
+      document.getElementById("cms-pub-title").value = "New Publication Title";
+      document.getElementById("cms-pub-authors").value = "<strong>Kasinath V.</strong>, et al.";
+      document.getElementById("cms-pub-journal").value = "Journal Name. (2026). doi:10.1038/...";
+      document.getElementById("cms-pub-category").value = "recent prc";
+      
+      document.getElementById("cms-pub-link1-text").value = "Publisher Link";
+      document.getElementById("cms-pub-link1-url").value = "https://doi.org/...";
+      document.getElementById("cms-pub-link2-text").value = "PubMed";
+      document.getElementById("cms-pub-link2-url").value = "https://pubmed.ncbi.nlm.nih.gov/...";
+
+      document.getElementById("cms-pub-form-title").textContent = "Add Publication";
+      pubFormPane.style.display = "block";
+      pubFormPane.scrollIntoView({ behavior: "smooth" });
+    });
+
+    // Save publication details
+    document.getElementById("cms-pub-save-btn").addEventListener("click", () => {
+      const idx = parseInt(document.getElementById("cms-pub-edit-id").value, 10);
+      const yearVal = document.getElementById("cms-pub-year").value;
+      const titleVal = document.getElementById("cms-pub-title").value;
+      const authorsVal = document.getElementById("cms-pub-authors").value;
+      const journalVal = document.getElementById("cms-pub-journal").value;
+      const catVal = document.getElementById("cms-pub-category").value;
+
+      const link1Text = document.getElementById("cms-pub-link1-text").value;
+      const link1Url = document.getElementById("cms-pub-link1-url").value;
+      const link2Text = document.getElementById("cms-pub-link2-text").value;
+      const link2Url = document.getElementById("cms-pub-link2-url").value;
+
+      let linksHtml = "";
+      if (link1Url) {
+        linksHtml += `<a href="${link1Url}" target="_blank" rel="noopener" class="pub-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> ${link1Text}</a>`;
+      }
+      if (link2Url) {
+        linksHtml += `<a href="${link2Url}" target="_blank" rel="noopener" class="pub-link"><i class="fa-solid fa-book-open"></i> ${link2Text}</a>`;
+      }
+
+      const idVal = "pub-" + yearVal + "-" + titleVal.split(" ").slice(0, 2).join("-").replace(/[^a-zA-Z0-9-]/g, "").toLowerCase();
+
+      if (idx === -1) {
+        // Create new
+        const newItem = cmsVirtualDoc.createElement("div");
+        newItem.className = "glass-card publication-item";
+        newItem.setAttribute("data-category", catVal);
+        newItem.id = idVal;
+        newItem.innerHTML = `
+          <div class="pub-year">${yearVal}</div>
+          <div class="pub-details">
+            <h3 class="pub-title">${titleVal}</h3>
+            <p class="pub-authors">${authorsVal}</p>
+            <p class="pub-journal">${journalVal}</p>
+            <div class="pub-links">
+              ${linksHtml}
+            </div>
+          </div>
+        `;
+        const containerGrid = cmsVirtualDoc.querySelector("#publications-content");
+        if (containerGrid) containerGrid.appendChild(newItem);
+      } else {
+        // Edit existing
+        const items = cmsVirtualDoc.querySelectorAll("#publications-content .publication-item");
+        const item = items[idx];
+        if (item) {
+          item.setAttribute("data-category", catVal);
+          const yEl = item.querySelector(".pub-year");
+          if (yEl) yEl.textContent = yearVal;
+          const tEl = item.querySelector(".pub-title");
+          if (tEl) tEl.textContent = titleVal;
+          const aEl = item.querySelector(".pub-authors");
+          if (aEl) aEl.innerHTML = authorsVal;
+          const jEl = item.querySelector(".pub-journal");
+          if (jEl) jEl.textContent = journalVal;
+          
+          const linksContainer = item.querySelector(".pub-links");
+          if (linksContainer) linksContainer.innerHTML = linksHtml;
+        }
+      }
+
+      syncPublicationsDOM();
+      pubFormPane.style.display = "none";
+      refreshPubsList();
+      saveToSession();
+    });
+
+    const closeForm = () => { pubFormPane.style.display = "none"; };
+    document.getElementById("cms-pub-form-cancel").addEventListener("click", closeForm);
+    document.getElementById("cms-pub-cancel-btn").addEventListener("click", closeForm);
+
+    // Delete publication
+    pubsListDiv.addEventListener("click", (e) => {
+      const delBtn = e.target.closest(".cms-pub-del-btn");
+      if (!delBtn) return;
+      if (!confirm("Are you sure you want to delete this publication?")) return;
+
+      const idx = parseInt(delBtn.getAttribute("data-index"), 10);
+      const items = cmsVirtualDoc.querySelectorAll("#publications-content .publication-item");
+      if (items[idx]) items[idx].remove();
+
+      syncPublicationsDOM();
+      refreshPubsList();
+      saveToSession();
+    });
+
+    // Reorder publications
+    pubsListDiv.addEventListener("click", (e) => {
+      const moveUpBtn = e.target.closest(".cms-pub-moveup-btn");
+      const moveDownBtn = e.target.closest(".cms-pub-movedown-btn");
+      if (!moveUpBtn && !moveDownBtn) return;
+
+      const btn = moveUpBtn || moveDownBtn;
+      const idx = parseInt(btn.getAttribute("data-index"), 10);
+      const isUp = !!moveUpBtn;
+
+      const grid = cmsVirtualDoc.querySelector("#publications-content");
+      const items = Array.from(grid.querySelectorAll(".publication-item"));
+
+      if (isUp && idx > 0) {
+        grid.insertBefore(items[idx], items[idx - 1]);
+      } else if (!isUp && idx < items.length - 1) {
+        grid.insertBefore(items[idx + 1], items[idx]);
+      }
+
+      syncPublicationsDOM();
+      refreshPubsList();
+      saveToSession();
+    });
+  }
+
+  function syncPublicationsDOM() {
+    const liveList = document.getElementById("publications-content");
+    if (!liveList) return;
+    const virtList = cmsVirtualDoc.querySelector("#publications-content");
+    if (virtList) {
+      liveList.innerHTML = virtList.innerHTML;
+    }
+
+    // Re-bind click event listeners to filter buttons
+    const filtersContainer = document.getElementById("publications-filters");
+    if (filtersContainer) {
+      const clonedFilters = filtersContainer.cloneNode(true);
+      filtersContainer.parentNode.replaceChild(clonedFilters, filtersContainer);
+    }
+
+    if (typeof window.initPublicationsFilter === "function") {
+      window.initPublicationsFilter();
+    }
+    highlightEditableElements(true);
+  }
+
+  // ==========================================
+  // TAB 4D: JOIN US (OPENINGS)
+  // ==========================================
+  function renderOpeningsTab(container) {
+    const virtIntro = cmsVirtualDoc.querySelector("#openings > p");
+    const introText = virtIntro ? virtIntro.textContent.trim() : "";
+
+    container.innerHTML = `
+      <h3 class="cms-section-title">Join Us Intro</h3>
+      <div class="cms-field">
+        <label>Section Description</label>
+        <textarea id="cms-openings-intro" class="cms-textarea" rows="4">${escapeHtml(introText)}</textarea>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:40px; margin-bottom:20px; border-top:1px solid rgba(255,255,255,0.08); padding-top:20px;">
+        <h3 class="cms-section-title" style="margin-bottom:0;">Job Positions</h3>
+        <button class="cms-btn cms-btn-primary cms-btn-sm" id="cms-opening-add-btn">
+          <i class="fa-solid fa-plus"></i> Add Position
+        </button>
+      </div>
+
+      <!-- Opportunities List -->
+      <div class="cms-items-list" id="cms-openings-list"></div>
+
+      <!-- Add/Edit Position Form Panel -->
+      <div class="cms-editor-pane" id="cms-opening-form-pane">
+        <div class="cms-editor-pane-header">
+          <h4 id="cms-opening-form-title">Edit Position</h4>
+          <button class="cms-close-btn" id="cms-opening-form-cancel">&times;</button>
+        </div>
+        <input type="hidden" id="cms-opening-edit-id">
+        
+        <div class="cms-field">
+          <label>Position Tag (e.g. Postdoctoral Scholar)</label>
+          <input type="text" id="cms-opening-tag" class="cms-input" placeholder="Postdoctoral Scholar">
+        </div>
+        <div class="cms-field">
+          <label>Position Title</label>
+          <input type="text" id="cms-opening-title" class="cms-input" placeholder="Postdoctoral Fellow in Cryo-EM">
+        </div>
+        <div class="cms-field">
+          <label>Position Description</label>
+          <textarea id="cms-opening-desc" class="cms-textarea" rows="5"></textarea>
+        </div>
+        <div class="cms-field">
+          <label>Inquiry Button Text</label>
+          <input type="text" id="cms-opening-btn-text" class="cms-input" value="Inquire About Role">
+        </div>
+        <div class="cms-field">
+          <label>Special Styling Class</label>
+          <select id="cms-opening-style" class="cms-input">
+            <option value="default">Default Styling</option>
+            <option value="postdoc">Postdoc Highlight Styling (Purple Accent)</option>
+          </select>
+        </div>
+
+        <div class="cms-button-row">
+          <button class="cms-btn cms-btn-primary cms-btn-sm" id="cms-opening-save-btn">Save</button>
+          <button class="cms-btn cms-btn-secondary cms-btn-sm" id="cms-opening-cancel-btn">Cancel</button>
+        </div>
+      </div>
+    `;
+
+    // 1. Wire Intro Textarea
+    document.getElementById("cms-openings-intro").addEventListener("input", (e) => {
+      updateElementText("#openings > p", e.target.value);
+    });
+
+    // 2. Opportunities management
+    const openingsListDiv = document.getElementById("cms-openings-list");
+    const formPane = document.getElementById("cms-opening-form-pane");
+
+    function refreshOpeningsList() {
+      openingsListDiv.innerHTML = "";
+      const cards = cmsVirtualDoc.querySelectorAll("#opportunities-list .position-card");
+
+      cards.forEach((card, idx) => {
+        const title = card.querySelector("h3") ? card.querySelector("h3").textContent.trim() : "Position " + idx;
+        const tag = card.querySelector(".position-tag") ? card.querySelector(".position-tag").textContent.trim() : "";
+        const isPostdoc = card.classList.contains("postdoc");
+
+        const row = document.createElement("div");
+        row.className = "cms-item-row";
+        row.innerHTML = `
+          <div class="cms-item-info">
+            <div class="cms-item-title">${escapeHtml(title)}</div>
+            <div class="cms-item-subtitle" style="font-size:0.75rem;">Tag: ${tag} ${isPostdoc ? '<span style="color:var(--admin-gold);">[Postdoc Highlight]</span>' : ''}</div>
+          </div>
+          <div class="cms-item-actions">
+            <button class="cms-btn-action edit cms-opening-edit-btn" data-index="${idx}" title="Edit"><i class="fa-solid fa-pen"></i></button>
+            <button class="cms-btn-action cms-opening-moveup-btn" data-index="${idx}" title="Move Up"><i class="fa-solid fa-chevron-up"></i></button>
+            <button class="cms-btn-action cms-opening-movedown-btn" data-index="${idx}" title="Move Down"><i class="fa-solid fa-chevron-down"></i></button>
+            <button class="cms-btn-action delete cms-opening-del-btn" data-index="${idx}" title="Delete"><i class="fa-solid fa-trash-can"></i></button>
+          </div>
+        `;
+        openingsListDiv.appendChild(row);
+      });
+    }
+
+    refreshOpeningsList();
+
+    // Edit trigger
+    openingsListDiv.addEventListener("click", (e) => {
+      const editBtn = e.target.closest(".cms-opening-edit-btn");
+      if (!editBtn) return;
+      const idx = parseInt(editBtn.getAttribute("data-index"), 10);
+      const cards = cmsVirtualDoc.querySelectorAll("#opportunities-list .position-card");
+      const card = cards[idx];
+      if (!card) return;
+
+      document.getElementById("cms-opening-edit-id").value = idx;
+      document.getElementById("cms-opening-tag").value = card.querySelector(".position-tag") ? card.querySelector(".position-tag").textContent.trim() : "";
+      document.getElementById("cms-opening-title").value = card.querySelector("h3") ? card.querySelector("h3").textContent.trim() : "";
+      document.getElementById("cms-opening-desc").value = card.querySelector("p") ? card.querySelector("p").textContent.trim() : "";
+      document.getElementById("cms-opening-btn-text").value = card.querySelector("button") ? card.querySelector("button").textContent.trim() : "Inquire About Role";
+      document.getElementById("cms-opening-style").value = card.classList.contains("postdoc") ? "postdoc" : "default";
+
+      document.getElementById("cms-opening-form-title").textContent = "Edit Job Position";
+      formPane.style.display = "block";
+      formPane.scrollIntoView({ behavior: "smooth" });
+    });
+
+    // Add trigger
+    document.getElementById("cms-opening-add-btn").addEventListener("click", () => {
+      document.getElementById("cms-opening-edit-id").value = "-1";
+      document.getElementById("cms-opening-tag").value = "Graduate Student Rotations";
+      document.getElementById("cms-opening-title").value = "PhD Rotation Projects";
+      document.getElementById("cms-opening-desc").value = "We welcome rotations for biochemistry, molecular biology, and biophysics PhD candidates...";
+      document.getElementById("cms-opening-btn-text").value = "Inquire About Rotation";
+      document.getElementById("cms-opening-style").value = "default";
+
+      document.getElementById("cms-opening-form-title").textContent = "Add Job Position";
+      formPane.style.display = "block";
+      formPane.scrollIntoView({ behavior: "smooth" });
+    });
+
+    // Save details
+    document.getElementById("cms-opening-save-btn").addEventListener("click", () => {
+      const idx = parseInt(document.getElementById("cms-opening-edit-id").value, 10);
+      const tagVal = document.getElementById("cms-opening-tag").value;
+      const titleVal = document.getElementById("cms-opening-title").value;
+      const descVal = document.getElementById("cms-opening-desc").value;
+      const btnText = document.getElementById("cms-opening-btn-text").value;
+      const styleClass = document.getElementById("cms-opening-style").value;
+
+      const cardId = "position-" + titleVal.split(" ").slice(0, 2).join("-").replace(/[^a-zA-Z0-9-]/g, "").toLowerCase() + "-" + Date.now();
+      const cardClass = styleClass === "postdoc" ? "glass-card position-card postdoc" : "glass-card position-card";
+
+      if (idx === -1) {
+        // Create new
+        const newCard = cmsVirtualDoc.createElement("div");
+        newCard.className = cardClass;
+        newCard.id = cardId;
+        newCard.innerHTML = `
+          <span class="position-tag">${tagVal}</span>
+          <h3>${titleVal}</h3>
+          <p>${descVal}</p>
+          <button class="btn btn-secondary" onclick="document.querySelector('[data-target=contact]').click();">${btnText}</button>
+        `;
+        const listGrid = cmsVirtualDoc.querySelector("#opportunities-list");
+        if (listGrid) listGrid.appendChild(newCard);
+      } else {
+        // Edit existing
+        const cards = cmsVirtualDoc.querySelectorAll("#opportunities-list .position-card");
+        const card = cards[idx];
+        if (card) {
+          card.className = cardClass;
+          const tagEl = card.querySelector(".position-tag");
+          if (tagEl) tagEl.textContent = tagVal;
+          const h3 = card.querySelector("h3");
+          if (h3) h3.textContent = titleVal;
+          const p = card.querySelector("p");
+          if (p) p.textContent = descVal;
+          const btn = card.querySelector("button");
+          if (btn) btn.textContent = btnText;
+        }
+      }
+
+      syncOpeningsDOM();
+      formPane.style.display = "none";
+      refreshOpeningsList();
+      saveToSession();
+    });
+
+    const closeForm = () => { formPane.style.display = "none"; };
+    document.getElementById("cms-opening-form-cancel").addEventListener("click", closeForm);
+    document.getElementById("cms-opening-cancel-btn").addEventListener("click", closeForm);
+
+    // Delete position
+    openingsListDiv.addEventListener("click", (e) => {
+      const delBtn = e.target.closest(".cms-opening-del-btn");
+      if (!delBtn) return;
+      if (!confirm("Are you sure you want to delete this job opening?")) return;
+
+      const idx = parseInt(delBtn.getAttribute("data-index"), 10);
+      const cards = cmsVirtualDoc.querySelectorAll("#opportunities-list .position-card");
+      if (cards[idx]) cards[idx].remove();
+
+      syncOpeningsDOM();
+      refreshOpeningsList();
+      saveToSession();
+    });
+
+    // Reorder positions
+    openingsListDiv.addEventListener("click", (e) => {
+      const moveUpBtn = e.target.closest(".cms-opening-moveup-btn");
+      const moveDownBtn = e.target.closest(".cms-opening-movedown-btn");
+      if (!moveUpBtn && !moveDownBtn) return;
+
+      const btn = moveUpBtn || moveDownBtn;
+      const idx = parseInt(btn.getAttribute("data-index"), 10);
+      const isUp = !!moveUpBtn;
+
+      const grid = cmsVirtualDoc.querySelector("#opportunities-list");
+      const cards = Array.from(grid.querySelectorAll(".position-card"));
+
+      if (isUp && idx > 0) {
+        grid.insertBefore(cards[idx], cards[idx - 1]);
+      } else if (!isUp && idx < cards.length - 1) {
+        grid.insertBefore(cards[idx + 1], cards[idx]);
+      }
+
+      syncOpeningsDOM();
+      refreshOpeningsList();
+      saveToSession();
+    });
+  }
+
+  function syncOpeningsDOM() {
+    const liveGrid = document.getElementById("opportunities-list");
+    if (!liveGrid) return;
+    const virtGrid = cmsVirtualDoc.querySelector("#opportunities-list");
+    if (virtGrid) {
+      liveGrid.innerHTML = virtGrid.innerHTML;
+    }
+    highlightEditableElements(true);
+  }
+
+
+  // ==========================================
   // TAB 6: EXPORT & SYNC (PUBLISH)
   // ==========================================
   function renderExportTab(container) {
@@ -1858,6 +2867,69 @@
       ["carousel-lab-photos", "carousel-lab-shenanigans", "carousel-life-outside-the-lab"].forEach(gid => {
         syncGalleryDOM(gid);
       });
+
+      // Sync Research priorities
+      const virtResearchIntro = cmsVirtualDoc.querySelector("#research > p");
+      const liveResearchIntro = document.querySelector("#research > p");
+      if (virtResearchIntro && liveResearchIntro) {
+        liveResearchIntro.textContent = virtResearchIntro.textContent;
+      }
+      syncResearchPillarsDOM();
+
+      const virtMethod = cmsVirtualDoc.querySelector("#research-methodology");
+      const liveMethod = document.querySelector("#research-methodology");
+      if (virtMethod && liveMethod) {
+        liveMethod.innerHTML = virtMethod.innerHTML;
+      }
+
+      // Sync Publications
+      syncPublicationsDOM();
+
+      // Sync Openings
+      const virtOpeningsIntro = cmsVirtualDoc.querySelector("#openings > p");
+      const liveOpeningsIntro = document.querySelector("#openings > p");
+      if (virtOpeningsIntro && liveOpeningsIntro) {
+        liveOpeningsIntro.textContent = virtOpeningsIntro.textContent;
+      }
+      syncOpeningsDOM();
+
+      // Sync Contact section title & description
+      const virtContactTitle = cmsVirtualDoc.querySelector("#contact .section-title");
+      const liveContactTitle = document.querySelector("#contact .section-title");
+      if (virtContactTitle && liveContactTitle) {
+        liveContactTitle.textContent = virtContactTitle.textContent;
+      }
+      
+      const virtContactDesc = cmsVirtualDoc.querySelector("#contact > p");
+      const liveContactDesc = document.querySelector("#contact > p");
+      if (virtContactDesc && liveContactDesc) {
+        liveContactDesc.textContent = virtContactDesc.textContent;
+      }
+
+      // Sync Contact details
+      const virtAddress = cmsVirtualDoc.querySelector("#contact-details .contact-item-box:nth-child(1) p");
+      const liveAddress = document.querySelector("#contact-details .contact-item-box:nth-child(1) p");
+      if (virtAddress && liveAddress) liveAddress.innerHTML = virtAddress.innerHTML;
+
+      const virtEmail = cmsVirtualDoc.querySelector("#contact-details .contact-item-box:nth-child(2) a");
+      const liveEmail = document.querySelector("#contact-details .contact-item-box:nth-child(2) a");
+      if (virtEmail && liveEmail) {
+        liveEmail.setAttribute("href", virtEmail.getAttribute("href"));
+        liveEmail.textContent = virtEmail.textContent;
+      }
+
+      // Sync Confluence links
+      const virtHeaderLink = cmsVirtualDoc.querySelector("#tab-btn-confluence");
+      const liveHeaderLink = document.querySelector("#tab-btn-confluence");
+      if (virtHeaderLink && liveHeaderLink) {
+        liveHeaderLink.setAttribute("href", virtHeaderLink.getAttribute("href"));
+      }
+
+      const virtContactLink = cmsVirtualDoc.querySelector("#contact-details .contact-item-box:nth-child(3) a");
+      const liveContactLink = document.querySelector("#contact-details .contact-item-box:nth-child(3) a");
+      if (virtContactLink && liveContactLink) {
+        liveContactLink.setAttribute("href", virtContactLink.getAttribute("href"));
+      }
     }
   }
 
