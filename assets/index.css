@@ -1662,7 +1662,7 @@ footer.main-footer {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1250px) {
   header.main-header {
     padding: 15px 20px;
   }
@@ -1687,7 +1687,9 @@ footer.main-footer {
   .mobile-nav-toggle {
     display: block;
   }
+}
 
+@media (max-width: 768px) {
   .alumni-grid {
     grid-template-columns: 1fr;
   }
@@ -1817,7 +1819,7 @@ html[data-theme="dark"] .social-btn { background: rgba(255, 255, 255, 0.03); }
 html[data-theme="dark"] .social-btn:hover { background: rgba(212, 175, 55, 0.08); }
 html[data-theme="dark"] .outreach-icon-box { background: rgba(212, 175, 55, 0.1); border-color: rgba(212, 175, 55, 0.2); }
 
-@media (max-width: 768px) {
+@media (max-width: 1250px) {
   html[data-theme="dark"] nav.nav-tabs { box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); }
 }
 
