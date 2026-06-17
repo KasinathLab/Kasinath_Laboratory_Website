@@ -176,29 +176,53 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
 
       <div class="research-grid" id="research-pillars">
         <!-- Pillar 1 -->
-        <div class="glass-card research-card" id="pillar-epigenetics">
+        <div class="glass-card research-card" id="pillar-dna-modifiers">
           <div class="research-icon"><i class="fa-solid fa-dna"></i></div>
-          <h3>Epigenetics &amp; Gene Silencing</h3>
+          <h3>DNA modifiers</h3>
           <p>
-            We focus on Polycomb group proteins (PRC1 &amp; PRC2) and their chromatin modifier pathways. Using single-particle cryo-EM, we visualize these massive complexes engaged with dinucleosomes to resolve their mechanism of catalysis, recruitment, and inhibition by active transcriptional modifications.
+            DNA methylation is one of the most stable carriers of epigenetic memory, faithfully copied each time a cell divides. We ask how RNA shapes the activity of the maintenance methyltransferase DNMT1: how does the enzyme distinguish the right substrates, how is the fidelity of inherited methylation patterns preserved, and how does RNA tip the balance? Because errors in this process are deeply tied to cancer and developmental disorders, getting the mechanism right has consequences far beyond the test tube.
           </p>
         </div>
 
         <!-- Pillar 2 -->
-        <div class="glass-card research-card alt" id="pillar-tomography">
-          <div class="research-icon"><i class="fa-solid fa-microscope"></i></div>
-          <h3>In Situ Chromosome Architecture</h3>
+        <div class="glass-card research-card alt" id="pillar-histone-methyltransferases">
+          <div class="research-icon"><i class="fa-solid fa-shapes"></i></div>
+          <h3>Histone methyltransferases</h3>
           <p>
-            To understand how chromosomes organize in three dimensions within the nucleus, we utilize cryo-focused ion beam (cryo-FIB) milling and cryo-electron tomography (cryo-ET). This allows us to map higher-order chromatin folding and pairing interactions directly inside intact cellular environments.
+            PRC2 deposits the H3K27me3 mark that defines Polycomb-mediated gene silencing, essential for development and differentiation. PRC2 also presents a striking paradox: it binds RNA promiscuously, including RNA from the very genes it is meant to repress, and that RNA can switch its activity on or off. How RNA and the nucleosome jointly tune PRC2 on chromatin is one of the most compelling open questions in the field, and one we are working to answer at molecular resolution. Our recent work also explores the interplay between DNA methylation and PRC2 activity in aging and other disease contexts.
           </p>
         </div>
 
         <!-- Pillar 3 -->
-        <div class="glass-card research-card" id="pillar-biochemistry">
-          <div class="research-icon"><i class="fa-solid fa-flask"></i></div>
-          <h3>Biochemistry &amp; Mass Spectrometry</h3>
+        <div class="glass-card research-card" id="pillar-histone-ubiquitin-ligases">
+          <div class="research-icon"><i class="fa-solid fa-link"></i></div>
+          <h3>Histone ubiquitin ligases</h3>
           <p>
-            We complement our structural studies with quantitative biochemistry, chromatin reconstitution assays, and quantitative mass spectrometry. This combined toolkit allows us to measure interaction binding affinities, kinetic behaviors, and map post-translational modifications of complex protein assemblies.
+            A third class of enzymes silences genes by ubiquitinating histones, laying down marks that help define repressed chromatin. We are interested in how these enzymes recognize their nucleosomal substrates and how RNA influences where and when they act. This area of research is a less charted but rapidly emerging frontier in chromatin biology.
+          </p>
+        </div>
+      </div>
+
+      <div class="research-subheader-container" style="text-align: center; margin-top: 50px; margin-bottom: 30px;" id="research-apps-header">
+        <h3 class="section-title" style="font-size: 1.8rem; display: inline-block; border-bottom: 2px solid var(--color-primary); padding-bottom: 8px;">From Mechanism to Application</h3>
+      </div>
+
+      <div class="research-grid-apps" id="research-pillars-apps">
+        <!-- Pillar 4 -->
+        <div class="glass-card research-card alt" id="pillar-chemical-biology">
+          <div class="research-icon"><i class="fa-solid fa-flask"></i></div>
+          <h3>Chemical biology: small-molecule modulators</h3>
+          <p>
+            Many of these silencing enzymes are validated or emerging therapeutic targets. Using our structural and mechanistic insights, we design and develop small-molecule activators and inhibitors, tools both to dissect enzyme function and to explore therapeutic strategies for diseases driven by dysregulated gene silencing.
+          </p>
+        </div>
+
+        <!-- Pillar 5 -->
+        <div class="glass-card research-card" id="pillar-ai-protein-engineering">
+          <div class="research-icon"><i class="fa-solid fa-laptop-code"></i></div>
+          <h3>AI-based protein engineering for gene silencing</h3>
+          <p>
+            Rather than only modulating natural enzymes, we ask a more ambitious question: can we build new ones? By combining mechanistic rules from our structural work with AI-based protein design, we aim to engineer proteins that silence specific genes on demand, toward programmable, on-demand control of the epigenome.
           </p>
         </div>
       </div>

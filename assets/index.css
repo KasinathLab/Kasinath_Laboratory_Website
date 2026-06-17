@@ -509,6 +509,14 @@ h2.section-title::after {
   gap: 30px;
 }
 
+.research-grid-apps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 .research-card {
   display: flex;
   flex-direction: column;
@@ -1633,7 +1641,8 @@ footer.main-footer {
     grid-template-columns: 1fr;
   }
   
-  .research-grid {
+  .research-grid,
+  .research-grid-apps {
     grid-template-columns: 1fr;
   }
   

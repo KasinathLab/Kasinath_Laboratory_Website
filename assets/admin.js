@@ -198,7 +198,7 @@
       '.alumni-card',
       '.carousel-container .carousel-item',
       '#research > p',
-      '#research-pillars .research-card',
+      '#research-pillars .research-card, #research-pillars-apps .research-card',
       '#research-methodology h3',
       '#research-methodology p',
       '#research-methodology ul li',
@@ -1721,6 +1721,13 @@
         </div>
         <input type="hidden" id="cms-pillar-edit-id">
         <div class="cms-field">
+          <label>Pillar Group</label>
+          <select id="cms-pillar-group" class="cms-input">
+            <option value="mechanisms">Mechanisms (Top Grid)</option>
+            <option value="apps">From Mechanism to Application (Bottom Grid)</option>
+          </select>
+        </div>
+        <div class="cms-field">
           <label>Pillar Title</label>
           <input type="text" id="cms-pillar-title" class="cms-input">
         </div>
@@ -1789,16 +1796,18 @@
 
     function refreshPillarsList() {
       pillarsListDiv.innerHTML = "";
-      const cards = cmsVirtualDoc.querySelectorAll("#research-pillars .research-card");
+      const cards = cmsVirtualDoc.querySelectorAll("#research-pillars .research-card, #research-pillars-apps .research-card");
       cards.forEach((card, idx) => {
         const title = card.querySelector("h3") ? card.querySelector("h3").textContent.trim() : "Pillar " + idx;
         const iconEl = card.querySelector(".research-icon i");
         const iconClass = iconEl ? iconEl.className : "";
+        const isApp = card.closest("#research-pillars-apps") !== null;
+        const groupText = isApp ? "Application" : "Mechanism";
         const row = document.createElement("div");
         row.className = "cms-item-row";
         row.innerHTML = `
           <div class="cms-item-info">
-            <div class="cms-item-title">${escapeHtml(title)}</div>
+            <div class="cms-item-title">${escapeHtml(title)} <span style="font-size:0.65rem; color:var(--admin-gold); margin-left:5px;">[${groupText}]</span></div>
             <div class="cms-item-subtitle" style="font-family:monospace; font-size:0.75rem;"><i class="${iconClass}" style="margin-right:5px;"></i>${iconClass}</div>
           </div>
           <div class="cms-item-actions">
@@ -1819,7 +1828,7 @@
       const editBtn = e.target.closest(".cms-pillar-edit-btn");
       if (!editBtn) return;
       const idx = parseInt(editBtn.getAttribute("data-index"), 10);
-      const cards = cmsVirtualDoc.querySelectorAll("#research-pillars .research-card");
+      const cards = cmsVirtualDoc.querySelectorAll("#research-pillars .research-card, #research-pillars-apps .research-card");
       const card = cards[idx];
       if (!card) return;
 
@@ -1828,6 +1837,9 @@
       document.getElementById("cms-pillar-desc").value = card.querySelector("p") ? card.querySelector("p").textContent.trim() : "";
       const iconEl = card.querySelector(".research-icon i");
       document.getElementById("cms-pillar-icon").value = iconEl ? iconEl.className : "fa-solid fa-dna";
+      
+      const isApp = card.closest("#research-pillars-apps") !== null;
+      document.getElementById("cms-pillar-group").value = isApp ? "apps" : "mechanisms";
 
       document.getElementById("cms-pillar-form-title").textContent = "Edit Research Pillar";
       pillarFormPane.style.display = "block";
@@ -1840,6 +1852,7 @@
       document.getElementById("cms-pillar-title").value = "New Research Focus";
       document.getElementById("cms-pillar-icon").value = "fa-solid fa-dna";
       document.getElementById("cms-pillar-desc").value = "Describe this research area in detail...";
+      document.getElementById("cms-pillar-group").value = "mechanisms";
 
       document.getElementById("cms-pillar-form-title").textContent = "Add Research Pillar";
       pillarFormPane.style.display = "block";
@@ -1852,6 +1865,7 @@
       const titleVal = document.getElementById("cms-pillar-title").value;
       const iconVal = document.getElementById("cms-pillar-icon").value;
       const descVal = document.getElementById("cms-pillar-desc").value;
+      const groupVal = document.getElementById("cms-pillar-group").value;
 
       if (idx === -1) {
         // Add new
@@ -1862,11 +1876,12 @@
           <h3>${titleVal}</h3>
           <p>${descVal}</p>
         `;
-        const pillarsGrid = cmsVirtualDoc.querySelector("#research-pillars");
+        const targetGridId = groupVal === "apps" ? "#research-pillars-apps" : "#research-pillars";
+        const pillarsGrid = cmsVirtualDoc.querySelector(targetGridId);
         if (pillarsGrid) pillarsGrid.appendChild(newCard);
       } else {
         // Edit existing
-        const cards = cmsVirtualDoc.querySelectorAll("#research-pillars .research-card");
+        const cards = cmsVirtualDoc.querySelectorAll("#research-pillars .research-card, #research-pillars-apps .research-card");
         const card = cards[idx];
         if (card) {
           const h3 = card.querySelector("h3");
@@ -1875,8 +1890,32 @@
           if (p) p.textContent = descVal;
           const i = card.querySelector(".research-icon i");
           if (i) i.className = iconVal;
+
+          const isCurrentlyApp = card.closest("#research-pillars-apps") !== null;
+          const targetIsApp = groupVal === "apps";
+          if (isCurrentlyApp !== targetIsApp) {
+            card.remove();
+            const targetGridId = targetIsApp ? "#research-pillars-apps" : "#research-pillars";
+            const pillarsGrid = cmsVirtualDoc.querySelector(targetGridId);
+            if (pillarsGrid) pillarsGrid.appendChild(card);
+          }
         }
       }
+
+      // Re-apply alternating alt class
+      ["#research-pillars", "#research-pillars-apps"].forEach(gridId => {
+        const grid = cmsVirtualDoc.querySelector(gridId);
+        if (grid) {
+          const cards = grid.querySelectorAll(".research-card");
+          cards.forEach((card, cIdx) => {
+            if (cIdx % 2 === 1) {
+              card.classList.add("alt");
+            } else {
+              card.classList.remove("alt");
+            }
+          });
+        }
+      });
 
       syncResearchPillarsDOM();
       pillarFormPane.style.display = "none";
@@ -1895,8 +1934,22 @@
       if (!confirm("Are you sure you want to delete this research pillar?")) return;
 
       const idx = parseInt(delBtn.getAttribute("data-index"), 10);
-      const cards = cmsVirtualDoc.querySelectorAll("#research-pillars .research-card");
+      const cards = cmsVirtualDoc.querySelectorAll("#research-pillars .research-card, #research-pillars-apps .research-card");
       if (cards[idx]) cards[idx].remove();
+
+      ["#research-pillars", "#research-pillars-apps"].forEach(gridId => {
+        const grid = cmsVirtualDoc.querySelector(gridId);
+        if (grid) {
+          const cards = grid.querySelectorAll(".research-card");
+          cards.forEach((card, cIdx) => {
+            if (cIdx % 2 === 1) {
+              card.classList.add("alt");
+            } else {
+              card.classList.remove("alt");
+            }
+          });
+        }
+      });
 
       syncResearchPillarsDOM();
       refreshPillarsList();
@@ -1913,14 +1966,33 @@
       const idx = parseInt(btn.getAttribute("data-index"), 10);
       const isUp = !!moveUpBtn;
 
-      const grid = cmsVirtualDoc.querySelector("#research-pillars");
-      const cards = Array.from(grid.querySelectorAll(".research-card"));
+      const cards = cmsVirtualDoc.querySelectorAll("#research-pillars .research-card, #research-pillars-apps .research-card");
+      const card = cards[idx];
+      if (!card) return;
 
-      if (isUp && idx > 0) {
-        grid.insertBefore(cards[idx], cards[idx - 1]);
-      } else if (!isUp && idx < cards.length - 1) {
-        grid.insertBefore(cards[idx + 1], cards[idx]);
+      const grid = card.parentNode;
+      const siblingCards = Array.from(grid.querySelectorAll(".research-card"));
+      const siblingIdx = siblingCards.indexOf(card);
+
+      if (isUp && siblingIdx > 0) {
+        grid.insertBefore(card, siblingCards[siblingIdx - 1]);
+      } else if (!isUp && siblingIdx < siblingCards.length - 1) {
+        grid.insertBefore(siblingCards[siblingIdx + 1], card);
       }
+
+      ["#research-pillars", "#research-pillars-apps"].forEach(gridId => {
+        const g = cmsVirtualDoc.querySelector(gridId);
+        if (g) {
+          const cards = g.querySelectorAll(".research-card");
+          cards.forEach((card, cIdx) => {
+            if (cIdx % 2 === 1) {
+              card.classList.add("alt");
+            } else {
+              card.classList.remove("alt");
+            }
+          });
+        }
+      });
 
       syncResearchPillarsDOM();
       refreshPillarsList();
@@ -2013,11 +2085,16 @@
   }
 
   function syncResearchPillarsDOM() {
-    const liveGrid = document.getElementById("research-pillars");
-    if (!liveGrid) return;
-    const virtGrid = cmsVirtualDoc.querySelector("#research-pillars");
-    if (virtGrid) {
-      liveGrid.innerHTML = virtGrid.innerHTML;
+    const liveGrid1 = document.getElementById("research-pillars");
+    const virtGrid1 = cmsVirtualDoc.querySelector("#research-pillars");
+    if (liveGrid1 && virtGrid1) {
+      liveGrid1.innerHTML = virtGrid1.innerHTML;
+    }
+
+    const liveGrid2 = document.getElementById("research-pillars-apps");
+    const virtGrid2 = cmsVirtualDoc.querySelector("#research-pillars-apps");
+    if (liveGrid2 && virtGrid2) {
+      liveGrid2.innerHTML = virtGrid2.innerHTML;
     }
     highlightEditableElements(true);
   }
