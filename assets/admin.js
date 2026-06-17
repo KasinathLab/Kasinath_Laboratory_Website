@@ -2163,6 +2163,34 @@
       liveGrid2.innerHTML = virtGrid2.innerHTML;
     }
     highlightEditableElements(true);
+
+    // Sync virtual document's Core Research Themes
+    const virtQuestionsSection = cmsVirtualDoc.querySelector(".questions-section");
+    if (virtQuestionsSection) {
+      const virtResearchCards = cmsVirtualDoc.querySelectorAll("#research-pillars .research-card, #research-pillars-apps .research-card");
+      const existingVirtCards = virtQuestionsSection.querySelectorAll(".question-card");
+      existingVirtCards.forEach(card => card.remove());
+      
+      virtResearchCards.forEach((card, idx) => {
+        const h3 = card.querySelector("h3");
+        const p = card.querySelector("p");
+        if (!h3 || !p) return;
+        
+        const themeCard = cmsVirtualDoc.createElement("div");
+        themeCard.className = `glass-card question-card${idx % 2 === 1 ? " alt" : ""}`;
+        themeCard.id = `question-${idx + 1}`;
+        themeCard.innerHTML = `
+          <div class="question-title">${h3.innerHTML}</div>
+          <p class="news-excerpt">${p.innerHTML}</p>
+        `;
+        virtQuestionsSection.appendChild(themeCard);
+      });
+    }
+
+    // Sync live document's Core Research Themes
+    if (typeof window.syncHomeResearchThemes === "function") {
+      window.syncHomeResearchThemes();
+    }
   }
 
   // ==========================================

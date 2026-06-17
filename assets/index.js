@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMascotPiku();
   initTeamModal();
   initAdminModeTrigger();
+  syncHomeResearchThemes();
 });
 
 /* =========================================================================
@@ -925,6 +926,35 @@ function initAdminModeTrigger() {
 // Expose filter & carousel rebinding globally for CMS use
 window.initPublicationsFilter = initPublicationsFilter;
 window.initCarousels = initCarousels;
+
+function syncHomeResearchThemes() {
+  const questionsSection = document.querySelector('.questions-section');
+  if (!questionsSection) return;
+
+  const researchCards = document.querySelectorAll('#research-pillars .research-card, #research-pillars-apps .research-card');
+  if (researchCards.length === 0) return;
+
+  const existingCards = questionsSection.querySelectorAll('.question-card');
+  existingCards.forEach(card => card.remove());
+
+  researchCards.forEach((card, idx) => {
+    const h3 = card.querySelector('h3');
+    const p = card.querySelector('p');
+    if (!h3 || !p) return;
+
+    const themeCard = document.createElement('div');
+    themeCard.className = `glass-card question-card${idx % 2 === 1 ? ' alt' : ''}`;
+    themeCard.id = `question-${idx + 1}`;
+
+    themeCard.innerHTML = `
+      <div class="question-title">${h3.innerHTML}</div>
+      <p class="news-excerpt">${p.innerHTML}</p>
+    `;
+    questionsSection.appendChild(themeCard);
+  });
+}
+
+window.syncHomeResearchThemes = syncHomeResearchThemes;
 
 
 
