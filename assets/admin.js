@@ -7,6 +7,76 @@
   const CMS_PASSCODE = "kasinath2026";
   let cmsVirtualDoc = null;
   let activeTab = "tab-general";
+  const pendingUploads = {}; // Maps assets/filename -> base64 string
+
+  function bindUploadZone(dropZoneId, fileInputId, textInputId, updateCallback) {
+    const dropZone = document.getElementById(dropZoneId);
+    const fileInput = document.getElementById(fileInputId);
+    const textInput = document.getElementById(textInputId);
+
+    if (!dropZone || !fileInput || !textInput) return;
+
+    // Open file dialog on click
+    dropZone.addEventListener("click", () => fileInput.click());
+
+    // Highlight on hover
+    ["dragenter", "dragover"].forEach(eventName => {
+      dropZone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        dropZone.classList.add("hover");
+      }, false);
+    });
+
+    ["dragleave", "drop"].forEach(eventName => {
+      dropZone.addEventListener(eventName, (e) => {
+        e.preventDefault();
+        dropZone.classList.remove("hover");
+      }, false);
+    });
+
+    // Handle dropped files
+    dropZone.addEventListener("drop", (e) => {
+      const dt = e.dataTransfer;
+      const files = dt.files;
+      if (files.length > 0) {
+        handleFile(files[0]);
+      }
+    });
+
+    // Handle selected files
+    fileInput.addEventListener("change", (e) => {
+      if (fileInput.files.length > 0) {
+        handleFile(fileInput.files[0]);
+      }
+    });
+
+    function handleFile(file) {
+      if (!file.type.startsWith("image/")) {
+        alert("Only image files are allowed.");
+        return;
+      }
+
+      const cleanName = file.name.toLowerCase()
+        .replace(/\s+/g, "_")
+        .replace(/[^a-z0-9_.-]/g, "");
+      
+      const targetPath = "assets/" + cleanName;
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const dataUrl = event.target.result;
+        const base64Data = dataUrl.split(",")[1];
+
+        pendingUploads[targetPath] = base64Data;
+        textInput.value = targetPath;
+
+        if (typeof updateCallback === "function") {
+          updateCallback(dataUrl, targetPath);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  }
 
   // Initialize Admin CMS
   function init() {
@@ -294,6 +364,11 @@
       <div class="cms-field">
         <label>Logo Image Path</label>
         <input type="text" id="cms-logo-img" class="cms-input" value="${escapeHtml(logoImgSrc)}">
+        <div class="cms-drop-zone" id="cms-logo-dropzone">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <span>Drag & drop logo here or click to browse</span>
+          <input type="file" id="cms-logo-file" style="display:none;" accept="image/*">
+        </div>
       </div>
       <div class="cms-field">
         <label>Header Logo Text</label>
@@ -626,6 +701,14 @@
       saveToSession();
     });
 
+    bindUploadZone("cms-logo-dropzone", "cms-logo-file", "cms-logo-img", (dataUrl, targetPath) => {
+      const vImg = cmsVirtualDoc.querySelector("#brand-logo img");
+      const lImg = document.querySelector("#brand-logo img");
+      if (vImg) vImg.setAttribute("src", targetPath);
+      if (lImg) lImg.setAttribute("src", dataUrl);
+      saveToSession();
+    });
+
     document.getElementById("cms-logo-text").addEventListener("input", (e) => {
       const text = e.target.value;
       const vText = cmsVirtualDoc.querySelector("#brand-logo .logo-text");
@@ -684,6 +767,11 @@
         <div class="cms-field">
           <label>Image Resource Path</label>
           <input type="text" id="cms-news-img" class="cms-input" placeholder="assets/news_file.png">
+          <div class="cms-drop-zone" id="cms-news-dropzone">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <span>Drag & drop image here or click to browse</span>
+            <input type="file" id="cms-news-file" style="display:none;" accept="image/*">
+          </div>
         </div>
         <div class="cms-button-row">
           <button class="cms-btn cms-btn-primary cms-btn-sm" id="cms-news-save-btn">Save</button>
@@ -818,6 +906,10 @@
     document.getElementById("cms-news-form-cancel").addEventListener("click", closeForm);
     document.getElementById("cms-news-cancel-btn").addEventListener("click", closeForm);
 
+    bindUploadZone("cms-news-dropzone", "cms-news-file", "cms-news-img", (dataUrl, targetPath) => {
+      // Updates the input field path; actual preview is updated upon saving the card
+    });
+
     // 4. Delete Announcement
     newsListDiv.addEventListener("click", (e) => {
       const delBtn = e.target.closest(".cms-news-del-btn");
@@ -944,6 +1036,11 @@
       <div class="cms-field">
         <label>Photo path</label>
         <input type="text" id="cms-pi-photo" class="cms-input" value="${escapeHtml(piPhoto)}">
+        <div class="cms-drop-zone" id="cms-pi-photo-dropzone">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <span>Drag & drop photo here or click to browse</span>
+          <input type="file" id="cms-pi-photo-file" style="display:none;" accept="image/*">
+        </div>
       </div>
 
       <div style="display:flex; justify-content:space-between; align-items:center; margin-top:40px; margin-bottom:20px; border-top:1px solid rgba(255,255,255,0.08); padding-top:20px;">
@@ -974,6 +1071,11 @@
         <div class="cms-field">
           <label>Image Resource Path</label>
           <input type="text" id="cms-team-img" class="cms-input" placeholder="assets/team_file.jpg">
+          <div class="cms-drop-zone" id="cms-team-img-dropzone">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <span>Drag & drop photo here or click to browse</span>
+            <input type="file" id="cms-team-img-file" style="display:none;" accept="image/*">
+          </div>
         </div>
         <div class="cms-field">
           <label>Biography Details</label>
@@ -1047,6 +1149,16 @@
     const piFields = ["cms-pi-name", "cms-pi-role", "cms-pi-title", "cms-pi-email", "cms-pi-twitter", "cms-pi-photo"];
     piFields.forEach(fid => {
       document.getElementById(fid).addEventListener("input", updatePI);
+    });
+
+    bindUploadZone("cms-pi-photo-dropzone", "cms-pi-photo-file", "cms-pi-photo", (dataUrl, targetPath) => {
+      const piEl = cmsVirtualDoc.querySelector("#team-pi");
+      if (piEl && piEl.querySelector("img")) piEl.querySelector("img").setAttribute("src", targetPath);
+      
+      const livePiEl = document.querySelector("#team-pi");
+      if (livePiEl && livePiEl.querySelector("img")) livePiEl.querySelector("img").setAttribute("src", dataUrl);
+
+      saveToSession();
     });
 
     // 2. Load members list
@@ -1168,6 +1280,10 @@
     const closeForm = () => { formPane.style.display = "none"; };
     document.getElementById("cms-team-form-cancel").addEventListener("click", closeForm);
     document.getElementById("cms-team-cancel-btn").addEventListener("click", closeForm);
+
+    bindUploadZone("cms-team-img-dropzone", "cms-team-img-file", "cms-team-img", (dataUrl, targetPath) => {
+      // Updates input field; preview is loaded upon member save
+    });
 
     // Delete Member
     membersListDiv.addEventListener("click", (e) => {
@@ -1823,6 +1939,11 @@
       <div class="cms-field">
         <label>Detail Card Image Path</label>
         <input type="text" id="cms-method-img" class="cms-input" value="${escapeHtml(methodImg)}">
+        <div class="cms-drop-zone" id="cms-method-dropzone">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+          <span>Drag & drop card image here or click to browse</span>
+          <input type="file" id="cms-method-file" style="display:none;" accept="image/*">
+        </div>
       </div>
 
       <div style="display:flex; justify-content:space-between; align-items:center; margin-top:25px; margin-bottom:15px;">
@@ -1853,6 +1974,14 @@
       [vImg, lImg].forEach(el => {
         if (el) el.setAttribute("src", url);
       });
+      saveToSession();
+    });
+
+    bindUploadZone("cms-method-dropzone", "cms-method-file", "cms-method-img", (dataUrl, targetPath) => {
+      const vImg = cmsVirtualDoc.querySelector("#research-methodology img");
+      const lImg = document.querySelector("#research-methodology img");
+      if (vImg) vImg.setAttribute("src", targetPath);
+      if (lImg) lImg.setAttribute("src", dataUrl);
       saveToSession();
     });
 
@@ -2868,9 +2997,17 @@
         const siteRegionContent = `<!-- GENERATED from index.html by dev/build-region.sh — DO NOT EDIT BY HAND. Edit index.html, then re-run. -->\n<!DOCTYPE html>\n` + html;
 
         const filesToPush = [
-          { path: "index.html", content: indexHTMLContent },
-          { path: "site.region", content: siteRegionContent }
+          { path: "index.html", content: indexHTMLContent, isBinary: false },
+          { path: "site.region", content: siteRegionContent, isBinary: false }
         ];
+
+        for (const [imgPath, base64Data] of Object.entries(pendingUploads)) {
+          filesToPush.push({
+            path: imgPath,
+            content: base64Data,
+            isBinary: true
+          });
+        }
 
         for (const file of filesToPush) {
           statusDiv.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Fetching SHA of ${file.path}...`;
@@ -2894,8 +3031,13 @@
 
           statusDiv.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Committing ${file.path} to branch ${branch}...`;
 
-          // Base64 encode UTF-8 safely
-          const base64Content = btoa(unescape(encodeURIComponent(file.content)));
+          let base64Content;
+          if (file.isBinary) {
+            base64Content = file.content;
+          } else {
+            // Base64 encode UTF-8 safely for text files
+            base64Content = btoa(unescape(encodeURIComponent(file.content)));
+          }
 
           const putUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${file.path}`;
           const putRes = await fetch(putUrl, {
@@ -2917,6 +3059,11 @@
             const errData = await putRes.json();
             throw new Error(`Failed to commit ${file.path}: ${errData.message}`);
           }
+        }
+
+        // Clear queue on success
+        for (const key of Object.keys(pendingUploads)) {
+          delete pendingUploads[key];
         }
 
         statusDiv.style.color = "#10b981";
