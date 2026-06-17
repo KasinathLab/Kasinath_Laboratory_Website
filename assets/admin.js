@@ -1562,88 +1562,200 @@
   // TAB 6: EXPORT & SYNC (PUBLISH)
   // ==========================================
   function renderExportTab(container) {
+    const savedToken = localStorage.getItem("kaslab_cms_git_token") || "";
+
     container.innerHTML = `
       <h3 class="cms-section-title">Save & Export Code</h3>
       
-      <div class="cms-instructions">
-        <h4><i class="fa-solid fa-lightbulb"></i> How to apply changes:</h4>
+      <div class="cms-instructions" style="margin-bottom: 20px;">
+        <h4><i class="fa-solid fa-lightbulb"></i> Local Download (Manual)</h4>
         <ol>
           <li>Click **Download index.html** to get the updated source file.</li>
           <li>Click **Download site.region** to get the Squarespace template file.</li>
-          <li>Over-write the original ` + "`index.html`" + ` and ` + "`site.region`" + ` in your local workspace folder.</li>
-          <li>Commit the files and push to your **preview** branch to review staging, then merge to **master** to go live!</li>
+          <li>Replace the files in your local workspace folder.</li>
         </ol>
       </div>
 
-      <button class="cms-btn cms-btn-primary cms-btn-full" id="cms-export-html" style="padding:14px; margin-bottom:15px; font-size:0.95rem;">
-        <i class="fa-solid fa-download"></i> Download index.html
-      </button>
+      <div style="display: flex; gap: 10px; margin-bottom: 25px;">
+        <button class="cms-btn cms-btn-primary cms-btn-sm" id="cms-export-html" style="flex: 1;">
+          <i class="fa-solid fa-download"></i> index.html
+        </button>
+        <button class="cms-btn cms-btn-primary cms-btn-sm" id="cms-export-region" style="flex: 1; background: #10b981;">
+          <i class="fa-solid fa-server"></i> site.region
+        </button>
+      </div>
 
-      <button class="cms-btn cms-btn-primary cms-btn-full" id="cms-export-region" style="padding:14px; margin-bottom:20px; font-size:0.95rem; background:linear-gradient(135deg, #10b981 0%, #059669 100%);">
-        <i class="fa-solid fa-server"></i> Download site.region
-      </button>
+      <h3 class="cms-section-title">Direct GitHub Sync (Automatic)</h3>
+      <div class="cms-field" style="margin-bottom: 15px;">
+        <label>GitHub Personal Access Token</label>
+        <input type="password" id="cms-github-token" class="cms-input" placeholder="ghp_..." value="${escapeHtml(savedToken)}" autocomplete="off">
+        <small style="color: var(--admin-text-muted); font-size:0.75rem; display:block; margin-top:5px; line-height: 1.4;">
+          Your token will be saved securely in your browser's local storage. This enables publishing in one click.
+        </small>
+      </div>
 
-      <button class="cms-btn cms-btn-danger cms-btn-full cms-btn-sm" id="cms-reset-session" style="margin-top:20px; opacity:0.8;">
+      <div class="cms-button-row" style="flex-direction: column; gap: 10px; margin-bottom: 20px;">
+        <button class="cms-btn cms-btn-primary cms-btn-full" id="cms-git-push-preview" style="background: #4f46e5; padding: 12px;">
+          <i class="fa-solid fa-cloud-arrow-up"></i> Push to Staging (preview)
+        </button>
+        <button class="cms-btn cms-btn-primary cms-btn-full" id="cms-git-push-master" style="background: linear-gradient(135deg, #d97706 0%, #b45309 100%); padding: 12px;">
+          <i class="fa-solid fa-circle-check"></i> Push to Production (master)
+        </button>
+      </div>
+
+      <div id="cms-git-status" style="margin-top: 15px; font-size: 0.8rem; padding: 12px; border-radius: 8px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); display: none; line-height: 1.5;"></div>
+
+      <button class="cms-btn cms-btn-danger cms-btn-full cms-btn-sm" id="cms-reset-session" style="margin-top: 25px; opacity: 0.7;">
         <i class="fa-solid fa-arrow-rotate-left"></i> Discard Session Edits
       </button>
     `;
 
-    // 1. Export index.html
+    // 1. Export index.html (manual)
     document.getElementById("cms-export-html").addEventListener("click", () => {
-      // Build index.html string from clean virtual doc
-      // Ensure we remove any visual highlight classes in the virtual doc before serializing
       const docClone = cmsVirtualDoc.cloneNode(true);
-      
-      // Clean highlights just in case
       docClone.querySelectorAll('.cms-editable-highlight-preview').forEach(el => {
         el.classList.remove('cms-editable-highlight-preview');
       });
-
       const serialized = "<!DOCTYPE html>\n" + docClone.documentElement.outerHTML;
       triggerFileDownload("index.html", serialized);
     });
 
-    // 2. Export site.region
+    // 2. Export site.region (manual)
     document.getElementById("cms-export-region").addEventListener("click", () => {
-      // Build site.region from clean virtual doc clone
       const docClone = cmsVirtualDoc.cloneNode(true);
-      
-      // Clean highlights
       docClone.querySelectorAll('.cms-editable-highlight-preview').forEach(el => {
         el.classList.remove('cms-editable-highlight-preview');
       });
 
       let html = docClone.documentElement.outerHTML;
-
-      // Run Squarespace transformations equivalent to dev/build-region.sh:
-      
-      // 1. make all relative asset refs absolute
       html = html.replace(/"assets\//g, '"/assets/');
-      
-      // 2. og:image absolute URL
       html = html.replace(
         /<meta property="og:image" content="\/assets\//g,
         '<meta property="og:image" content="https://vignesh-kasinath.squarespace.com/assets/'
       );
-      
-      // 3. body gets Squarespace per-page hooks
       html = html.replace(/<body>/g, '<body id="{squarespace.page-id}" class="{squarespace.page-classes}">');
-      
-      // 4. headers tag before </head>
       html = html.replace(/<\/head>/g, '  {squarespace-headers}\n</head>');
-      
-      // 5. main-content + footers before </body>
       html = html.replace(
         /<\/body>/g,
         '  <div class="sqs-main-content" data-content-field="main-content" aria-hidden="true" style="display:none">{squarespace.main-content}</div>\n  {squarespace-footers}\n</body>'
       );
 
-      // Prepend generated warning banner
       const siteRegionContent = `<!-- GENERATED from index.html by dev/build-region.sh — DO NOT EDIT BY HAND. Edit index.html, then re-run. -->\n<!DOCTYPE html>\n` + html;
       triggerFileDownload("site.region", siteRegionContent);
     });
 
-    // 3. Reset Session
+    // 3. GitHub Direct Push
+    const publishToGit = async (branch) => {
+      const token = document.getElementById("cms-github-token").value.trim();
+      const statusDiv = document.getElementById("cms-git-status");
+
+      if (!token) {
+        alert("Please enter a GitHub Personal Access Token first.");
+        return;
+      }
+
+      // Save token locally
+      localStorage.setItem("kaslab_cms_git_token", token);
+
+      statusDiv.style.display = "block";
+      statusDiv.style.color = "var(--admin-gold)";
+      statusDiv.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Preparing files...`;
+
+      const owner = "KasinathLab";
+      const repo = "Kasinath_Laboratory_Website";
+
+      try {
+        // Prepare index.html contents
+        const docClone = cmsVirtualDoc.cloneNode(true);
+        docClone.querySelectorAll('.cms-editable-highlight-preview').forEach(el => {
+          el.classList.remove('cms-editable-highlight-preview');
+        });
+        const indexHTMLContent = "<!DOCTYPE html>\n" + docClone.documentElement.outerHTML;
+
+        // Prepare site.region contents
+        let html = docClone.documentElement.outerHTML;
+        html = html.replace(/"assets\//g, '"/assets/');
+        html = html.replace(
+          /<meta property="og:image" content="\/assets\//g,
+          '<meta property="og:image" content="https://vignesh-kasinath.squarespace.com/assets/'
+        );
+        html = html.replace(/<body>/g, '<body id="{squarespace.page-id}" class="{squarespace.page-classes}">');
+        html = html.replace(/<\/head>/g, '  {squarespace-headers}\n</head>');
+        html = html.replace(
+          /<\/body>/g,
+          '  <div class="sqs-main-content" data-content-field="main-content" aria-hidden="true" style="display:none">{squarespace.main-content}</div>\n  {squarespace-footers}\n</body>'
+        );
+        const siteRegionContent = `<!-- GENERATED from index.html by dev/build-region.sh — DO NOT EDIT BY HAND. Edit index.html, then re-run. -->\n<!DOCTYPE html>\n` + html;
+
+        const filesToPush = [
+          { path: "index.html", content: indexHTMLContent },
+          { path: "site.region", content: siteRegionContent }
+        ];
+
+        for (const file of filesToPush) {
+          statusDiv.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Fetching SHA of ${file.path}...`;
+
+          // Get file SHA
+          const getUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${file.path}?ref=${branch}`;
+          const getRes = await fetch(getUrl, {
+            headers: {
+              "Authorization": `token ${token}`,
+              "Accept": "application/vnd.github.v3+json"
+            }
+          });
+
+          let sha = null;
+          if (getRes.ok) {
+            const fileData = await getRes.json();
+            sha = fileData.sha;
+          } else if (getRes.status !== 404) {
+            throw new Error(`Failed to fetch metadata for ${file.path} (Status ${getRes.status})`);
+          }
+
+          statusDiv.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Committing ${file.path} to branch ${branch}...`;
+
+          // Base64 encode UTF-8 safely
+          const base64Content = btoa(unescape(encodeURIComponent(file.content)));
+
+          const putUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${file.path}`;
+          const putRes = await fetch(putUrl, {
+            method: "PUT",
+            headers: {
+              "Authorization": `token ${token}`,
+              "Accept": "application/vnd.github.v3+json",
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              message: `Update ${file.path} via Lab CMS Portal`,
+              content: base64Content,
+              sha: sha,
+              branch: branch
+            })
+          });
+
+          if (!putRes.ok) {
+            const errData = await putRes.json();
+            throw new Error(`Failed to commit ${file.path}: ${errData.message}`);
+          }
+        }
+
+        statusDiv.style.color = "#10b981";
+        if (branch === "master") {
+          statusDiv.innerHTML = `<i class="fa-solid fa-circle-check" style="color:#10b981;"></i> **Published directly to Production (master)!** <br>Your changes will deploy to the public Squarespace site in approximately 1 minute.`;
+        } else {
+          statusDiv.innerHTML = `<i class="fa-solid fa-circle-check" style="color:#10b981;"></i> **Published to Staging (preview)!** <br>Staging site rebuild has been triggered. The changes will be visible in 1–2 minutes.`;
+        }
+      } catch (err) {
+        console.error(err);
+        statusDiv.style.color = "#f87171";
+        statusDiv.innerHTML = `<i class="fa-solid fa-circle-exclamation" style="color:#f87171;"></i> **Sync Error:** ${err.message}`;
+      }
+    };
+
+    document.getElementById("cms-git-push-preview").addEventListener("click", () => publishToGit("preview"));
+    document.getElementById("cms-git-push-master").addEventListener("click", () => publishToGit("master"));
+
+    // 4. Reset Session
     document.getElementById("cms-reset-session").addEventListener("click", () => {
       if (!confirm("Are you sure you want to discard all changes made in this session and reload the page?")) return;
       sessionStorage.removeItem("kaslab_cms_edits");
