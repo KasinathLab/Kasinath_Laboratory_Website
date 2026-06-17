@@ -1,7 +1,6 @@
 <!-- GENERATED from index.html by dev/build-region.sh — DO NOT EDIT BY HAND. Edit index.html, then re-run. -->
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -41,7 +40,7 @@
   <!-- CU Boulder Affiliation Banner -->
   <div class="brand-top-bar" id="brand-affiliation-bar">
     <span>University of Colorado Boulder</span>
-    <a href="https://www.colorado.edu/artsandsciences/" target="_blank" rel="noopener">College of Arts & Sciences</a>
+    <a href="https://www.colorado.edu/artsandsciences/" target="_blank" rel="noopener">College of Arts &amp; Sciences</a>
   </div>
 
   <!-- Main Navigation Header -->
@@ -172,17 +171,16 @@
          ========================================== -->
     <section class="tab-section" id="research">
       <h2 class="section-title">Research Priorities</h2>
-      <p style="margin-bottom: 40px; color: var(--color-text-muted); max-width: 800px;">
-        Our laboratory sits at the intersection of structural biology, molecular biochemistry, and epigenetics. We develop molecular models to explain the chromatin-level regulatory pathways that govern cellular development, silencing stability, and disease states.
-      </p>
+      <p style="margin-bottom: 40px; color: var(--color-text-muted); max-width: 800px;">How does a cell decide which genes to switch off — and how does it keep them off? Our research program aims to decipher the molecular mechanisms underlying epigenetic gene silencing and then leverage these insights to develop new ways to control gene expression. We combine cryo-EM, biochemistry, chemical biology, and functional genomics to translate mechanisms into applications.
+We are particularly interested in the tug-of-war between RNA and the nucleosome for control of gene-silencing enzymes. We investigate how this contest plays out across three major classes of silencing enzymes.</p>
 
       <div class="research-grid" id="research-pillars">
         <!-- Pillar 1 -->
         <div class="glass-card research-card" id="pillar-epigenetics">
           <div class="research-icon"><i class="fa-solid fa-dna"></i></div>
-          <h3>Epigenetics & Gene Silencing</h3>
+          <h3>Epigenetics &amp; Gene Silencing</h3>
           <p>
-            We focus on Polycomb group proteins (PRC1 & PRC2) and their chromatin modifier pathways. Using single-particle cryo-EM, we visualize these massive complexes engaged with dinucleosomes to resolve their mechanism of catalysis, recruitment, and inhibition by active transcriptional modifications.
+            We focus on Polycomb group proteins (PRC1 &amp; PRC2) and their chromatin modifier pathways. Using single-particle cryo-EM, we visualize these massive complexes engaged with dinucleosomes to resolve their mechanism of catalysis, recruitment, and inhibition by active transcriptional modifications.
           </p>
         </div>
 
@@ -198,7 +196,7 @@
         <!-- Pillar 3 -->
         <div class="glass-card research-card" id="pillar-biochemistry">
           <div class="research-icon"><i class="fa-solid fa-flask"></i></div>
-          <h3>Biochemistry & Mass Spectrometry</h3>
+          <h3>Biochemistry &amp; Mass Spectrometry</h3>
           <p>
             We complement our structural studies with quantitative biochemistry, chromatin reconstitution assays, and quantitative mass spectrometry. This combined toolkit allows us to measure interaction binding affinities, kinetic behaviors, and map post-translational modifications of complex protein assemblies.
           </p>
@@ -251,7 +249,7 @@
           
           <button class="structure-btn" data-pdb="6C24" id="btn-struct-6c24">
             <h4>PDB 6C24</h4>
-            <span>PRC2 with AEBP2 & JARID2</span>
+            <span>PRC2 with AEBP2 &amp; JARID2</span>
             <span>Resolution: 3.9 Å</span>
           </button>
 
@@ -303,7 +301,7 @@
       <div class="pub-filters" id="publications-filters">
         <button class="pub-filter-btn active" id="filter-all">All Publications</button>
         <button class="pub-filter-btn" id="filter-recent">Recent (2021-2025)</button>
-        <button class="pub-filter-btn" id="filter-prc">Polycomb & Chromatin</button>
+        <button class="pub-filter-btn" id="filter-prc">Polycomb &amp; Chromatin</button>
       </div>
 
       <div class="publications-list" id="publications-content">
@@ -314,7 +312,7 @@
           <div class="pub-details">
             <h3 class="pub-title">Structural basis for the inhibition of PRC2 by active transcription histone posttranslational modifications</h3>
             <p class="pub-authors"><strong>Kasinath V.</strong>, et al.</p>
-            <p class="pub-journal">Nature Structural & Molecular Biology. (2025). doi:10.1038/s41594-025-01435-y</p>
+            <p class="pub-journal">Nature Structural &amp; Molecular Biology. (2025). doi:10.1038/s41594-025-01435-y</p>
             <div class="pub-links">
               <a href="https://doi.org/10.1038/s41594-025-01435-y" target="_blank" rel="noopener" class="pub-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Publisher Link</a>
               <a href="https://pubmed.ncbi.nlm.nih.gov/" target="_blank" rel="noopener" class="pub-link"><i class="fa-solid fa-book-open"></i> PubMed</a>
@@ -356,7 +354,7 @@
           <div class="pub-details">
             <h3 class="pub-title">PRC2 recruitment and allosteric activation by cofactors</h3>
             <p class="pub-authors">Poepsel S., <strong>Kasinath V.</strong>, Nogales E.</p>
-            <p class="pub-journal">Nature Structural & Molecular Biology. (2019) 26(5):351-361. doi:10.1038/s41594-019-0223-z</p>
+            <p class="pub-journal">Nature Structural &amp; Molecular Biology. (2019) 26(5):351-361. doi:10.1038/s41594-019-0223-z</p>
             <div class="pub-links">
               <a href="https://doi.org/10.1038/s41594-019-0223-z" target="_blank" rel="noopener" class="pub-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> Publisher Link</a>
               <a href="https://pubmed.ncbi.nlm.nih.gov/31061526/" target="_blank" rel="noopener" class="pub-link"><i class="fa-solid fa-book-open"></i> PubMed (31061526)</a>
@@ -668,7 +666,7 @@
          OUTREACH SECTION
          ========================================== -->
     <section class="tab-section" id="outreach">
-      <h2 class="section-title">STEM Outreach & Education</h2>
+      <h2 class="section-title">STEM Outreach &amp; Education</h2>
       
       <div class="outreach-intro">
         <p>
@@ -681,7 +679,7 @@
 
       <!-- Full-Width Group Showcase Card -->
       <div class="glass-card outreach-hero-card">
-        <img src="/assets/B2B_Kasinath_Lab_Group_Photo_July_2024.jpg" alt="B2B & Kasinath Lab Group Photo July 2024">
+        <img src="/assets/B2B_Kasinath_Lab_Group_Photo_July_2024.jpg" alt="B2B &amp; Kasinath Lab Group Photo July 2024">
         <div class="outreach-hero-caption">
           <p>July 2024 - Presenting our scientific journeys to the Bridges to Bioscience (B2B) Program!</p>
         </div>
@@ -933,7 +931,7 @@
       <div class="openings-layout" id="opportunities-list">
         <!-- Opening 1 -->
         <div class="glass-card position-card" id="position-comp">
-          <span class="position-tag">Masters & Undergrad</span>
+          <span class="position-tag">Masters &amp; Undergrad</span>
           <h3>Computational Project Positions</h3>
           <p>
             Positions are available immediately for undergraduate and master's students interested in computational structural biology. Projects involve cryo-EM data preprocessing, 3D tomogram alignment, and developing structural visualization routines. Python experience is highly recommended.
@@ -944,7 +942,7 @@
         <!-- Opening 2 -->
         <div class="glass-card position-card postdoc" id="position-postdoc">
           <span class="position-tag">Postdoctoral Scholar</span>
-          <h3>Postdoctoral Fellow in Cryo-EM & Cryo-ET</h3>
+          <h3>Postdoctoral Fellow in Cryo-EM &amp; Cryo-ET</h3>
           <p>
             We are looking for highly motivated postdocs with experience in molecular biology, biochemistry, or structural biology. The candidate will lead projects determining high-resolution structures of nucleosome-bound complexes and map chromatin structure in cellular slices.
           </p>
@@ -957,7 +955,7 @@
          CONTACT SECTION
          ========================================== -->
     <section class="tab-section" id="contact">
-      <h2 class="section-title">Contact & Location</h2>
+      <h2 class="section-title">Contact &amp; Location</h2>
       <p style="margin-bottom: 40px; color: var(--color-text-muted); max-width: 800px;">
         Our laboratory is located within the Department of Biochemistry at the University of Colorado Boulder. Feel free to reach out to us with research inquiries or application questions.
       </p>
@@ -969,7 +967,7 @@
           <div class="glass-card contact-item-box">
             <div class="contact-icon"><i class="fa-solid fa-map-location-dot"></i></div>
             <div class="contact-text">
-              <h4>Mailing & Lab Address</h4>
+              <h4>Mailing &amp; Lab Address</h4>
               <p>Jennie Smoly Caruthers Biotechnology Building (JSCBB)<br>
               University of Colorado Boulder<br>
               3415 Colorado Ave, Boulder, CO 80303</p>
@@ -999,17 +997,17 @@
           <form class="contact-form" id="lab-contact-form">
             <div class="form-group">
               <label for="input-name">Name</label>
-              <input type="text" id="input-name" class="form-control" placeholder="Enter your full name" required>
+              <input type="text" id="input-name" class="form-control" placeholder="Enter your full name" required="">
             </div>
             
             <div class="form-group">
               <label for="input-email">Email Address</label>
-              <input type="email" id="input-email" class="form-control" placeholder="name@domain.com" required>
+              <input type="email" id="input-email" class="form-control" placeholder="name@domain.com" required="">
             </div>
 
             <div class="form-group">
               <label for="input-message">Message</label>
-              <textarea id="input-message" class="form-control" rows="5" placeholder="Write your inquiry or interest description..." required></textarea>
+              <textarea id="input-message" class="form-control" rows="5" placeholder="Write your inquiry or interest description..." required=""></textarea>
             </div>
 
             <button type="submit" class="btn btn-primary" id="btn-submit-message">Send Message</button>
@@ -1039,7 +1037,7 @@
 
   <!-- Lightbox Modal for Gallery Images -->
   <div class="lightbox-modal" id="gallery-lightbox" aria-hidden="true" role="dialog">
-    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+    <span class="lightbox-close" onclick="closeLightbox()">×</span>
     <button class="lightbox-control prev" onclick="changeLightboxImage(-1)" aria-label="Previous image">
       <i class="fa-solid fa-chevron-left"></i>
     </button>
@@ -1092,8 +1090,9 @@
   
   <!-- JavaScript Files -->
   <script src="/assets/index.js"></script>
+
+
+
   <div class="sqs-main-content" data-content-field="main-content" aria-hidden="true" style="display:none">{squarespace.main-content}</div>
   {squarespace-footers}
-</body>
-</html>
-
+</body></html>
