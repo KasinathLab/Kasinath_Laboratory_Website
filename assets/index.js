@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initMascotPiku();
   initTeamModal();
+  initAdminModeTrigger();
 });
 
 /* =========================================================================
@@ -815,7 +816,14 @@ function initTeamModal() {
       modalRole.textContent = role;
 
       // Populate bio
-      if (name.toLowerCase() === 'piku') {
+      const customBio = card.getAttribute('data-bio');
+      if (customBio) {
+        if (customBio.trim().startsWith('<p>')) {
+          modalBio.innerHTML = customBio;
+        } else {
+          modalBio.innerHTML = customBio.split('\n\n').map(p => `<p>${p.trim()}</p>`).join('');
+        }
+      } else if (name.toLowerCase() === 'piku') {
         modalBio.innerHTML = `
           <p>Piku is the official laboratory mascot and moral officer at the Kasinath Lab. With a background in sniff-testing, tail-wagging, and crumb-detection, Piku provides essential support to the research team during long cryo-EM data collection sessions.</p>
           <p>Piku's primary duties include supervising laboratory breaks, reminding researchers to stay hydrated, and requesting belly rubs. In his free time, he enjoys chasing squirrels outside the JSCBB building, checking if the Vitrobot has left any tasty treats, and barking at the cardboard cutout version of himself.</p>
@@ -876,4 +884,42 @@ function initTeamModal() {
     }
   });
 }
+
+/* =========================================================================
+   Admin Portal Trigger
+   ========================================================================= */
+function initAdminModeTrigger() {
+  let adminLoaded = false;
+
+  function checkHash() {
+    if (window.location.hash === '#admin') {
+      loadAdminPortal();
+    }
+  }
+
+  function loadAdminPortal() {
+    if (adminLoaded) return;
+    adminLoaded = true;
+
+    console.log('Loading Lab Admin Portal...');
+
+    // Load admin.css
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'assets/admin.css';
+    document.head.appendChild(link);
+
+    // Load admin.js
+    const script = document.createElement('script');
+    script.src = 'assets/admin.js';
+    document.body.appendChild(script);
+  }
+
+  // Check on initial load
+  checkHash();
+
+  // Listen for hash changes
+  window.addEventListener('hashchange', checkHash);
+}
+
 

@@ -1025,7 +1025,7 @@
     <div class="footer-inner">
       <div>
         <div class="footer-logo">VIGNESH KASINATH LAB</div>
-        <div class="footer-meta">Â© 2026 Vignesh Kasinath Lab. All rights reserved.</div>
+        <div class="footer-meta">© 2026 Vignesh Kasinath Lab. All rights reserved. <a href="#admin" id="footer-admin-link" style="color: var(--color-text-muted); text-decoration: none; margin-left: 15px; font-size: 0.8rem; opacity: 0.6; transition: opacity 0.2s;"><i class="fa-solid fa-lock"></i> Lab Admin</a></div>
       </div>
       
       <!-- Social Media & external networks -->
