@@ -950,6 +950,24 @@ function syncHomeResearchThemes() {
       <div class="question-title">${h3.innerHTML}</div>
       <p class="news-excerpt">${p.innerHTML}</p>
     `;
+
+    themeCard.addEventListener('click', () => {
+      const researchTab = document.querySelector('.nav-tab[data-target="research"]');
+      if (researchTab) researchTab.click();
+
+      setTimeout(() => {
+        const allResearchCards = document.querySelectorAll('#research-pillars .research-card, #research-pillars-apps .research-card');
+        const matchCard = allResearchCards[idx];
+        if (matchCard) {
+          matchCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          matchCard.classList.add('cms-highlight-glow');
+          setTimeout(() => {
+            matchCard.classList.remove('cms-highlight-glow');
+          }, 2000);
+        }
+      }, 300);
+    });
+
     questionsSection.appendChild(themeCard);
   });
 }

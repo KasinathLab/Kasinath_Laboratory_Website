@@ -490,10 +490,37 @@ h2.section-title::after {
 
 .question-card {
   border-left: 4px solid var(--color-secondary);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.question-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(212, 175, 55, 0.1);
+  background-color: rgba(255, 255, 255, 0.04);
 }
 
 .question-card.alt {
   border-left-color: var(--color-primary);
+}
+
+.question-card .news-excerpt {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@keyframes highlight-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.6); }
+  70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+}
+
+.cms-highlight-glow {
+  animation: highlight-pulse 2s infinite;
+  border-color: var(--color-primary) !important;
 }
 
 .question-title {
