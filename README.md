@@ -102,3 +102,5 @@ at the bottom of `assets/index.css`.
 - [ ] Contact form is a stub — wire to a real endpoint.
 - [ ] Footer Twitter/X link is a placeholder.
 - [ ] Fold in the `feature/fix-logo-hover` fix (logo text vanishing on hover).
+
+<!-- Rebuild trigger commit -->
