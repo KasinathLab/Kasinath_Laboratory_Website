@@ -1,4 +1,4 @@
-<!-- GENERATED from index.html by dev/build-region.sh — DO NOT EDIT BY HAND. Edit index.html, then re-run. -->
+<!-- GENERATED from index.html by dev/build-region.sh - DO NOT EDIT BY HAND. Edit index.html, then re-run. -->
 <!DOCTYPE html>
 <html lang="en"><head>
   <meta charset="UTF-8">
@@ -97,88 +97,85 @@
             <button class="btn btn-primary" onclick="document.querySelector('[data-target=research]').click();" id="hero-btn-explore">Explore Our Research</button>
             <button class="btn btn-secondary" onclick="document.querySelector('[data-target=openings]').click();" id="hero-btn-openings">Join the Lab</button>
           </div>
-        </div>
-        <div class="glass-card hero-carousel" id="hero-media">
-          <div class="carousel-slide active">
-            <img src="/assets/hero_molecular_fit.jpg" alt="Molecular structure fitted in cryo-EM density envelope">
+              <div class="hero-sidebar">
+          <div class="glass-card hero-carousel" id="hero-media">
+            <div class="carousel-slide active">
+              <img src="/assets/hero_molecular_fit.jpg" alt="Molecular structure fitted in cryo-EM density envelope">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/hero_quadruplex.png" alt="G-quadruplex molecular wireframe structure with central coordination ions">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/hero_macromolecule.png" alt="Complete macromolecular assembly in cryo-EM reconstruction">
+            </div>
           </div>
-          <div class="carousel-slide">
-            <img src="/assets/hero_quadruplex.png" alt="G-quadruplex molecular wireframe structure with central coordination ions">
-          </div>
-          <div class="carousel-slide">
-            <img src="/assets/hero_macromolecule.png" alt="Complete macromolecular assembly in cryo-EM reconstruction">
+
+          <!-- News Column -->
+          <div class="news-section">
+            <h2 class="section-title">Latest Announcements</h2>
+            
+            <div class="news-carousel">
+              <div class="glass-card news-card active" id="news-pew">
+                <img src="/assets/news_pew.png" alt="Pew Scholar" class="news-img">
+                <div class="news-date">June 2025</div>
+                <div class="news-headline">Vignesh Awarded Pew Biomedical Scholar Grant</div>
+                <div class="news-excerpt">Recognized for pioneering structural studies on chromatin regulation. Read more about the project on the Pew Scholars Directory.</div>
+              </div>
+              
+              <div class="glass-card news-card" id="news-grants">
+                <img src="/assets/news_grants.png" alt="Grants Awarded" class="news-img">
+                <div class="news-date">April 2025</div>
+                <div class="news-headline">NIH MIRA and NSF Grants Totaling $2.25 Million</div>
+                <div class="news-excerpt">Funding will support our molecular investigations into chromatin modifier complex mechanics and cellular heterochromatin pathways.</div>
+              </div>
+              
+              <div class="glass-card news-card" id="news-students">
+                <img src="/assets/news_students.png" alt="New Students" class="news-img">
+                <div class="news-date">September 2025</div>
+                <div class="news-headline">Welcome Graduate Students Keagan, Noah, and Carolina</div>
+                <div class="news-excerpt">We are thrilled to welcome three new graduate researchers to our team as they begin their doctoral rotations and projects.</div>
+              </div>
+            </div>
+            <!-- Dots for news carousel -->
+            <div class="carousel-dots news-dots"></div>
           </div>
         </div>
       </div>
 
-      <!-- Split Layout: Latest News & Key Questions -->
-      <div class="home-layout">
+      <!-- Core Research Themes full-width section -->
+      <div class="questions-section">
+        <h2 class="section-title">Core Research Themes</h2>
         
-        <!-- News Column -->
-        <div class="news-section">
-          <h2 class="section-title">Latest Announcements</h2>
-          
-          <div class="news-carousel">
-            <div class="glass-card news-card active" id="news-pew">
-              <img src="/assets/news_pew.png" alt="Pew Scholar" class="news-img">
-              <div class="news-date">June 2025</div>
-              <div class="news-headline">Vignesh Awarded Pew Biomedical Scholar Grant</div>
-              <div class="news-excerpt">Recognized for pioneering structural studies on chromatin regulation. Read more about the project on the Pew Scholars Directory.</div>
-            </div>
-            
-            <div class="glass-card news-card" id="news-grants">
-              <img src="/assets/news_grants.png" alt="Grants Awarded" class="news-img">
-              <div class="news-date">April 2025</div>
-              <div class="news-headline">NIH MIRA and NSF Grants Totaling $2.25 Million</div>
-              <div class="news-excerpt">Funding will support our molecular investigations into chromatin modifier complex mechanics and cellular heterochromatin pathways.</div>
-            </div>
-            
-            <div class="glass-card news-card" id="news-students">
-              <img src="/assets/news_students.png" alt="New Students" class="news-img">
-              <div class="news-date">September 2025</div>
-              <div class="news-headline">Welcome Graduate Students Keagan, Noah, and Carolina</div>
-              <div class="news-excerpt">We are thrilled to welcome three new graduate researchers to our team as they begin their doctoral rotations and projects.</div>
-            </div>
-          </div>
-          <!-- Dots for news carousel -->
-          <div class="carousel-dots news-dots"></div>
-        </div>
-
-        <!-- Key Questions Column -->
-        <div class="questions-section">
-          <h2 class="section-title">Core Research Themes</h2>
-          
-          
-          
-          
-
-          
         <div class="glass-card question-card" id="question-1">
           <div class="question-title">DNA modifiers</div>
           <p class="news-excerpt">
             DNA methylation is one of the most stable carriers of epigenetic memory, faithfully copied each time a cell divides. We ask how RNA shapes the activity of the maintenance methyltransferase DNMT1: how does the enzyme distinguish the right substrates, how is the fidelity of inherited methylation patterns preserved, and how does RNA tip the balance? Because errors in this process are deeply tied to cancer and developmental disorders, getting the mechanism right has consequences far beyond the test tube.
           </p>
-        </div><div class="glass-card question-card alt" id="question-2">
+        </div>
+        <div class="glass-card question-card alt" id="question-2">
           <div class="question-title">Histone methyltransferases</div>
           <p class="news-excerpt">
             PRC2 deposits the H3K27me3 mark that defines Polycomb-mediated gene silencing, essential for development and differentiation. PRC2 also presents a striking paradox: it binds RNA promiscuously, including RNA from the very genes it is meant to repress, and that RNA can switch its activity on or off. How RNA and the nucleosome jointly tune PRC2 on chromatin is one of the most compelling open questions in the field, and one we are working to answer at molecular resolution. Our recent work also explores the interplay between DNA methylation and PRC2 activity in aging and other disease contexts.
           </p>
-        </div><div class="glass-card question-card" id="question-3">
+        </div>
+        <div class="glass-card question-card" id="question-3">
           <div class="question-title">Histone ubiquitin ligases</div>
           <p class="news-excerpt">
             A third class of enzymes silences genes by ubiquitinating histones, laying down marks that help define repressed chromatin. We are interested in how these enzymes recognize their nucleosomal substrates and how RNA influences where and when they act. This area of research is a less charted but rapidly emerging frontier in chromatin biology.
           </p>
-        </div><div class="glass-card question-card alt" id="question-4">
+        </div>
+        <div class="glass-card question-card alt" id="question-4">
           <div class="question-title">Chemical biology: small-molecule modulators</div>
           <p class="news-excerpt">
             Many of these silencing enzymes are validated or emerging therapeutic targets. Using our structural and mechanistic insights, we design and develop small-molecule activators and inhibitors, tools both to dissect enzyme function and to explore therapeutic strategies for diseases driven by dysregulated gene silencing.
           </p>
-        </div><div class="glass-card question-card" id="question-5">
+        </div>
+        <div class="glass-card question-card" id="question-5">
           <div class="question-title">AI-based protein engineering for gene silencing</div>
           <p class="news-excerpt">
             Rather than only modulating natural enzymes, we ask a more ambitious question: can we build new ones? By combining mechanistic rules from our structural work with AI-based protein design, we aim to engineer proteins that silence specific genes on demand, toward programmable, on-demand control of the epigenome.
           </p>
-        </div></div>
+        </div>
       </div>
     </section>
 
