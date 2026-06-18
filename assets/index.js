@@ -175,6 +175,11 @@ const structuresData = {
     method: 'Single Particle Cryo-EM (3.5 Å)',
     description: 'Human Polycomb Repressive Complex 2 (PRC2) in complex with cofactor AEBP2 and JARID2, engaged on a dinucleosome substrate showing methylation state.'
   },
+  '8FYH': {
+    name: 'Human PRC2 Bound to G-quadruplex RNA',
+    method: 'Single Particle Cryo-EM (3.4 Å)',
+    description: 'Structure of human Polycomb Repressive Complex 2 (PRC2) dimerized by G-quadruplex (G4) RNA, showing how RNA inhibits PRC2 activity on chromatin by blocking DNA and histone H3 tail accessibility.'
+  },
   '6C23': {
     name: 'Human PRC2-AEBP2 on Nucleosome',
     method: 'Single Particle Cryo-EM (4.2 Å)',

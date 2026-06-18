@@ -279,6 +279,12 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
             <span>PRC2 Dinucleosome Complex</span>
             <span>Resolution: 3.5 Å</span>
           </button>
+
+          <button class="structure-btn" data-pdb="8FYH" id="btn-struct-8fyh">
+            <h4>PDB 8FYH</h4>
+            <span>PRC2 bound to G-quadruplex RNA</span>
+            <span>Resolution: 3.4 Å</span>
+          </button>
           
           <button class="structure-btn" data-pdb="6C23" id="btn-struct-6c23">
             <h4>PDB 6C23</h4>
