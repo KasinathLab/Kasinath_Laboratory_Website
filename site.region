@@ -100,6 +100,18 @@
         </div>
 
         <div class="hero-sidebar">
+          <div class="glass-card hero-carousel" id="hero-media">
+            <div class="carousel-slide active">
+              <img src="/assets/hero_molecular_fit.jpg" alt="Molecular structure fitted in cryo-EM density envelope">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/hero_quadruplex.png" alt="G-quadruplex molecular wireframe structure with central coordination ions">
+            </div>
+            <div class="carousel-slide">
+              <img src="/assets/hero_macromolecule.png" alt="Complete macromolecular assembly in cryo-EM reconstruction">
+            </div>
+          </div>
+
           <!-- News Column -->
           <div class="news-section">
             <h2 class="section-title">Latest Announcements</h2>
@@ -128,18 +140,6 @@
             </div>
             <!-- Dots for news carousel -->
             <div class="carousel-dots news-dots"></div>
-          </div>
-
-          <div class="glass-card hero-carousel" id="hero-media">
-            <div class="carousel-slide active">
-              <img src="/assets/hero_molecular_fit.jpg" alt="Molecular structure fitted in cryo-EM density envelope">
-            </div>
-            <div class="carousel-slide">
-              <img src="/assets/hero_quadruplex.png" alt="G-quadruplex molecular wireframe structure with central coordination ions">
-            </div>
-            <div class="carousel-slide">
-              <img src="/assets/hero_macromolecule.png" alt="Complete macromolecular assembly in cryo-EM reconstruction">
-            </div>
           </div>
         </div>
       </div>
