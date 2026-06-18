@@ -241,7 +241,7 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
           </ul>
         </div>
         <div>
-          <img src="/assets/cryo_em_microscope.png" alt="Cryo-EM electron microscope concept graphic" style="width: 100%; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: var(--shadow-glow-violet);">
+          <img src="/assets/cryo_microscope.png" alt="Cryo-EM electron microscope concept graphic" style="width: 100%; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: var(--shadow-glow-violet);">
         </div>
       </div>
     </section>
