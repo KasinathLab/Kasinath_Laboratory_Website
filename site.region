@@ -79,6 +79,26 @@
          ========================================== -->
     <section class="tab-section active" id="home">
       <div class="hero-split" id="hero-banner">
+        <div class="hero-content">
+          <h1>Decoding the Molecular Logic of <span class="gradient-text">Epigenetic Gene Silencing</span></h1>
+          <p class="hero-description">
+            Every cell in your body carries the same genome. Yet a neuron and a skin cell could not be more different. Much of that difference comes from epigenetic gene silencing, the process that switches off genes that need to stay quiet. Our lab studies how this silencing is established, read, and remembered.
+          </p>
+          <p class="hero-description">
+            We focus on an often-underappreciated player in this process: RNA. A diverse cast of RNA molecules, from long non-coding RNAs to structured G-quadruplexes, talks directly to the enzymes and histone modifications that maintain repressive chromatin. This sets up what we call an RNA-and-chromatin tug-of-war, where RNA and nucleosomes compete to regulate the activity of gene-silencing enzymes.
+          </p>
+          <p class="hero-description">
+            We study this tug-of-war across diverse biological settings, from cellular differentiation and transposon silencing to disease. Our approach combines structural biology using cryo-EM with biochemistry, chemical biology, and functional genomics.
+          </p>
+          <p class="hero-description" style="margin-bottom: 25px;">
+            We are also excited by what comes next. Our vision is to integrate these mechanistic rules with AI-based protein engineering to build enzymes that can silence genes on demand. This would chart a pathway that runs parallel to existing CRISPR-based tools.
+          </p>
+          <div class="button-group">
+            <button class="btn btn-primary" onclick="document.querySelector('[data-target=research]').click();" id="hero-btn-explore">Explore Our Research</button>
+            <button class="btn btn-secondary" onclick="document.querySelector('[data-target=openings]').click();" id="hero-btn-openings">Join the Lab</button>
+          </div>
+        </div>
+
         <div class="hero-sidebar">
           <!-- News Column -->
           <div class="news-section">
@@ -120,26 +140,6 @@
             <div class="carousel-slide">
               <img src="/assets/hero_macromolecule.png" alt="Complete macromolecular assembly in cryo-EM reconstruction">
             </div>
-          </div>
-        </div>
-
-        <div class="hero-content">
-          <h1>Decoding the Molecular Logic of <span class="gradient-text">Epigenetic Gene Silencing</span></h1>
-          <p class="hero-description">
-            Every cell in your body carries the same genome. Yet a neuron and a skin cell could not be more different. Much of that difference comes from epigenetic gene silencing, the process that switches off genes that need to stay quiet. Our lab studies how this silencing is established, read, and remembered.
-          </p>
-          <p class="hero-description">
-            We focus on an often-underappreciated player in this process: RNA. A diverse cast of RNA molecules, from long non-coding RNAs to structured G-quadruplexes, talks directly to the enzymes and histone modifications that maintain repressive chromatin. This sets up what we call an RNA-and-chromatin tug-of-war, where RNA and nucleosomes compete to regulate the activity of gene-silencing enzymes.
-          </p>
-          <p class="hero-description">
-            We study this tug-of-war across diverse biological settings, from cellular differentiation and transposon silencing to disease. Our approach combines structural biology using cryo-EM with biochemistry, chemical biology, and functional genomics.
-          </p>
-          <p class="hero-description" style="margin-bottom: 25px;">
-            We are also excited by what comes next. Our vision is to integrate these mechanistic rules with AI-based protein engineering to build enzymes that can silence genes on demand. This would chart a pathway that runs parallel to existing CRISPR-based tools.
-          </p>
-          <div class="button-group">
-            <button class="btn btn-primary" onclick="document.querySelector('[data-target=research]').click();" id="hero-btn-explore">Explore Our Research</button>
-            <button class="btn btn-secondary" onclick="document.querySelector('[data-target=openings]').click();" id="hero-btn-openings">Join the Lab</button>
           </div>
         </div>
       </div>
