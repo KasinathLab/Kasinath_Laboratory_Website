@@ -47,7 +47,7 @@
   <header class="main-header" id="site-header">
     <div class="logo-container" id="brand-logo">
       <a href="#" onclick="document.querySelector('[data-target=home]').click(); return false;">
-        <img src="/assets/lab_logo.png" alt="Vignesh Kasinath Lab Logo" class="header-logo">
+        <img src="/assets/vk_logo.png" alt="Vignesh Kasinath Lab Logo" class="header-logo">
         <span class="logo-text">KASINATH LAB</span>
       </a>
     </div>
@@ -148,21 +148,37 @@
         <div class="questions-section">
           <h2 class="section-title">Core Research Themes</h2>
           
-          <div class="glass-card question-card" id="question-1">
-            <div class="question-title">How do chromatin modifier complexes establish heterochromatin?</div>
-            <p class="news-excerpt">We analyze how complexes like PRC2 interact with RNA molecules and specific histone modifications to silence target genomic sites.</p>
-          </div>
           
-          <div class="glass-card question-card alt" id="question-2">
-            <div class="question-title">How do homologous chromosomes pair and interact?</div>
-            <p class="news-excerpt">Using state-of-the-art cryo-ET and cryo-FIB milling, we capture the physical organization of synaptonemal complexes directly in situ.</p>
-          </div>
+          
+          
 
-          <div class="glass-card question-card" id="question-3">
-            <div class="question-title">What regulates structural variations of gene silencing enzymes?</div>
-            <p class="news-excerpt">We use mass spectrometry and biochemistry to examine how active transcription post-translational modifications inhibit and fine-tune silencing activity.</p>
-          </div>
-        </div>
+          
+        <div class="glass-card question-card" id="question-1">
+          <div class="question-title">DNA modifiers</div>
+          <p class="news-excerpt">
+            DNA methylation is one of the most stable carriers of epigenetic memory, faithfully copied each time a cell divides. We ask how RNA shapes the activity of the maintenance methyltransferase DNMT1: how does the enzyme distinguish the right substrates, how is the fidelity of inherited methylation patterns preserved, and how does RNA tip the balance? Because errors in this process are deeply tied to cancer and developmental disorders, getting the mechanism right has consequences far beyond the test tube.
+          </p>
+        </div><div class="glass-card question-card alt" id="question-2">
+          <div class="question-title">Histone methyltransferases</div>
+          <p class="news-excerpt">
+            PRC2 deposits the H3K27me3 mark that defines Polycomb-mediated gene silencing, essential for development and differentiation. PRC2 also presents a striking paradox: it binds RNA promiscuously, including RNA from the very genes it is meant to repress, and that RNA can switch its activity on or off. How RNA and the nucleosome jointly tune PRC2 on chromatin is one of the most compelling open questions in the field, and one we are working to answer at molecular resolution. Our recent work also explores the interplay between DNA methylation and PRC2 activity in aging and other disease contexts.
+          </p>
+        </div><div class="glass-card question-card" id="question-3">
+          <div class="question-title">Histone ubiquitin ligases</div>
+          <p class="news-excerpt">
+            A third class of enzymes silences genes by ubiquitinating histones, laying down marks that help define repressed chromatin. We are interested in how these enzymes recognize their nucleosomal substrates and how RNA influences where and when they act. This area of research is a less charted but rapidly emerging frontier in chromatin biology.
+          </p>
+        </div><div class="glass-card question-card alt" id="question-4">
+          <div class="question-title">Chemical biology: small-molecule modulators</div>
+          <p class="news-excerpt">
+            Many of these silencing enzymes are validated or emerging therapeutic targets. Using our structural and mechanistic insights, we design and develop small-molecule activators and inhibitors, tools both to dissect enzyme function and to explore therapeutic strategies for diseases driven by dysregulated gene silencing.
+          </p>
+        </div><div class="glass-card question-card" id="question-5">
+          <div class="question-title">AI-based protein engineering for gene silencing</div>
+          <p class="news-excerpt">
+            Rather than only modulating natural enzymes, we ask a more ambitious question: can we build new ones? By combining mechanistic rules from our structural work with AI-based protein design, we aim to engineer proteins that silence specific genes on demand, toward programmable, on-demand control of the epigenome.
+          </p>
+        </div></div>
       </div>
     </section>
 
