@@ -1006,6 +1006,17 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
           </div>
         </div>
 
+        <div class="glass-card team-card" id="team-member-13">
+          <div class="team-photo-container">
+            <img class="team-photo" src="/assets/team_eric.jpg" alt="Eric Lian">
+          </div>
+          <div class="team-info">
+            <h3>Eric Lian</h3>
+            <div class="team-role">Research Assistant</div>
+            <p class="team-bio-short">UW Graduate, Biochemistry &amp; Data Science</p>
+          </div>
+        </div>
+
 
         <div class="glass-card team-card" id="team-member-8">
           <div class="team-photo-container">
