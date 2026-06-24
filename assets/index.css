@@ -1358,6 +1358,44 @@ html[data-theme="dark"] .viewer-info {
   background: rgba(0,0,0,0.03);
 }
 
+.initials-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  font-family: var(--font-heading);
+  user-select: none;
+}
+
+html[data-theme="dark"] .initials-avatar {
+  color: #0f172a;
+  text-shadow: none;
+}
+
+.team-modal-initials {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  font-family: var(--font-heading);
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  user-select: none;
+}
+
+html[data-theme="dark"] .team-modal-initials {
+  color: #0f172a;
+  text-shadow: none;
+}
+
 .team-info h3 {
   font-size: 1.1rem;
   margin-bottom: 4px;

@@ -1043,7 +1043,7 @@ At the Kasinath Lab, Ved conducted research benchmarking Large Language Models f
 
         <div class="glass-card team-card" id="team-member-15">
           <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_sanjana.png" alt="Sanjana Baranidharan">
+            <div class="team-photo initials-avatar">SB</div>
           </div>
           <div class="team-info">
             <h3>Sanjana Baranidharan</h3>

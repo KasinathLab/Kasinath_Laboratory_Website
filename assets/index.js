@@ -814,10 +814,27 @@ function initTeamModal() {
 
       const name = nameEl.textContent.trim();
       const role = roleEl.textContent.trim();
-      const imgSrc = imgEl.src;
 
-      modalImg.src = imgSrc;
-      modalImg.alt = name;
+      // Clear any previous initials avatar in the modal left container
+      const modalLeft = modalImg.parentElement;
+      const existingInitials = modalLeft.querySelector('.team-modal-initials');
+      if (existingInitials) {
+        existingInitials.remove();
+      }
+
+      if (imgEl.tagName === 'IMG') {
+        modalImg.src = imgEl.src;
+        modalImg.alt = name;
+        modalImg.style.display = 'block';
+      } else {
+        modalImg.style.display = 'none';
+        const initials = imgEl.textContent.trim();
+        const initialsDiv = document.createElement('div');
+        initialsDiv.className = 'team-modal-initials';
+        initialsDiv.textContent = initials;
+        modalLeft.appendChild(initialsDiv);
+      }
+
       modalName.textContent = name;
       modalRole.textContent = role;
 
