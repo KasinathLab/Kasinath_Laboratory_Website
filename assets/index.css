@@ -1378,8 +1378,9 @@ html[data-theme="dark"] .viewer-info {
 }
 
 html[data-theme="dark"] .initials-avatar {
-  color: #0f172a;
-  text-shadow: none;
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, var(--color-primary), #0f172a);
 }
 
 .team-modal-initials {
@@ -1398,8 +1399,9 @@ html[data-theme="dark"] .initials-avatar {
 }
 
 html[data-theme="dark"] .team-modal-initials {
-  color: #0f172a;
-  text-shadow: none;
+  color: #ffffff;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(135deg, var(--color-primary), #0f172a);
 }
 
 .team-info h3 {
