@@ -173,7 +173,7 @@ const structuresData = {
   '6WKR': {
     name: 'PRC2-AEBP2-JARID2 Bound to Nucleosome',
     method: 'Single Particle Cryo-EM (3.5 Å)',
-    description: 'Human Polycomb Repressive Complex 2 (PRC2) in complex with cofactor AEBP2 and JARID2, engaged on a dinucleosome substrate showing methylation state.'
+    description: 'Human Polycomb Repressive Complex 2 (PRC2) in complex with cofactors AEBP2 and JARID2, engaged on an H2AK119ub1-modified nucleosome substrate.'
   },
   '8FYH': {
     name: 'Human PRC2 Bound to G-quadruplex RNA',
@@ -181,14 +181,14 @@ const structuresData = {
     description: 'Structure of human Polycomb Repressive Complex 2 (PRC2) dimerized by G-quadruplex (G4) RNA, showing how RNA inhibits PRC2 activity on chromatin by blocking DNA and histone H3 tail accessibility.'
   },
   '6C23': {
-    name: 'Human PRC2-AEBP2 on Nucleosome',
+    name: 'Human PRC2-AEBP2 Complex',
     method: 'Single Particle Cryo-EM (4.2 Å)',
-    description: 'Visualization of human PRC2 core with cofactor AEBP2 bound, elucidating how chromatin elements interface with PRC2.'
+    description: 'Visualization of human PRC2 core with cofactor AEBP2 bound in the active state, elucidating cofactor-mediated regulation.'
   },
   '6C24': {
     name: 'Human PRC2 with AEBP2 and JARID2',
     method: 'Single Particle Cryo-EM (3.9 Å)',
-    description: 'Complex details containing both cofactors AEBP2 and JARID2, providing architectural clues into gene silencing regulation.'
+    description: 'Active state assembly of human PRC2 containing both cofactors AEBP2 and JARID2, providing architectural clues into gene silencing regulation.'
   },
   '5HYN': {
     name: 'Human PRC2 Core (Fitted in EMD-7306/7310/7312)',
