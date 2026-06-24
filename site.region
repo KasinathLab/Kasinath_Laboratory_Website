@@ -913,24 +913,45 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
       </div>
 
       <div class="team-grid" id="team-members">
-        <div class="glass-card team-card" id="team-member-1">
+        <div class="glass-card team-card" id="team-member-7">
           <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_liqi.jpg" alt="Liqi Yao">
+            <img class="team-photo" src="/assets/team_carolina.jpg" alt="Carolina Valderrama Hincapie">
           </div>
           <div class="team-info">
-            <h3>Liqi Yao</h3>
-            <div class="team-role">Postdoctoral Fellow</div>
+            <h3>Carolina Valderrama Hincapie</h3>
+            <div class="team-role">IQ Biology Graduate Student, 2nd year</div>
           </div>
         </div>
 
-
-        <div class="glass-card team-card" id="team-member-3">
+        <div class="glass-card team-card" id="team-member-13">
           <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_mark.jpg" alt="Mark Matyas">
+            <img class="team-photo" src="/assets/team_eric.jpg" alt="Eric Lian">
           </div>
           <div class="team-info">
-            <h3>Mark Matyas</h3>
-            <div class="team-role">MCDB PhD Candidate, 5th year</div>
+            <h3>Eric Lian</h3>
+            <div class="team-role">Research Assistant</div>
+            <p class="team-bio-short">UW Graduate, Biochemistry &amp; Data Science</p>
+          </div>
+        </div>
+
+        <div class="glass-card team-card" id="team-member-12">
+          <div class="team-photo-container">
+            <img class="team-photo" src="/assets/team_george.jpg" alt="George S. Stephenson">
+          </div>
+          <div class="team-info">
+            <h3>George S. Stephenson</h3>
+            <div class="team-role">Computer Science PhD Student &amp; IQ Biology Fellow</div>
+          </div>
+        </div>
+
+        <div class="glass-card team-card" id="team-member-10">
+          <div class="team-photo-container">
+            <img class="team-photo" src="/assets/team_hailey.jpg" alt="Hailey Geva">
+          </div>
+          <div class="team-info">
+            <h3>Hailey Geva</h3>
+            <div class="team-role">Undergraduate Researcher</div>
+            <p class="team-bio-short">Sophomore, Biochemistry &amp; Neuroscience</p>
           </div>
         </div>
 
@@ -954,6 +975,26 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
           </div>
         </div>
 
+        <div class="glass-card team-card" id="team-member-1">
+          <div class="team-photo-container">
+            <img class="team-photo" src="/assets/team_liqi.jpg" alt="Liqi Yao">
+          </div>
+          <div class="team-info">
+            <h3>Liqi Yao</h3>
+            <div class="team-role">Postdoctoral Fellow</div>
+          </div>
+        </div>
+
+        <div class="glass-card team-card" id="team-member-3">
+          <div class="team-photo-container">
+            <img class="team-photo" src="/assets/team_mark.jpg" alt="Mark Matyas">
+          </div>
+          <div class="team-info">
+            <h3>Mark Matyas</h3>
+            <div class="team-role">MCDB PhD Candidate, 5th year</div>
+          </div>
+        </div>
+
         <div class="glass-card team-card" id="team-member-6">
           <div class="team-photo-container">
             <img class="team-photo" src="/assets/team_noah.jpg" alt="Noah Lohar">
@@ -964,38 +1005,6 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
           </div>
         </div>
 
-        <div class="glass-card team-card" id="team-member-7">
-          <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_carolina.jpg" alt="Carolina Valderrama Hincapie">
-          </div>
-          <div class="team-info">
-            <h3>Carolina Valderrama Hincapie</h3>
-            <div class="team-role">IQ Biology Graduate Student, 2nd year</div>
-          </div>
-        </div>
-
-        <div class="glass-card team-card" id="team-member-12">
-          <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_george.jpg" alt="George S. Stephenson">
-          </div>
-          <div class="team-info">
-            <h3>George S. Stephenson</h3>
-            <div class="team-role">Computer Science PhD Student &amp; IQ Biology Fellow</div>
-          </div>
-        </div>
-
-        <div class="glass-card team-card" id="team-member-13">
-          <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_eric.jpg" alt="Eric Lian">
-          </div>
-          <div class="team-info">
-            <h3>Eric Lian</h3>
-            <div class="team-role">Research Assistant</div>
-            <p class="team-bio-short">UW Graduate, Biochemistry &amp; Data Science</p>
-          </div>
-        </div>
-
-
         <div class="glass-card team-card" id="team-member-8">
           <div class="team-photo-container">
             <img class="team-photo" src="/assets/team_robert.jpg" alt="Robert Mair">
@@ -1004,6 +1013,17 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
             <h3>Robert Mair</h3>
             <div class="team-role">Undergraduate Researcher</div>
             <p class="team-bio-short">Sophomore, Biochemistry</p>
+          </div>
+        </div>
+
+        <div class="glass-card team-card" id="team-member-15">
+          <div class="team-photo-container">
+            <div class="team-photo initials-avatar">SB</div>
+          </div>
+          <div class="team-info">
+            <h3>Sanjana Baranidharan</h3>
+            <div class="team-role">Summer High School Assistant</div>
+            <p class="team-bio-short">High School Student</p>
           </div>
         </div>
 
@@ -1017,17 +1037,6 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
           </div>
         </div>
 
-        <div class="glass-card team-card" id="team-member-10">
-          <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_hailey.jpg" alt="Hailey Geva">
-          </div>
-          <div class="team-info">
-            <h3>Hailey Geva</h3>
-            <div class="team-role">Undergraduate Researcher</div>
-            <p class="team-bio-short">Sophomore, Biochemistry &amp; Neuroscience</p>
-          </div>
-        </div>
-
         <div class="glass-card team-card" id="team-member-14" data-bio="Vedanth (Ved) Murari is an Undergraduate Researcher at the Kasinath Lab and a Computer Science student at the University of Colorado Boulder (Fall 2025 – Present). His research focus spans data structures, machine learning, and local LLM benchmarking for bioinformatics applications.
 
 At the Kasinath Lab, Ved conducted research benchmarking Large Language Models for RNA sequence-to-structure prediction, and led the UI/UX redesign and modernization of the laboratory website.">
@@ -1038,17 +1047,6 @@ At the Kasinath Lab, Ved conducted research benchmarking Large Language Models f
             <h3>Vedanth (Ved) Murari</h3>
             <div class="team-role">Undergraduate Researcher</div>
             <p class="team-bio-short">Sophomore, Computer Science</p>
-          </div>
-        </div>
-
-        <div class="glass-card team-card" id="team-member-15">
-          <div class="team-photo-container">
-            <div class="team-photo initials-avatar">SB</div>
-          </div>
-          <div class="team-info">
-            <h3>Sanjana Baranidharan</h3>
-            <div class="team-role">Summer High School Assistant</div>
-            <p class="team-bio-short">High School Student</p>
           </div>
         </div>
 
