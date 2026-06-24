@@ -861,9 +861,16 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
 
       <!-- Alumni / Previous Program Participants -->
       <div class="outreach-alumni-section">
-        <h3 class="outreach-alumni-title">Previous Program Participants</h3>
+        <h3 class="outreach-alumni-title">Previous Program Participants &amp; Alumni</h3>
         <div class="alumni-grid">
           
+          <div class="glass-card alumni-card">
+            <h4>Lab Alumni</h4>
+            <ul>
+              <li><i class="fa-solid fa-circle-notch"></i> Danielle Guillen, PhD (PhD Candidate) &mdash; <em>Now at Novo Nordisk</em></li>
+            </ul>
+          </div>
+
           <div class="glass-card alumni-card">
             <h4>Bridges to Bioscience (B2B)</h4>
             <ul>
@@ -935,16 +942,6 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
           </div>
         </div>
 
-        <div class="glass-card team-card" id="team-member-2">
-          <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_danielle.jpg" alt="Danielle Guillen">
-          </div>
-          <div class="team-info">
-            <h3>Danielle Guillen</h3>
-            <div class="team-role">Biochemistry PhD Candidate, 6th year</div>
-            <p class="team-bio-short">NSF GRFP Fellow</p>
-          </div>
-        </div>
 
         <div class="glass-card team-card" id="team-member-3">
           <div class="team-photo-container">
@@ -1050,16 +1047,6 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
           </div>
         </div>
 
-        <div class="glass-card team-card" id="team-member-11">
-          <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_iona.jpg" alt="Iona Kelly">
-          </div>
-          <div class="team-info">
-            <h3>Iona Kelly</h3>
-            <div class="team-role">Undergraduate Researcher</div>
-            <p class="team-bio-short">Kasinath Lab Summer 2025</p>
-          </div>
-        </div>
 
         <div class="glass-card team-card" id="team-member-mascot">
           <div class="team-photo-container">
