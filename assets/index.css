@@ -1755,7 +1755,25 @@ footer.main-footer {
   }
 }
 
-@media (max-width: 1360px) {
+@media (max-width: 1350px) and (min-width: 1201px) {
+  header.main-header {
+    padding: 15px 2%;
+  }
+  .nav-tab {
+    padding: 6px 10px;
+    font-size: 0.82rem;
+  }
+  .logo-container a {
+    font-size: 1.2rem;
+    gap: 8px;
+  }
+  .header-logo {
+    height: 50px;
+    width: 50px;
+  }
+}
+
+@media (max-width: 1200px) {
   header.main-header {
     padding: 15px 20px;
   }
@@ -1911,7 +1929,7 @@ html[data-theme="dark"] .social-btn { background: rgba(255, 255, 255, 0.03); }
 html[data-theme="dark"] .social-btn:hover { background: rgba(212, 175, 55, 0.08); }
 html[data-theme="dark"] .outreach-icon-box { background: rgba(212, 175, 55, 0.1); border-color: rgba(212, 175, 55, 0.2); }
 
-@media (max-width: 1360px) {
+@media (max-width: 1200px) {
   html[data-theme="dark"] nav.nav-tabs { box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); }
 }
 
