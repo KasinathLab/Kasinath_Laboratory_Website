@@ -1028,6 +1028,18 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
           </div>
         </div>
 
+        <div class="glass-card team-card" id="team-member-14" data-bio="Vedanth (Ved) Murari is an Undergraduate Researcher at the Kasinath Lab and a Computer Science student at the University of Colorado Boulder (Fall 2025 – Present). His research focus spans data structures, machine learning, and local LLM benchmarking for bioinformatics applications.
+
+At the Kasinath Lab, Ved conducted independent research benchmarking Large Language Models for RNA sequence-to-structure prediction, designed and built a Canvas-to-Apple Reminders automation pipeline, and led the UI/UX redesign and modernization of the laboratory website.">
+          <div class="team-photo-container">
+            <img class="team-photo" src="/assets/team_ved.jpg" alt="Vedanth (Ved) Murari">
+          </div>
+          <div class="team-info">
+            <h3>Vedanth (Ved) Murari</h3>
+            <div class="team-role">Undergraduate Researcher</div>
+            <p class="team-bio-short">Sophomore, Computer Science</p>
+          </div>
+        </div>
 
         <div class="glass-card team-card" id="team-member-mascot">
           <div class="team-photo-container">
