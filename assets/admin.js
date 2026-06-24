@@ -1332,6 +1332,22 @@
     if (!liveGrid) return;
     
     const virtGrid = cmsVirtualDoc.querySelector("#team-members");
+    if (virtGrid) {
+      const cards = Array.from(virtGrid.querySelectorAll(".team-card"));
+      const mascot = cards.find(c => c.id === "team-member-mascot");
+      const others = cards.filter(c => c.id !== "team-member-mascot");
+      
+      others.sort((a, b) => {
+        const nameA = (a.querySelector("h3")?.textContent || "").trim().toLowerCase();
+        const nameB = (b.querySelector("h3")?.textContent || "").trim().toLowerCase();
+        return nameA.localeCompare(nameB);
+      });
+      
+      virtGrid.innerHTML = "";
+      others.forEach(c => virtGrid.appendChild(c));
+      if (mascot) virtGrid.appendChild(mascot);
+    }
+    
     liveGrid.innerHTML = virtGrid.innerHTML;
   }
 
