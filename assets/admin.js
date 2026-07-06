@@ -1537,11 +1537,23 @@
         let name = rawText;
         let details = "";
         
-        // typical format: "Name (Detail)"
-        const braceIdx = rawText.indexOf("(");
-        if (braceIdx !== -1) {
-          name = rawText.substring(0, braceIdx).trim();
-          details = rawText.substring(braceIdx + 1, rawText.length - 1).trim();
+        const strongEl = li.querySelector("strong");
+        if (strongEl) {
+          name = strongEl.textContent.trim();
+          let rest = rawText.replace(name, "").trim();
+          // Remove leading non-word characters like spaces, dashes, parens
+          rest = rest.replace(/^[\s\(\)\—\-\–\&]+/g, "").trim();
+          details = rest;
+        } else {
+          // typical format: "Name (Detail)"
+          const braceIdx = rawText.indexOf("(");
+          if (braceIdx !== -1) {
+            name = rawText.substring(0, braceIdx).trim();
+            details = rawText.substring(braceIdx + 1).trim();
+            if (details.endsWith(")")) {
+              details = details.substring(0, details.length - 1).trim();
+            }
+          }
         }
 
         const row = document.createElement("div");
@@ -1577,8 +1589,25 @@
         }
 
         const li = cmsVirtualDoc.createElement("li");
-        const fullText = details ? `${name} (${details})` : name;
-        li.innerHTML = `<i class="fa-solid fa-circle-notch"></i> ${fullText}`;
+        let innerHTML = `<span>`;
+        if (name) {
+          innerHTML += `<strong>${name}</strong>`;
+        }
+        if (details) {
+          // Format "Now at/Current" inside <em> and use em-dash
+          const dashRegex = /\s*(—|--|-|&mdash;|–)\s*(Now at|Current Position|Current|now at|now|Preparing|preparing)\s*(.*)/i;
+          const match = details.match(dashRegex);
+          if (match) {
+            const beforeDash = details.substring(0, details.indexOf(match[1])).trim();
+            innerHTML += ` ${beforeDash} &mdash; <em>${match[2]} ${match[3]}</em>`;
+          } else if (details.startsWith("(") || details.startsWith("&mdash;") || details.startsWith("—")) {
+            innerHTML += ` ${details}`;
+          } else {
+            innerHTML += ` (${details})`;
+          }
+        }
+        innerHTML += `</span>`;
+        li.innerHTML = `<i class="fa-solid fa-circle-notch"></i> ${innerHTML}`;
         ul.appendChild(li);
 
         syncAlumniDOM();
