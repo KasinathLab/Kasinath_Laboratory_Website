@@ -968,16 +968,6 @@ Prior to joining the lab, Eric earned a Bachelor of Science in Biochemistry from
           </div>
         </div>
 
-        <div class="glass-card team-card" id="team-member-5">
-          <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_keagan.jpg" alt="Keagan Hesse">
-          </div>
-          <div class="team-info">
-            <h3>Keagan Hesse</h3>
-            <div class="team-role">Biochemistry PhD Candidate</div>
-          </div>
-        </div>
-
         <div class="glass-card team-card" id="team-member-1" data-bio="Liqi is a postdoctoral researcher in Dr. Vignesh Kasinath’s laboratory at the University of Colorado Boulder. Her research focuses on applying structural biology techniques to uncover the molecular mechanisms and functions of protein complexes.
 
 Liqi earned her bachelor’s degree in Biological Science from Shandong University in June 2016, and then she earned her Ph.D. degree in Quantitative Biology from University of Texas at Arlington in May 2021. She has been a postdoc in Kasinath’s lab since July 2021. At the Kasinath lab, her research focuses on structural and biochemical studies of nucleosome modifiers and transcription factors.">
@@ -1038,16 +1028,6 @@ When he's not in lab, Noah enjoys hiking, snowboarding, reading, and strategy ga
           </div>
         </div>
 
-        <div class="glass-card team-card" id="team-member-9">
-          <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_shanmukha.jpg" alt="Shanmukha Vamshi Kuruba">
-          </div>
-          <div class="team-info">
-            <h3>Shanmukha Vamshi Kuruba</h3>
-            <div class="team-role">Computer Science Masters Student</div>
-          </div>
-        </div>
-
         <div class="glass-card team-card" id="team-member-14" data-bio="Vedanth (Ved) Murari is an Undergraduate Researcher at the Kasinath Lab and a Computer Science student at the University of Colorado Boulder (Fall 2025 – Present). His research focus spans data structures, machine learning, and local LLM benchmarking for bioinformatics applications.
 
 At the Kasinath Lab, Ved conducted research benchmarking Large Language Models for RNA sequence-to-structure prediction, and led the UI/UX redesign and modernization of the laboratory website.">
@@ -1078,6 +1058,8 @@ At the Kasinath Lab, Ved conducted research benchmarking Large Language Models f
           <div class="glass-card alumni-card" style="padding: 30px;">
             <ul style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">
               <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Danielle Guillen, PhD</strong> (PhD Candidate) &mdash; <em>Now at Novo Nordisk</em></span></li>
+              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Keagan Hesse</strong> (Biochemistry PhD Candidate)</span></li>
+              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Shanmukha Vamshi Kuruba</strong> (Computer Science Masters Student)</span></li>
               <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Malia Edgerton</strong> (Undergraduate Research Student, 2024-2025)</span></li>
               <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Iona Kelly</strong> (B2B, Summer 2025)</span></li>
               <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Malavika Vinod</strong> (Undergraduate Research Student, 2022-2025) &mdash; <em>Now Graduate Student at UCSF</em></span></li>
