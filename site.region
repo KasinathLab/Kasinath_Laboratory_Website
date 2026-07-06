@@ -978,7 +978,9 @@ Prior to joining the lab, Eric earned a Bachelor of Science in Biochemistry from
           </div>
         </div>
 
-        <div class="glass-card team-card" id="team-member-1">
+        <div class="glass-card team-card" id="team-member-1" data-bio="Liqi is a postdoctoral researcher in Dr. Vignesh Kasinath’s laboratory at the University of Colorado Boulder. Her research focuses on applying structural biology techniques to uncover the molecular mechanisms and functions of protein complexes.
+
+Liqi earned her bachelor’s degree in Biological Science from Shandong University in June 2016, and then she earned her Ph.D. degree in Quantitative Biology from University of Texas at Arlington in May 2021. She has been a postdoc in Kasinath’s lab since July 2021. At the Kasinath lab, her research focuses on structural and biochemical studies of nucleosome modifiers and transcription factors.">
           <div class="team-photo-container">
             <img class="team-photo" src="/assets/team_liqi.jpg" alt="Liqi Yao">
           </div>
