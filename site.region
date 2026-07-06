@@ -990,7 +990,9 @@ Liqi earned her bachelor’s degree in Biological Science from Shandong Universi
           </div>
         </div>
 
-        <div class="glass-card team-card" id="team-member-3">
+        <div class="glass-card team-card" id="team-member-3" data-bio="Mark is a 5th year PhD candidate in Molecular, Cellular and Developmental Biology.
+
+His current work in the lab has focused on allosteric mechanisms of PRC2, specifically looking at how post-translational modifications affect enzymatic activity and specificity.">
           <div class="team-photo-container">
             <img class="team-photo" src="/assets/team_mark.jpg" alt="Mark Matyas">
           </div>
