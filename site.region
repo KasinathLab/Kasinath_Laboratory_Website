@@ -947,7 +947,7 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
           </div>
         </div>
 
-        <div class="glass-card team-card" id="team-member-10">
+        <div class="glass-card team-card" id="team-member-10" data-bio="Hailey Geva is an undergraduate researcher at the Kasinath Lab. She is currently pursuing a double major in biochemistry and neuroscience with a minor in Korean language and culture at CU. In her spare time, she enjoys reading, writing, and spending time with her family and friends.">
           <div class="team-photo-container">
             <img class="team-photo" src="/assets/team_hailey.jpg" alt="Hailey Geva">
           </div>
