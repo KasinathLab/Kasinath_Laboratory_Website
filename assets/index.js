@@ -35,15 +35,25 @@ function initTabs() {
         if (sec.id === targetSection) {
           sec.classList.add('active');
           
-          // Re-render/adjust 3Dmol viewer if entering solved structures tab
-          if (targetSection === 'structures' && window.activeViewer) {
-            setTimeout(() => {
-              window.activeViewer.zoomTo();
-              window.activeViewer.render();
-            }, 100);
+          // Load 3Dmol viewer if entering solved structures tab and not loaded yet
+          if (targetSection === 'structures') {
+            if (!window.activeViewer) {
+              const activeBtn = document.querySelector('.structure-btn.active');
+              const pdbId = activeBtn ? activeBtn.getAttribute('data-pdb') : '6WKR';
+              loadStructure(pdbId);
+            } else {
+              setTimeout(() => {
+                window.activeViewer.zoomTo();
+                window.activeViewer.render();
+              }, 100);
+            }
           }
         } else {
           sec.classList.remove('active');
+          // Unload 3Dmol viewer when leaving solved structures tab to free WebGL resources
+          if (sec.id === 'structures') {
+            unloadStructureViewer();
+          }
         }
       });
 
@@ -209,9 +219,6 @@ function initStructureViewer() {
 
   if (!viewerContainer || structureButtons.length === 0) return;
 
-  // Initialize viewer with the default PDB (6WKR)
-  loadStructure('6WKR');
-
   structureButtons.forEach(btn => {
     btn.addEventListener('click', () => {
       structureButtons.forEach(b => b.classList.remove('active'));
@@ -348,6 +355,22 @@ function loadStructure(pdbId) {
   } catch (error) {
     console.error("Failed to load 3Dmol viewer:", error);
     loader.textContent = "Error loading 3D molecular viewer. Check connection.";
+  }
+}
+
+function unloadStructureViewer() {
+  if (window.activeViewer) {
+    try {
+      window.activeViewer.spin(false);
+      window.activeViewer.clear();
+    } catch (e) {
+      console.error("Error clearing activeViewer:", e);
+    }
+    window.activeViewer = null;
+  }
+  const container = document.getElementById('viewer-viewport');
+  if (container) {
+    container.innerHTML = '';
   }
 }
 
