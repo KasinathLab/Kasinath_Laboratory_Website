@@ -27,6 +27,11 @@
   <meta property="og:description" content="Investigating the structures of gene silencing complexes and chromatin architecture at the University of Colorado Boulder.">
   <meta property="og:image" content="https://vignesh-kasinath.squarespace.com/assets/molecular_header.png">
   
+  <!-- Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap">
+
   <!-- CSS Stylesheets -->
   <link rel="stylesheet" href="/assets/index.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -1257,10 +1262,6 @@ At the Kasinath Lab, Ved conducted research benchmarking Large Language Models f
     </div>
   </div>
 
-  <!-- Dependencies: jQuery and 3Dmol.js -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://3dmol.org/build/3Dmol-min.js"></script>
-  
   <!-- JavaScript Files -->
   <script src="/assets/index.js"></script>
 

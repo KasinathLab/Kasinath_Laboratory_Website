@@ -38,9 +38,11 @@ function initTabs() {
           // Load 3Dmol viewer if entering solved structures tab and not loaded yet
           if (targetSection === 'structures') {
             if (!window.activeViewer) {
-              const activeBtn = document.querySelector('.structure-btn.active');
-              const pdbId = activeBtn ? activeBtn.getAttribute('data-pdb') : '6WKR';
-              loadStructure(pdbId);
+              loadViewerScripts(() => {
+                const activeBtn = document.querySelector('.structure-btn.active');
+                const pdbId = activeBtn ? activeBtn.getAttribute('data-pdb') : '6WKR';
+                loadStructure(pdbId);
+              });
             } else {
               setTimeout(() => {
                 window.activeViewer.zoomTo();
@@ -233,7 +235,9 @@ function initStructureViewer() {
         infoDesc.innerHTML = structuresData[pdbId].description;
       }
       
-      loadStructure(pdbId);
+      if (window.jQuery && window.$3Dmol) {
+        loadStructure(pdbId);
+      }
     });
   });
 
@@ -371,6 +375,55 @@ function unloadStructureViewer() {
   const container = document.getElementById('viewer-viewport');
   if (container) {
     container.innerHTML = '';
+  }
+}
+
+function loadViewerScripts(callback) {
+  // If libraries are already loaded, execute callback immediately
+  if (window.jQuery && window.$3Dmol) {
+    callback();
+    return;
+  }
+
+  const container = document.getElementById('viewer-viewport');
+  if (container) {
+    container.innerHTML = '';
+    const loader = document.createElement('div');
+    loader.className = 'loader-indicator';
+    loader.innerHTML = `
+      <img src="assets/piku_cutout.png" class="piku-loader-img" alt="Piku loading scripts">
+      <div class="piku-loader-text">Piku is loading 3D rendering library...</div>
+    `;
+    container.appendChild(loader);
+  }
+
+  // Dynamically load jQuery first
+  if (!window.jQuery) {
+    const jqScript = document.createElement('script');
+    jqScript.src = "https://code.jquery.com/jquery-3.6.0.min.js";
+    jqScript.onload = () => {
+      load3Dmol(callback);
+    };
+    jqScript.onerror = () => {
+      console.error("Failed to load jQuery");
+    };
+    document.body.appendChild(jqScript);
+  } else {
+    load3Dmol(callback);
+  }
+
+  function load3Dmol(cb) {
+    if (!window.$3Dmol) {
+      const tdScript = document.createElement('script');
+      tdScript.src = "https://3dmol.org/build/3Dmol-min.js";
+      tdScript.onload = cb;
+      tdScript.onerror = () => {
+        console.error("Failed to load 3Dmol library");
+      };
+      document.body.appendChild(tdScript);
+    } else {
+      cb();
+    }
   }
 }
 
