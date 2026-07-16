@@ -441,13 +441,38 @@ function initContactForm() {
     btn.textContent = 'Sending Message...';
     btn.disabled = true;
 
-    // Simulate network delay
-    setTimeout(() => {
-      alert('Thank you! Your message has been sent. We will get back to you shortly.');
-      form.reset();
+    const name = document.getElementById('input-name').value;
+    const email = document.getElementById('input-email').value;
+    const message = document.getElementById('input-message').value;
+
+    fetch("https://formsubmit.co/ajax/vignesh@colorado.edu", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        Name: name,
+        Email: email,
+        Message: message
+      })
+    })
+    .then(response => {
+      if (response.ok) {
+        alert('Thank you! Your message has been sent. We will get back to you shortly.');
+        form.reset();
+      } else {
+        alert('Oops! There was a problem sending your message. Please try again or email directly.');
+      }
+    })
+    .catch(error => {
+      console.error('Error sending message:', error);
+      alert('Oops! There was a problem sending your message. Please check your connection and try again.');
+    })
+    .finally(() => {
       btn.textContent = originalText;
       btn.disabled = false;
-    }, 1200);
+    });
   });
 }
 
