@@ -934,9 +934,7 @@ function initTeamModal() {
         }
       } else if (name.toLowerCase().includes('vignesh')) {
         modalBio.innerHTML = `
-          <p>Dr. Vignesh Kasinath is an Assistant Professor of Biochemistry at the University of Colorado Boulder. The Kasinath Laboratory is focused on understanding the molecular mechanisms of gene silencing and chromatin regulation, with a particular interest in Polycomb Repressive Complex 2 (PRC2).</p>
-          <p>Using single-particle cryo-electron microscopy (cryo-EM) and cryo-electron tomography (cryo-ET), Dr. Kasinath's research group aims to visualize chromatin-bound macromolecular complexes in atomic detail. By resolving these structures, the lab seeks to elucidate how epigenetic modifications are established and maintained in health and disease.</p>
-          <p>Dr. Kasinath completed his postdoctoral training at UC Berkeley / LBNL, where he determined pioneering cryo-EM structures of PRC2 engaged on dinucleosomes. He established his independent research group at CU Boulder in 2021 to continue pushing the boundaries of structural molecular biology.</p>
+          <p>Dr. Kasinath completed his postdoctoral training at UC Berkeley / LBNL, where he determined pioneering cryo-EM structures of PRC2 and PRC2 engaging with nucleosomes. He established his independent research group at CU Boulder in August 2021 to continue pushing the boundaries of structural molecular biology.</p>
         `;
       } else if (name.toLowerCase().includes('george')) {
         modalBio.innerHTML = `

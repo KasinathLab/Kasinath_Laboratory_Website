@@ -905,7 +905,7 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
       </p>
 
                         <!-- Principal Investigator (featured) -->
-      <div class="glass-card pi-feature" id="team-pi">
+      <div class="glass-card pi-feature" id="team-pi" data-bio="Dr. Kasinath completed his postdoctoral training at UC Berkeley / LBNL, where he determined pioneering cryo-EM structures of PRC2 and PRC2 engaging with nucleosomes. He established his independent research group at CU Boulder in August 2021 to continue pushing the boundaries of structural molecular biology.">
         <div class="pi-photo">
           <img class="team-photo" src="/assets/team_vignesh.jpg" alt="Vignesh Kasinath">
         </div>
@@ -921,7 +921,7 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
       </div>
 
       <div class="team-grid" id="team-members">
-        <div class="glass-card team-card" id="team-member-7">
+        <div class="glass-card team-card" id="team-member-7" data-bio="Carolina is currently a PhD student in the MCDB program at CU (co-advised with the Chuong lab). Her project focuses on understanding how chromatin-associated proteins interact at the molecular level, and how disruptions in their function can affect epigenetic profiles, contribute to disease, and influence the activity of transposable elements. She uses a combination of biochemical, genomic and computational approaches.">
           <div class="team-photo-container">
             <img class="team-photo" src="/assets/team_carolina.jpg" alt="Carolina Valderrama Hincapie">
           </div>
