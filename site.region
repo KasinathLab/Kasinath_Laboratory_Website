@@ -1059,7 +1059,7 @@ When he's not in lab, Noah enjoys hiking, snowboarding, reading, and strategy ga
           </div>
         </div>
 
-        <div class="glass-card team-card" id="team-member-8">
+        <div class="glass-card team-card" id="team-member-8" data-bio="">
           <div class="team-photo-container">
             <img class="team-photo" src="/assets/team_robert.jpg" alt="Robert Mair">
           </div>

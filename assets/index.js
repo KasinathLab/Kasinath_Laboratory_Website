@@ -941,7 +941,7 @@ function initTeamModal() {
 
       // Populate bio
       const customBio = card.getAttribute('data-bio');
-      if (customBio) {
+      if (customBio !== null) {
         if (customBio.trim().startsWith('<p>')) {
           modalBio.innerHTML = customBio;
         } else {
