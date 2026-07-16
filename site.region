@@ -983,6 +983,18 @@ Prior to joining the lab, Eric earned a Bachelor of Science in Biochemistry from
           </div>
         </div>
 
+        <div class="glass-card team-card" id="team-member-18" data-bio="Ian Kunkel is a Professional Research Assistant in the Kasinath Lab at CU Boulder. He joined in the summer of 2026, delving into the spreading of the H3K9 trimethylation repression marker via SETDB1, which is a key histone methyltransferase responsible for silencing endogenous retrovirus elements, using structural and biochemical means.
+
+Before joining the Kasinath Lab, Ian was an undergraduate researcher in the DuBois Lab doing structural virology at the University of California, Santa Cruz, where he also earned his Bachelor of Science in Biomolecular Engineering.">
+          <div class="team-photo-container">
+            <img class="team-photo" src="/assets/team_ian.jpg" alt="Ian Kunkel">
+          </div>
+          <div class="team-info">
+            <h3>Ian Kunkel</h3>
+            <div class="team-role">Professional Research Assistant</div>
+          </div>
+        </div>
+
         <div class="glass-card team-card" id="team-member-4" data-bio="Co-mentored by Tom Cech">
           <div class="team-photo-container">
             <img class="team-photo" src="/assets/team_jessica.jpg" alt="Jessica Song">
