@@ -1017,6 +1017,20 @@ His current work in the lab has focused on allosteric mechanisms of PRC2, specif
           </div>
         </div>
 
+        <div class="glass-card team-card" id="team-member-17" data-bio="Nandini Das is a Professional Research Assistant in the Kasinath Laboratory, where she investigates the molecular mechanisms of UHRF1-mediated gene silencing using structural and biochemical approaches.
+
+Her research focuses on understanding how UHRF1, a RING-type E3 ubiquitin ligase, ubiquitinates histone H3 to recruit DNMT1, linking histone modifications to heritable DNA methylation and gene silencing. The Kasinath Lab employs advanced single-particle cryo-EM and cryo-ET to study large macromolecular complexes in native and reconstituted environments.
+
+Before joining the lab, Nandini pursued training in biochemistry and molecular biology, studying the structural and functional characterization of viral RNA polymerases and ubiquitin-conjugating enzymes. Her research interests center on understanding how enzymes convert molecular signals into lasting biological outcomes.">
+          <div class="team-photo-container">
+            <img class="team-photo" src="/assets/team_nandini.jpg" alt="Nandini Das">
+          </div>
+          <div class="team-info">
+            <h3>Nandini Das</h3>
+            <div class="team-role">Professional Research Assistant</div>
+          </div>
+        </div>
+
         <div class="glass-card team-card" id="team-member-6" data-bio="Noah Lohar is a third-year Biochemistry PhD Candidate at the University of Colorado Boulder and a recipient of the NIH Molecular Biophysics T32 Training Grant. His research sits at the intersection of structural biology and epigenetics, with a focus on how the Polycomb Repressive Complex 2 (PRC2) is regulated in development and disease.
 
 In the Kasinath Laboratory, Noah's work centers on the mechanism by which EZHIP inhibits PRC2, a process whose aberrant activity is a known driver of pediatric brain tumors. More broadly, he is interested in how PRC2 and histone demethylases work together to shape the chromatin landscape.
