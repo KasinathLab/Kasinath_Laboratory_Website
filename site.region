@@ -1,4 +1,4 @@
-<!-- GENERATED from index.html by dev/build-region.sh - DO NOT EDIT BY HAND. Edit index.html, then re-run. -->
+<!-- GENERATED from index.html by dev/build-region.sh — DO NOT EDIT BY HAND. Edit index.html, then re-run. -->
 <!DOCTYPE html>
 <html lang="en"><head>
   <meta charset="UTF-8">
@@ -16,14 +16,15 @@
   </script>
 
   <!-- SEO Meta Tags -->
-  <title>Vignesh Kasinath Lab â€” Regulation of Gene Silencing by RNA and Chromatin</title>
+  <title>Vignesh Kasinath Lab &mdash; Regulation of Gene Silencing by RNA and Chromatin</title>
   <meta name="description" content="We investigate the structural and biochemical mechanisms of gene silencing, chromatin organization, and chromosome pairing using state-of-the-art cryo-EM, cryo-ET, and biochemistry at CU Boulder.">
   <meta name="keywords" content="Vignesh Kasinath, Cryo-EM, Cryo-ET, Chromatin, Gene Silencing, PRC2, Biochemistry, Structural Biology, CU Boulder">
   <meta name="author" content="Vignesh Kasinath Lab">
+  <link rel="icon" type="image/png" sizes="144x144" href="/assets/favicon.png">
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Vignesh Kasinath Lab â€” Regulation of Gene Silencing">
+  <meta property="og:title" content="Vignesh Kasinath Lab &mdash; Regulation of Gene Silencing">
   <meta property="og:description" content="Investigating the structures of gene silencing complexes and chromatin architecture at the University of Colorado Boulder.">
   <meta property="og:image" content="https://vignesh-kasinath.squarespace.com/assets/molecular_header.png">
   
