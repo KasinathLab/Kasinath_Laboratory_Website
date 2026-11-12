@@ -19,8 +19,7 @@ public site. So **all day-to-day work happens on `preview`** (previewed on Pages
 site only changes when we intentionally merge `preview → master`.
 
 - **`preview`** — working copy. GitHub Pages serves it. This is where you build.
-- **`master`** — production. Currently frozen on the **old site** (original Bedford template) until
-  the new site is ready. Protected — changes require a PR.
+- **`master`** — production. Changes go through a reviewed pull request before deploying to Squarespace.
 - **`main`** — original standalone static version, kept for history. Unused.
 
 ---
