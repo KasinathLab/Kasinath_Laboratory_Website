@@ -39,15 +39,13 @@ function initTabs() {
           if (targetSection === 'structures') {
             if (!window.activeViewer) {
               loadViewerScripts(() => {
+                if (!sec.classList.contains('active') || window.activeViewer) return;
                 const activeBtn = document.querySelector('.structure-btn.active');
                 const pdbId = activeBtn ? activeBtn.getAttribute('data-pdb') : '6WKR';
                 loadStructure(pdbId);
               });
             } else {
-              setTimeout(() => {
-                window.activeViewer.zoomTo();
-                window.activeViewer.render();
-              }, 100);
+              window.activeViewer.resize();
             }
           }
         } else {
@@ -87,9 +85,10 @@ function initMobileMenu() {
    ========================================================================= */
 function initCanvasBackground() {
   const canvas = document.getElementById('bg-canvas');
-  if (!canvas) return;
+  if (!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const ctx = canvas.getContext('2d');
+  if (!ctx) return;
   let width = canvas.width = window.innerWidth;
   let height = canvas.height = window.innerHeight;
 
@@ -99,7 +98,7 @@ function initCanvasBackground() {
   });
 
   const particles = [];
-  const particleCount = 45;
+  const particleCount = window.matchMedia('(max-width: 768px)').matches ? 24 : 45;
   const connectionDistance = 140;
 
   // Particle/line colors follow the active theme (read live so toggling updates instantly)
@@ -142,7 +141,13 @@ function initCanvasBackground() {
     particles.push(new Particle());
   }
 
-  function animate() {
+  let lastFrame = 0;
+  const frameInterval = 1000 / 30;
+  function animate(now) {
+    requestAnimationFrame(animate);
+    const elapsed = now - lastFrame;
+    if (elapsed < frameInterval) return;
+    lastFrame = now - (elapsed % frameInterval);
     ctx.clearRect(0, 0, width, height);
     const pal = themePalette();
 
@@ -172,10 +177,9 @@ function initCanvasBackground() {
       p.draw();
     });
 
-    requestAnimationFrame(animate);
   }
 
-  animate();
+  requestAnimationFrame(animate);
 }
 
 /* =========================================================================
@@ -202,6 +206,16 @@ const structuresData = {
     method: 'Single Particle Cryo-EM (3.9 Å)',
     description: 'Active state assembly of human PRC2 containing both cofactors AEBP2 and JARID2, providing architectural clues into gene silencing regulation.'
   },
+  '8VMJ': {
+    name: 'PRC2 with an H3K4me3-modified nucleosome',
+    method: 'Single Particle Cryo-EM (3.1 \u00c5)',
+    description: '<a href="https://www.rcsb.org/structure/8VMJ" target="_blank" rel="noopener">View entry 8VMJ at RCSB PDB</a>.'
+  },
+  '8VOB': {
+    name: 'PRC2 with an H3K36me3-modified nucleosome',
+    method: 'Single Particle Cryo-EM (3.1 \u00c5)',
+    description: '<a href="https://www.rcsb.org/structure/8VOB" target="_blank" rel="noopener">View entry 8VOB at RCSB PDB</a>.'
+  },
   '5HYN': {
     name: 'Human PRC2 Core (Fitted in EMD-7306/7310/7312)',
     method: 'X-Ray Crystallography (2.7 Å)',
@@ -210,7 +224,7 @@ const structuresData = {
 };
 
 let currentStyle = 'cartoon';
-let isSpinning = true;
+let isSpinning = false;
 
 function initStructureViewer() {
   const viewerContainer = document.getElementById('viewer-viewport');
@@ -315,8 +329,7 @@ function loadStructure(pdbId) {
   const container = document.getElementById('viewer-viewport');
   if (!container) return;
 
-  // Clear previous element content
-  container.innerHTML = '';
+  unloadStructureViewer();
   
   // Set up loader indicator
   const loader = document.createElement('div');
@@ -335,6 +348,7 @@ function loadStructure(pdbId) {
     window.activeViewer = viewer;
 
     $3Dmol.download("pdb:" + pdbId, viewer, {}, function() {
+      if (window.activeViewer !== viewer) return;
       // Remove loader text
       const loadMsg = container.querySelector('.loader-indicator');
       if (loadMsg) loadMsg.remove();
@@ -378,53 +392,46 @@ function unloadStructureViewer() {
   }
 }
 
+let viewerScriptsPromise;
+
 function loadViewerScripts(callback) {
-  // If libraries are already loaded, execute callback immediately
   if (window.jQuery && window.$3Dmol) {
     callback();
     return;
   }
 
-  const container = document.getElementById('viewer-viewport');
-  if (container) {
-    container.innerHTML = '';
-    const loader = document.createElement('div');
-    loader.className = 'loader-indicator';
-    loader.innerHTML = `
-      <img src="assets/piku_cutout.png" class="piku-loader-img" alt="Piku loading scripts">
-      <div class="piku-loader-text">Piku is loading 3D rendering library...</div>
-    `;
-    container.appendChild(loader);
-  }
-
-  // Dynamically load jQuery first
-  if (!window.jQuery) {
-    const jqScript = document.createElement('script');
-    jqScript.src = "https://code.jquery.com/jquery-3.6.0.min.js";
-    jqScript.onload = () => {
-      load3Dmol(callback);
-    };
-    jqScript.onerror = () => {
-      console.error("Failed to load jQuery");
-    };
-    document.body.appendChild(jqScript);
-  } else {
-    load3Dmol(callback);
-  }
-
-  function load3Dmol(cb) {
-    if (!window.$3Dmol) {
-      const tdScript = document.createElement('script');
-      tdScript.src = "https://3dmol.org/build/3Dmol-min.js";
-      tdScript.onload = cb;
-      tdScript.onerror = () => {
-        console.error("Failed to load 3Dmol library");
+  if (!viewerScriptsPromise) {
+    const loadScript = source => new Promise((resolve, reject) => {
+      const script = document.createElement('script');
+      script.src = source;
+      script.onload = resolve;
+      script.onerror = () => {
+        script.remove();
+        reject(new Error('Failed to load ' + source));
       };
-      document.body.appendChild(tdScript);
-    } else {
-      cb();
-    }
+      document.body.appendChild(script);
+    });
+
+    viewerScriptsPromise = (window.jQuery
+      ? Promise.resolve()
+      : loadScript('https://code.jquery.com/jquery-3.6.0.min.js')
+    ).then(() => {
+      if (!window.$3Dmol) return loadScript('https://3dmol.org/build/3Dmol-min.js');
+    }).catch(error => {
+      viewerScriptsPromise = null;
+      throw error;
+    });
   }
+
+  const container = document.getElementById('viewer-viewport');
+  if (container) container.textContent = 'Loading the 3D viewer...';
+
+  viewerScriptsPromise.then(callback, error => {
+    console.error(error);
+    if (container && document.getElementById('structures').classList.contains('active')) {
+      container.textContent = 'Unable to load the 3D viewer. Reopen Structures to retry.';
+    }
+  });
 }
 
 /* =========================================================================
@@ -611,6 +618,7 @@ function initCarousels() {
    3D Mouse Tilt Parallax Effect
    ========================================================================= */
 function init3DTilt() {
+  if (!window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)').matches) return;
   const cards = document.querySelectorAll('.glass-card, .research-card, .team-card, .position-card');
   cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {

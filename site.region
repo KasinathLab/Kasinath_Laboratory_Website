@@ -126,7 +126,14 @@
             <h2 class="section-title">Latest Announcements</h2>
             
             <div class="news-carousel">
-              <div class="glass-card news-card active" id="news-cdmrp-idea-award">
+              <div class="glass-card news-card active" id="news-dnmt1-preprint">
+                <img src="/assets/piku_news_logo.png" alt="" class="news-img">
+                <div class="news-date">September 2026</div>
+                <div class="news-headline">New preprint on RNA binding to DNMT1</div>
+                <div class="news-excerpt">Jessica Song, Thomas Cech, and Vignesh Kasinath report cryo-EM structures of DNMT1 bound to pUG-fold RNA. Read the <a href="https://doi.org/10.64898/2026.09.01.748594" target="_blank" rel="noopener">bioRxiv preprint</a>.</div>
+              </div>
+
+              <div class="glass-card news-card" id="news-cdmrp-idea-award">
                 <img src="/assets/piku_news_logo.png" alt="CDMRP Award" class="news-img">
                 <div class="news-date">July 2026</div>
                 <div class="news-headline">Lab Awarded CDMRP/PRCRP Idea Award (2026-2028)</div>
@@ -140,18 +147,18 @@
                 <div class="news-excerpt">Congratulations to biochemistry graduate student Eric Lian on being awarded the BioDataScience Training Grant! This fellowship will support his research applying computational and biochemical tools to investigate epigenetic complexes.</div>
               </div>
 
+              <div class="glass-card news-card" id="news-cellreports-sir">
+                <img src="/assets/piku_news_logo.png" alt="SIR heterochromatin" class="news-img">
+                <div class="news-date">July 2026</div>
+                <div class="news-headline">SIR heterochromatin study published in Cell Reports</div>
+                <div class="news-excerpt">Our collaborative study "Physical interactions within the SIR heterochromatin complex potentiate inter-subunit communication and gene repression" was published in Cell Reports. Read details under our <a href="#publications" onclick="document.querySelector('[data-target=publications]').click();">Publications</a> tab.</div>
+              </div>
+
               <div class="glass-card news-card" id="news-miso-preprint">
                 <img src="/assets/piku_news_logo.png" alt="Volumetric EM" class="news-img">
                 <div class="news-date">June 2026</div>
                 <div class="news-headline">New Preprint on vEM Segmentation Published in bioRxiv</div>
                 <div class="news-excerpt">Shanmukha and George published their new paper "MISO: A Controlled Ablation of Masking, Initialization, Sampling, and Optimization for Segmentation in Volumetric Electron Microscopy." Read the preprint on <a href="https://doi.org/10.64898/2026.06.19.733473" target="_blank" rel="noopener">bioRxiv</a>.</div>
-              </div>
-
-              <div class="glass-card news-card" id="news-cellreports-sir">
-                <img src="/assets/piku_news_logo.png" alt="SIR heterochromatin" class="news-img">
-                <div class="news-date">June 2026</div>
-                <div class="news-headline">New Paper Accepted in Cell Reports</div>
-                <div class="news-excerpt">Our collaborative study "Novel interactions within the SIR heterochromatin complex potentiate inter-subunit communication and gene repression" has been accepted for publication in Cell Reports. Read details under our <a href="#publications" onclick="document.querySelector('[data-target=publications]').click();">Publications</a> tab.</div>
               </div>
 
               <div class="glass-card news-card" id="news-welcome-george-eric">
@@ -279,7 +286,7 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
           </ul>
         </div>
         <div>
-          <img src="/assets/cryo_microscope.png" alt="Cryo-EM electron microscope concept graphic" style="width: 100%; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: var(--shadow-glow-violet);">
+          <img loading="lazy" decoding="async" src="/assets/cryo_microscope.png" alt="Cryo-EM electron microscope concept graphic" style="width: 100%; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: var(--shadow-glow-violet);">
         </div>
       </div>
     </section>
@@ -321,6 +328,18 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
             <span>Resolution: 3.9 Å</span>
           </button>
 
+          <button class="structure-btn" data-pdb="8VMJ" id="btn-struct-8vmj">
+            <h4>PDB 8VMJ</h4>
+            <span>PRC2 with an H3K4me3-modified nucleosome</span>
+            <span>Resolution: 3.1 &Aring;</span>
+          </button>
+
+          <button class="structure-btn" data-pdb="8VOB" id="btn-struct-8vob">
+            <h4>PDB 8VOB</h4>
+            <span>PRC2 with an H3K36me3-modified nucleosome</span>
+            <span>Resolution: 3.1 &Aring;</span>
+          </button>
+
           <button class="structure-btn" data-pdb="5HYN" id="btn-struct-5hyn">
             <h4>EMDB-7306/7310/7312</h4>
             <span>PRC2 Core Fitted in Dinucleosome Map</span>
@@ -341,7 +360,7 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
 
           <!-- Custom overlay controls -->
           <div class="viewer-overlay-ui" id="viewer-controls">
-            <button class="viewer-control-btn" id="btn-spin">Pause Rotation</button>
+            <button class="viewer-control-btn" id="btn-spin">Auto Rotate</button>
             <button class="viewer-control-btn" id="btn-style">Style: Cartoon</button>
             <button class="viewer-control-btn" id="btn-reset">Reset View</button>
           </div>
@@ -374,6 +393,34 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
 
       <div class="publications-list" id="publications-content">
         
+        <!-- September 2026 preprint -->
+        <div class="glass-card publication-item" data-category="recent" id="pub-2026-biorxiv-dnmt1">
+          <div class="pub-year">2026</div>
+          <div class="pub-details">
+            <h3 class="pub-title">Structures of pUG-fold RNA bound to DNMT1 reveal a mechanism for RNA-mediated epigenetic regulation</h3>
+            <p class="pub-authors">Song J. J., Cech T. R., <strong>Kasinath V.</strong></p>
+            <p class="pub-journal">bioRxiv preprint. September 2026. doi:10.64898/2026.09.01.748594</p>
+            <div class="pub-links">
+              <a href="https://doi.org/10.64898/2026.09.01.748594" target="_blank" rel="noopener">bioRxiv</a>
+              <a href="https://pubmed.ncbi.nlm.nih.gov/42922532/" target="_blank" rel="noopener">PubMed</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pub 2 -->
+        <div class="glass-card publication-item" data-category="recent prc" id="pub-2026-cellreports-sir">
+          <div class="pub-year">2026</div>
+          <div class="pub-details">
+            <h3 class="pub-title">Physical interactions within the SIR heterochromatin complex potentiate inter-subunit communication and gene repression</h3>
+            <p class="pub-authors">Kotz J., Martz E. J., Nelson M., Savoie N., Schmitt L., States J., Holton N., Guillen D., <strong>Kasinath V.</strong>, Hansen K., Johnson A. M.</p>
+            <p class="pub-journal">Cell Reports. (2026) 45(7):117564. doi:10.1016/j.celrep.2026.117564</p>
+            <div class="pub-links">
+              <a href="https://doi.org/10.1016/j.celrep.2026.117564" target="_blank" rel="noopener">Publisher Link</a>
+              <a href="https://pubmed.ncbi.nlm.nih.gov/42400910/" target="_blank" rel="noopener">PubMed</a>
+            </div>
+          </div>
+        </div>
+
         <!-- Pub 1 -->
         <div class="glass-card publication-item" data-category="recent" id="pub-2026-biorxiv-miso">
           <div class="pub-year">2026</div>
@@ -384,19 +431,6 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
             <div class="pub-links">
               <a href="https://doi.org/10.64898/2026.06.19.733473" target="_blank" rel="noopener" class="pub-link"><i class="fa-solid fa-arrow-up-right-from-square"></i> bioRxiv Link</a>
               <a href="https://www.biorxiv.org/content/10.64898/2026.06.19.733473v1.full.pdf" target="_blank" rel="noopener" class="pub-link"><i class="fa-solid fa-file-pdf"></i> bioRxiv PDF</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Pub 2 -->
-        <div class="glass-card publication-item" data-category="recent prc" id="pub-2026-cellreports-sir">
-          <div class="pub-year">2026</div>
-          <div class="pub-details">
-            <h3 class="pub-title">Novel interactions within the SIR heterochromatin complex potentiate inter-subunit communication and gene repression</h3>
-            <p class="pub-authors">Kotz J., Martz E. J., Nelson M., Savoie N., Schmitt L., States J., Holton N., Guillen D., <strong>Kasinath V.</strong>, Hansen K., Johnson A. M.</p>
-            <p class="pub-journal">Cell Reports. (2026) In Press / Accepted</p>
-            <div class="pub-links">
-              <!-- Link to be added once available -->
             </div>
           </div>
         </div>
@@ -878,7 +912,7 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
 
       <!-- Full-Width Group Showcase Card -->
       <div class="glass-card outreach-hero-card">
-        <img src="/assets/B2B_Kasinath_Lab_Group_Photo_July_2024.jpg" alt="B2B &amp; Kasinath Lab Group Photo July 2024">
+        <img loading="lazy" decoding="async" src="/assets/B2B_Kasinath_Lab_Group_Photo_July_2024.jpg" alt="B2B &amp; Kasinath Lab Group Photo July 2024">
         <div class="outreach-hero-caption">
           <p>July 2024 - Presenting our scientific journeys to the Bridges to Bioscience (B2B) Program!</p>
         </div>
@@ -928,7 +962,7 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
                         <!-- Principal Investigator (featured) -->
       <div class="glass-card pi-feature" id="team-pi" data-bio="Dr. Kasinath completed his postdoctoral training at UC Berkeley / LBNL, where he determined pioneering cryo-EM structures of PRC2 and PRC2 engaging with nucleosomes. He established his independent research group at CU Boulder in August 2021 to continue pushing the boundaries of structural molecular biology.">
         <div class="pi-photo">
-          <img class="team-photo" src="/assets/team_vignesh.jpg" alt="Vignesh Kasinath">
+          <img loading="lazy" decoding="async" class="team-photo" src="/assets/team_vignesh.jpg" alt="Vignesh Kasinath">
         </div>
         <div class="pi-info">
           <h3>Vignesh Kasinath</h3>
@@ -942,9 +976,25 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
       </div>
 
       <div class="team-grid" id="team-members">
+        <div class="glass-card team-card" id="team-member-19" data-bio="">
+          <div class="team-photo-container"><div class="team-photo initials-avatar">AP</div></div>
+          <div class="team-info">
+            <h3>Adithi Patel</h3>
+            <div class="team-role">Integrative Physiology</div>
+          </div>
+        </div>
+
+        <div class="glass-card team-card" id="team-member-20" data-bio="">
+          <div class="team-photo-container"><div class="team-photo initials-avatar">AR</div></div>
+          <div class="team-info">
+            <h3>Aidan Ross-Boon</h3>
+            <div class="team-role">Biochemistry</div>
+          </div>
+        </div>
+
         <div class="glass-card team-card" id="team-member-7" data-bio="Carolina is currently a PhD student in the MCDB program at CU (co-advised with the Chuong lab). Her project focuses on understanding how chromatin-associated proteins interact at the molecular level, and how disruptions in their function can affect epigenetic profiles, contribute to disease, and influence the activity of transposable elements. She uses a combination of biochemical, genomic and computational approaches.">
           <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_carolina.jpg" alt="Carolina Valderrama Hincapie">
+            <img loading="lazy" decoding="async" class="team-photo" src="/assets/team_carolina.jpg" alt="Carolina Valderrama Hincapie">
           </div>
           <div class="team-info">
             <h3>Carolina Valderrama Hincapie</h3>
@@ -956,7 +1006,7 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
 
 Prior to joining the lab, Eric earned a Bachelor of Science in Biochemistry from the University of Washington in 2025. As an undergraduate, he conducted research at the Institute for Protein Design under Dr. David Baker, where he designed DNA-binding proteins, and in Dr. Brian Beliveau’s laboratory, where he worked on developing computational tools for spatial transcriptomics.">
           <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_eric.jpg" alt="Eric Lian">
+            <img loading="lazy" decoding="async" class="team-photo" src="/assets/team_eric.jpg" alt="Eric Lian">
           </div>
           <div class="team-info">
             <h3>Eric Lian</h3>
@@ -966,7 +1016,7 @@ Prior to joining the lab, Eric earned a Bachelor of Science in Biochemistry from
 
         <div class="glass-card team-card" id="team-member-12">
           <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_george.jpg" alt="George S. Stephenson">
+            <img loading="lazy" decoding="async" class="team-photo" src="/assets/team_george.jpg" alt="George S. Stephenson">
           </div>
           <div class="team-info">
             <h3>George S. Stephenson</h3>
@@ -976,7 +1026,7 @@ Prior to joining the lab, Eric earned a Bachelor of Science in Biochemistry from
 
         <div class="glass-card team-card" id="team-member-10" data-bio="Hailey Geva is an undergraduate researcher at the Kasinath Lab. She is currently pursuing a double major in biochemistry and neuroscience with a minor in Korean language and culture at CU. In her spare time, she enjoys reading, writing, and spending time with her family and friends.">
           <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_hailey.jpg" alt="Hailey Geva">
+            <img loading="lazy" decoding="async" class="team-photo" src="/assets/team_hailey.jpg" alt="Hailey Geva">
           </div>
           <div class="team-info">
             <h3>Hailey Geva</h3>
@@ -988,7 +1038,7 @@ Prior to joining the lab, Eric earned a Bachelor of Science in Biochemistry from
 
 Before joining the Kasinath Lab, Ian was an undergraduate researcher in the DuBois Lab doing structural virology at the University of California, Santa Cruz, where he also earned his Bachelor of Science in Biomolecular Engineering.">
           <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_ian.jpg" alt="Ian Kunkel">
+            <img loading="lazy" decoding="async" class="team-photo" src="/assets/team_ian.jpg" alt="Ian Kunkel">
           </div>
           <div class="team-info">
             <h3>Ian Kunkel</h3>
@@ -998,7 +1048,7 @@ Before joining the Kasinath Lab, Ian was an undergraduate researcher in the DuBo
 
         <div class="glass-card team-card" id="team-member-4" data-bio="Co-mentored by Tom Cech">
           <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_jessica.jpg" alt="Jessica Song">
+            <img loading="lazy" decoding="async" class="team-photo" src="/assets/team_jessica.jpg" alt="Jessica Song">
           </div>
           <div class="team-info">
             <h3>Jessica Song</h3>
@@ -1006,11 +1056,19 @@ Before joining the Kasinath Lab, Ian was an undergraduate researcher in the DuBo
           </div>
         </div>
 
+        <div class="glass-card team-card" id="team-member-21" data-bio="">
+          <div class="team-photo-container"><div class="team-photo initials-avatar">LL</div></div>
+          <div class="team-info">
+            <h3>Leala Lara</h3>
+            <div class="team-role">MCDB Student</div>
+          </div>
+        </div>
+
         <div class="glass-card team-card" id="team-member-1" data-bio="Liqi is a postdoctoral researcher in Dr. Vignesh Kasinath’s laboratory at the University of Colorado Boulder. Her research focuses on applying structural biology techniques to uncover the molecular mechanisms and functions of protein complexes.
 
 Liqi earned her bachelor’s degree in Biological Science from Shandong University in June 2016, and then she earned her Ph.D. degree in Quantitative Biology from University of Texas at Arlington in May 2021. She has been a postdoc in Kasinath’s lab since July 2021. At the Kasinath lab, her research focuses on structural and biochemical studies of nucleosome modifiers and transcription factors.">
           <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_liqi.jpg" alt="Liqi Yao">
+            <img loading="lazy" decoding="async" class="team-photo" src="/assets/team_liqi.jpg" alt="Liqi Yao">
           </div>
           <div class="team-info">
             <h3>Liqi Yao</h3>
@@ -1022,7 +1080,7 @@ Liqi earned her bachelor’s degree in Biological Science from Shandong Universi
 
 His current work in the lab has focused on allosteric mechanisms of PRC2, specifically looking at how post-translational modifications affect enzymatic activity and specificity.">
           <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_mark.jpg" alt="Mark Matyas">
+            <img loading="lazy" decoding="async" class="team-photo" src="/assets/team_mark.jpg" alt="Mark Matyas">
           </div>
           <div class="team-info">
             <h3>Mark Matyas</h3>
@@ -1036,7 +1094,7 @@ Her research focuses on understanding how UHRF1, a RING-type E3 ubiquitin ligase
 
 Before joining the lab, Nandini pursued training in biochemistry and molecular biology, studying the structural and functional characterization of viral RNA polymerases and ubiquitin-conjugating enzymes. Her research interests center on understanding how enzymes convert molecular signals into lasting biological outcomes.">
           <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_nandini.jpg" alt="Nandini Das">
+            <img loading="lazy" decoding="async" class="team-photo" src="/assets/team_nandini.jpg" alt="Nandini Das">
           </div>
           <div class="team-info">
             <h3>Nandini Das</h3>
@@ -1052,7 +1110,7 @@ Noah earned his B.A. in Biochemistry from Carroll College, where he worked in th
 
 When he's not in lab, Noah enjoys hiking, snowboarding, reading, and strategy games.">
           <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_noah.jpg" alt="Noah Lohar">
+            <img loading="lazy" decoding="async" class="team-photo" src="/assets/team_noah.jpg" alt="Noah Lohar">
           </div>
           <div class="team-info">
             <h3>Noah Lohar</h3>
@@ -1062,7 +1120,7 @@ When he's not in lab, Noah enjoys hiking, snowboarding, reading, and strategy ga
 
         <div class="glass-card team-card" id="team-member-8" data-bio="">
           <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_robert.jpg" alt="Robert Mair">
+            <img loading="lazy" decoding="async" class="team-photo" src="/assets/team_robert.jpg" alt="Robert Mair">
           </div>
           <div class="team-info">
             <h3>Robert Mair</h3>
@@ -1084,7 +1142,7 @@ When he's not in lab, Noah enjoys hiking, snowboarding, reading, and strategy ga
 
 At the Kasinath Lab, Ved conducted research benchmarking Large Language Models for RNA sequence-to-structure prediction, and led the UI/UX redesign and modernization of the laboratory website.">
           <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_ved.jpg" alt="Vedanth (Ved) Murari">
+            <img loading="lazy" decoding="async" class="team-photo" src="/assets/team_ved.jpg" alt="Vedanth (Ved) Murari">
           </div>
           <div class="team-info">
             <h3>Vedanth (Ved) Murari</h3>
@@ -1092,21 +1150,9 @@ At the Kasinath Lab, Ved conducted research benchmarking Large Language Models f
           </div>
         </div>
 
-        <div class="glass-card team-card" id="team-member-16" data-bio="Will Burczyk is an Undergraduate Researcher at the Kasinath Lab and a 2nd-year student at the University of Colorado Boulder, studying Biochemistry and Physics. His research focuses on understanding the physicochemical basis for gene regulation at the molecular level.
-
-At the Kasinath Lab, Will works on characterizing gene repression by PRC2 and the H3K27me3 repressive mark using cryo-EM.">
-          <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_will.jpg" alt="Will Burczyk">
-          </div>
-          <div class="team-info">
-            <h3>Will Burczyk</h3>
-            <div class="team-role">Undergraduate Researcher</div>
-          </div>
-        </div>
-
         <div class="glass-card team-card" id="team-member-mascot">
           <div class="team-photo-container">
-            <img class="team-photo" src="/assets/team_piku.jpg" alt="Piku">
+            <img loading="lazy" decoding="async" class="team-photo" src="/assets/team_piku.jpg" alt="Piku">
           </div>
           <div class="team-info">
             <h3>Piku</h3>
@@ -1120,36 +1166,48 @@ At the Kasinath Lab, Will works on characterizing gene repression by PRC2 and th
         <h3 class="outreach-alumni-title" style="margin-bottom: 20px;">Alumni</h3>
         <div class="alumni-grid" style="grid-template-columns: 1fr;">
           <div class="glass-card alumni-card" style="padding: 30px;">
-            <ul style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px;">
+            <h4>Graduate Students</h4>
+            <ul style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 15px;">
+              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Nischal Bhandari</strong> (IQ Bio Rotation Student)</span></li>
               <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Danielle Guillen, PhD</strong> (PhD Candidate) &mdash; <em>Now at Novo Nordisk</em></span></li>
               <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Keagan Hesse</strong> (Biochemistry PhD Candidate)</span></li>
               <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Shanmukha Vamshi Kuruba</strong> (Computer Science Masters Student)</span></li>
+              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Aubrey Wolfe</strong> (Biochemistry Rotation Student, Spring 2023)</span></li>
+              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Niraj Gupta</strong> (Computer Science Masters Student, 2022-2023) &mdash; <em>Now Software Engineer at Arista Networks</em></span></li>
+              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Phuoc Huynh</strong> (MCDB Rotation Student, Fall 2022)</span></li>
+              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>David Vaisar</strong> (Biochemistry Rotation Student, Spring 2022)</span></li>
+              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Miranda Juarros</strong> (Biochemistry Rotation Student, Spring 2022)</span></li>
+              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Shamira Gonzalez</strong> (Biochemistry Rotation Student, Fall 2021)</span></li>
+              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Sashi Weerawarana</strong> (Biochemistry Rotation Student, Fall 2021)</span></li>
+            </ul>
+          </div>
+          <div class="glass-card alumni-card" style="padding: 30px;">
+            <h4>Undergraduates</h4>
+            <ul style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 15px;">
               <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Malia Edgerton</strong> (Undergraduate Research Student, 2024-2025)</span></li>
               <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Iona Kelly</strong> (B2B, Summer 2025)</span></li>
               <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Malavika Vinod</strong> (Undergraduate Research Student, 2022-2025) &mdash; <em>Now Graduate Student at UCSF</em></span></li>
-              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Kaylor Huang</strong> (High School, Summer 2024)</span></li>
               <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Catrina Day</strong> (STEM UpLIFT, 2023-2024)</span></li>
-              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Angel Zhang</strong> (PRA, 2022-2024) &mdash; <em>Now at UCSF (preparing for Med School)</em></span></li>
               <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Emma Judge</strong> (Undergraduate Research Student, 2022-2024) &mdash; <em>Preparing for Med School</em></span></li>
               <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Jack Stoner</strong> (Undergraduate Research Student, 2023-2024) &mdash; <em>Preparing for Graduate School (PhD)</em></span></li>
               <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Vrinda Anil</strong> (Computer Science Research Student, 2022-2024) &mdash; <em>Now Software Engineer at Amazon</em></span></li>
-              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Akhil Gargey Iragavarapu</strong> (Postdoctoral Fellow, 2021-2024)</span></li>
-              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Aubrey Wolfe</strong> (Biochemistry Rotation Student, Spring 2023)</span></li>
               <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Avy Chiluka</strong> (Undergraduate Student Researcher, IPHY, 2022-2023)</span></li>
-              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Ash Weier</strong> (Lab Manager, 2022-2023) &mdash; <em>Now PRA at CU Boulder Center for Cryo Electron Tomography</em></span></li>
-              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Niraj Gupta</strong> (Computer Science Masters Student, 2022-2023) &mdash; <em>Now Software Engineer at Arista Networks</em></span></li>
               <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Maggie Cornelius</strong> (Undergraduate Student Researcher, MCDB, 2021-2023)</span></li>
-              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Phuoc Huynh</strong> (MCDB Rotation Student, Fall 2022)</span></li>
               <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Carson McKenna</strong> (STEM UpLIFT / Summer Undergraduate Student, 2022)</span></li>
               <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Ryan Otten</strong> (Community College / Summer Undergraduate Student, 2022)</span></li>
               <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Ryan Stoner</strong> (Undergraduate Student, 2020-2022) &mdash; <em>Now NIH Postbac</em></span></li>
-              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>David Vaisar</strong> (Biochemistry Rotation Student, Spring 2022)</span></li>
-              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Miranda Juarros</strong> (Biochemistry Rotation Student, Spring 2022)</span></li>
-              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Casey Simoes</strong> (Lab Manager, 2021-2022)</span></li>
-              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Shamira Gonzalez</strong> (Biochemistry Rotation Student, Fall 2021)</span></li>
-              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Sashi Weerawarana</strong> (Biochemistry Rotation Student, Fall 2021)</span></li>
               <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Tyler Hobbs</strong> (Biochemistry Undergraduate, Fall 2021) &mdash; <em>Now Laboratory Associate at SomaLogic</em></span></li>
               <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Elijah Ortivez</strong> (STEM UpLIFT, Fall 2021)</span></li>
+            </ul>
+          </div>
+          <div class="glass-card alumni-card" style="padding: 30px;">
+            <h4>Research Associates and Other Alumni</h4>
+            <ul style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 15px;">
+              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Kaylor Huang</strong> (High School, Summer 2024)</span></li>
+              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Angel Zhang</strong> (PRA, 2022-2024) &mdash; <em>Now at UCSF (preparing for Med School)</em></span></li>
+              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Akhil Gargey Iragavarapu</strong> (Postdoctoral Fellow, 2021-2024)</span></li>
+              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Ash Weier</strong> (Lab Manager, 2022-2023) &mdash; <em>Now PRA at CU Boulder Center for Cryo Electron Tomography</em></span></li>
+              <li><i class="fa-solid fa-circle-notch"></i> <span><strong>Casey Simoes</strong> (Lab Manager, 2021-2022)</span></li>
             </ul>
           </div>
         </div>
@@ -1257,6 +1315,7 @@ At the Kasinath Lab, Will works on characterizing gene repression by PRC2 and th
       
       <!-- Social Media & external networks -->
       <div class="social-links" id="footer-social-links">
+        <a href="https://github.com/KasinathLab" target="_blank" rel="noopener" class="social-btn" aria-label="Kasinath Lab GitHub"><i class="fa-brands fa-github"></i></a>
         <a href="https://www.linkedin.com/pub/vignesh-kasinath/5/b67/960" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn Profile"><i class="fa-brands fa-linkedin-in"></i></a>
         <a href="https://www.flickr.com/people/vignesh757/" target="_blank" rel="noopener" class="social-btn" aria-label="Flickr Gallery"><i class="fa-brands fa-flickr"></i></a>
         <a href="https://KasLab-Twitter/" target="_blank" rel="noopener" class="social-btn" aria-label="Twitter Profile"><i class="fa-brands fa-x-twitter"></i></a>
@@ -1288,7 +1347,7 @@ At the Kasinath Lab, Will works on characterizing gene repression by PRC2 and th
       <div class="piku-bubble" id="piku-bubble-text">Bark!</div>
     </div>
     <div class="piku-cutout-wrapper" onclick="triggerPikuInteractive()">
-      <img src="/assets/piku_cutout.png?v=4" alt="Piku cardboard cutout mascot" class="piku-cutout-img">
+      <img loading="lazy" decoding="async" src="/assets/piku_cutout.png?v=4" alt="Piku cardboard cutout mascot" class="piku-cutout-img">
     </div>
   </div>
 
