@@ -53,7 +53,7 @@
   <header class="main-header" id="site-header">
     <div class="logo-container" id="brand-logo">
       <a href="#" onclick="document.querySelector('[data-target=home]').click(); return false;">
-        <img src="/assets/vk_logo.png" alt="Vignesh Kasinath Lab Logo" class="header-logo">
+        <img src="/assets/vk_logo.webp" alt="Vignesh Kasinath Lab Logo" class="header-logo">
         <span class="logo-text">KASINATH LAB</span>
       </a>
     </div>
@@ -111,13 +111,13 @@
         <div class="hero-sidebar">
           <div class="glass-card hero-carousel" id="hero-media">
             <div class="carousel-slide active">
-              <img src="/assets/hero_molecular_fit.jpg" alt="Molecular structure fitted in cryo-EM density envelope">
+              <img fetchpriority="high" src="/assets/hero_molecular_fit.webp" alt="Molecular structure fitted in cryo-EM density envelope">
             </div>
             <div class="carousel-slide">
-              <img src="/assets/hero_quadruplex.png" alt="G-quadruplex molecular wireframe structure with central coordination ions">
+              <img src="/assets/hero_quadruplex.webp" alt="G-quadruplex molecular wireframe structure with central coordination ions">
             </div>
             <div class="carousel-slide">
-              <img src="/assets/hero_macromolecule.png" alt="Complete macromolecular assembly in cryo-EM reconstruction">
+              <img src="/assets/hero_macromolecule.webp" alt="Complete macromolecular assembly in cryo-EM reconstruction">
             </div>
           </div>
 
@@ -127,42 +127,42 @@
             
             <div class="news-carousel">
               <div class="glass-card news-card active" id="news-dnmt1-preprint">
-                <img src="/assets/piku_news_logo.png" alt="" class="news-img">
+                <img src="/assets/piku_news_logo.webp" alt="" class="news-img">
                 <div class="news-date">September 2026</div>
                 <div class="news-headline">New preprint on RNA binding to DNMT1</div>
                 <div class="news-excerpt">Jessica Song, Thomas Cech, and Vignesh Kasinath report cryo-EM structures of DNMT1 bound to pUG-fold RNA. Read the <a href="https://doi.org/10.64898/2026.09.01.748594" target="_blank" rel="noopener">bioRxiv preprint</a>.</div>
               </div>
 
               <div class="glass-card news-card" id="news-cdmrp-idea-award">
-                <img src="/assets/piku_news_logo.png" alt="CDMRP Award" class="news-img">
+                <img src="/assets/piku_news_logo.webp" alt="CDMRP Award" class="news-img">
                 <div class="news-date">July 2026</div>
                 <div class="news-headline">Lab Awarded CDMRP/PRCRP Idea Award (2026-2028)</div>
                 <div class="news-excerpt">The Kasinath Lab has been awarded a CDMRP/PRCRP Idea Award for 2026-2028. This grant will fund our research investigating the molecular mechanisms of Polycomb regulation in health and disease contexts.</div>
               </div>
 
               <div class="glass-card news-card" id="news-eric-training-grant">
-                <img src="/assets/piku_news_logo.png" alt="Training Grant" class="news-img">
+                <img src="/assets/piku_news_logo.webp" alt="Training Grant" class="news-img">
                 <div class="news-date">July 2026</div>
                 <div class="news-headline">Eric Lian Awarded the BioDataScience Training Grant</div>
                 <div class="news-excerpt">Congratulations to biochemistry graduate student Eric Lian on being awarded the BioDataScience Training Grant! This fellowship will support his research applying computational and biochemical tools to investigate epigenetic complexes.</div>
               </div>
 
               <div class="glass-card news-card" id="news-cellreports-sir">
-                <img src="/assets/piku_news_logo.png" alt="SIR heterochromatin" class="news-img">
+                <img src="/assets/piku_news_logo.webp" alt="SIR heterochromatin" class="news-img">
                 <div class="news-date">July 2026</div>
                 <div class="news-headline">SIR heterochromatin study published in Cell Reports</div>
                 <div class="news-excerpt">Our collaborative study "Physical interactions within the SIR heterochromatin complex potentiate inter-subunit communication and gene repression" was published in Cell Reports. Read details under our <a href="#publications" onclick="document.querySelector('[data-target=publications]').click();">Publications</a> tab.</div>
               </div>
 
               <div class="glass-card news-card" id="news-miso-preprint">
-                <img src="/assets/piku_news_logo.png" alt="Volumetric EM" class="news-img">
+                <img src="/assets/piku_news_logo.webp" alt="Volumetric EM" class="news-img">
                 <div class="news-date">June 2026</div>
                 <div class="news-headline">New Preprint on vEM Segmentation Published in bioRxiv</div>
                 <div class="news-excerpt">Shanmukha and George published their new paper "MISO: A Controlled Ablation of Masking, Initialization, Sampling, and Optimization for Segmentation in Volumetric Electron Microscopy." Read the preprint on <a href="https://doi.org/10.64898/2026.06.19.733473" target="_blank" rel="noopener">bioRxiv</a>.</div>
               </div>
 
               <div class="glass-card news-card" id="news-welcome-george-eric">
-                <img src="/assets/piku_news_logo.png" alt="Welcome George and Eric" class="news-img">
+                <img src="/assets/piku_news_logo.webp" alt="Welcome George and Eric" class="news-img">
                 <div class="news-date">June 2026</div>
                 <div class="news-headline">Welcome Graduate Students George and Eric!</div>
                 <div class="news-excerpt">We are excited to welcome George Stephenson (CS PhD student &amp; IQ Biology Fellow) and Eric Lian (Biochemistry Graduate Student) to the Kasinath Lab! Meet them in our <a href="#team" onclick="document.querySelector('[data-target=team]').click();">Team</a> tab.</div>
@@ -286,7 +286,7 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
           </ul>
         </div>
         <div>
-          <img loading="lazy" decoding="async" src="/assets/cryo_microscope.png" alt="Cryo-EM electron microscope concept graphic" style="width: 100%; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: var(--shadow-glow-violet);">
+          <img loading="lazy" decoding="async" src="/assets/cryo_microscope.webp" alt="Cryo-EM electron microscope concept graphic" style="width: 100%; border-radius: 12px; border: 1px solid var(--border-color); box-shadow: var(--shadow-glow-violet);">
         </div>
       </div>
     </section>
@@ -338,6 +338,35 @@ We are particularly interested in the tug-of-war between RNA and the nucleosome 
             <h4>PDB 8VOB</h4>
             <span>PRC2 with an H3K36me3-modified nucleosome</span>
             <span>Resolution: 3.1 &Aring;</span>
+          </button>
+
+          <button class="structure-btn" data-pdb="prc2-cyclophe" id="btn-struct-prc2-cyclophe">
+            <h4>PRC2 with cycloPhe (compact)</h4>
+            <span>CIF coordinate file</span>
+          </button>
+
+          <button class="structure-btn" data-pdb="mecp2-hmlink" id="btn-struct-mecp2-hmlink">
+            <h4>MeCP2 hmLinker model</h4>
+            <span>PDB coordinate file</span>
+            <span>Resolution: 3.05 &Aring;</span>
+          </button>
+
+          <button class="structure-btn" data-pdb="mecp2-nuc" id="btn-struct-mecp2-nuc">
+            <h4>Two MeCP2 molecules with a nucleosome</h4>
+            <span>PDB coordinate file</span>
+            <span>Resolution: 2.80 &Aring;</span>
+          </button>
+
+          <button class="structure-btn" data-pdb="dnmt1-full-length" id="btn-struct-dnmt1-full-length">
+            <h4>Full-length DNMT1</h4>
+            <span>PDB coordinate file</span>
+            <span>Resolution: 5.00 &Aring;</span>
+          </button>
+
+          <button class="structure-btn" data-pdb="dnmt1-delta-1-619" id="btn-struct-dnmt1-delta-1-619">
+            <h4>DNMT1 lacking residues 1-619</h4>
+            <span>PDB coordinate file</span>
+            <span>Resolution: 2.50 &Aring;</span>
           </button>
 
           <button class="structure-btn" data-pdb="5HYN" id="btn-struct-5hyn">
@@ -1347,7 +1376,7 @@ At the Kasinath Lab, Ved conducted research benchmarking Large Language Models f
       <div class="piku-bubble" id="piku-bubble-text">Bark!</div>
     </div>
     <div class="piku-cutout-wrapper" onclick="triggerPikuInteractive()">
-      <img loading="lazy" decoding="async" src="/assets/piku_cutout.png?v=4" alt="Piku cardboard cutout mascot" class="piku-cutout-img">
+      <img loading="lazy" decoding="async" src="/assets/piku_cutout.webp?v=4" alt="Piku cardboard cutout mascot" class="piku-cutout-img">
     </div>
   </div>
 

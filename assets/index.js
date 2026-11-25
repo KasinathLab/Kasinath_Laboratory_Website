@@ -85,101 +85,66 @@ function initMobileMenu() {
    ========================================================================= */
 function initCanvasBackground() {
   const canvas = document.getElementById('bg-canvas');
-  if (!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!canvas) return;
 
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
-  let width = canvas.width = window.innerWidth;
-  let height = canvas.height = window.innerHeight;
 
-  window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  });
+  const points = Array.from({ length: 45 }, (_, index) => ({
+    x: Math.random(),
+    y: Math.random(),
+    radius: Math.random() * 3 + 1.5,
+    useFirstColor: index % 2 === 0
+  }));
+  let drawFrame = null;
 
-  const particles = [];
-  const particleCount = window.matchMedia('(max-width: 768px)').matches ? 24 : 45;
-  const connectionDistance = 140;
+  function drawBackground() {
+    drawFrame = null;
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
 
-  // Particle/line colors follow the active theme (read live so toggling updates instantly)
-  function themePalette() {
     const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-    return dark
-      ? { a: 'rgba(212, 175, 55, 0.55)', b: 'rgba(255, 242, 178, 0.4)', line: '212, 175, 55' }
-      : { a: 'rgba(138, 109, 59, 0.4)', b: 'rgba(15, 23, 42, 0.35)', line: '138, 109, 59' };
-  }
+    const firstColor = dark ? 'rgba(212, 175, 55, 0.55)' : 'rgba(138, 109, 59, 0.4)';
+    const secondColor = dark ? 'rgba(255, 242, 178, 0.4)' : 'rgba(15, 23, 42, 0.35)';
+    const lineColor = dark ? '212, 175, 55' : '138, 109, 59';
+    const count = width <= 768 ? 24 : points.length;
+    const connectionDistance = 140;
 
-  class Particle {
-    constructor() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-      this.radius = Math.random() * 3 + 1.5;
-      this.speedX = (Math.random() - 0.5) * 0.45;
-      this.speedY = (Math.random() - 0.5) * 0.45;
-      // Theme decides the actual color at draw time (see themePalette)
-      this.useFirst = Math.random() > 0.5;
-    }
+    ctx.lineWidth = 0.8;
+    for (let i = 0; i < count; i++) {
+      const point = points[i];
+      const x = point.x * width;
+      const y = point.y * height;
+      for (let j = i + 1; j < count; j++) {
+        const otherX = points[j].x * width;
+        const otherY = points[j].y * height;
+        const distance = Math.hypot(x - otherX, y - otherY);
+        if (distance >= connectionDistance) continue;
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(otherX, otherY);
+        ctx.strokeStyle = 'rgba(' + lineColor + ', ' + ((1 - distance / connectionDistance) * 0.12) + ')';
+        ctx.stroke();
+      }
 
-    update() {
-      this.x += this.speedX;
-      this.y += this.speedY;
-
-      // Bounce at boundary
-      if (this.x < 0 || this.x > width) this.speedX *= -1;
-      if (this.y < 0 || this.y > height) this.speedY *= -1;
-    }
-
-    draw() {
       ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = this.color;
+      ctx.arc(x, y, point.radius, 0, Math.PI * 2);
+      ctx.fillStyle = point.useFirstColor ? firstColor : secondColor;
       ctx.fill();
     }
   }
 
-  for (let i = 0; i < particleCount; i++) {
-    particles.push(new Particle());
+  function scheduleDraw() {
+    if (drawFrame === null) drawFrame = requestAnimationFrame(drawBackground);
   }
-
-  let lastFrame = 0;
-  const frameInterval = 1000 / 30;
-  function animate(now) {
-    requestAnimationFrame(animate);
-    const elapsed = now - lastFrame;
-    if (elapsed < frameInterval) return;
-    lastFrame = now - (elapsed % frameInterval);
-    ctx.clearRect(0, 0, width, height);
-    const pal = themePalette();
-
-    // Draw connection lines representing biological nodes/complexes
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
-        if (dist < connectionDistance) {
-          const alpha = (1 - dist / connectionDistance) * 0.12;
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(${pal.line}, ${alpha})`;
-          ctx.lineWidth = 0.8;
-          ctx.stroke();
-        }
-      }
-    }
-
-    // Update and draw particles
-    particles.forEach(p => {
-      p.update();
-      p.color = p.useFirst ? pal.a : pal.b;
-      p.draw();
-    });
-
-  }
-
-  requestAnimationFrame(animate);
+  window.addEventListener('resize', scheduleDraw);
+  new MutationObserver(scheduleDraw).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+  });
+  scheduleDraw();
 }
 
 /* =========================================================================
@@ -215,6 +180,41 @@ const structuresData = {
     name: 'PRC2 with an H3K36me3-modified nucleosome',
     method: 'Single Particle Cryo-EM (3.1 \u00c5)',
     description: '<a href="https://www.rcsb.org/structure/8VOB" target="_blank" rel="noopener">View entry 8VOB at RCSB PDB</a>.'
+  },
+  'prc2-cyclophe': {
+    name: 'PRC2 with cycloPhe (compact)',
+    method: 'Cryo-EM coordinate model',
+    description: 'Viewer copy of the supplied mmCIF coordinates.',
+    file: 'structures/PRC2_cycloPhe_compact_viewer.pdb',
+    format: 'pdb'
+  },
+  'mecp2-hmlink': {
+    name: 'MeCP2 hmLinker model',
+    method: 'Model resolution: 3.05 \u00c5',
+    description: 'View the supplied PDB coordinates.',
+    file: 'structures/hmLinker_MeCP2.pdb',
+    format: 'pdb'
+  },
+  'mecp2-nuc': {
+    name: 'Two MeCP2 molecules with a nucleosome',
+    method: 'Model resolution: 2.80 \u00c5',
+    description: 'View the supplied PDB coordinates.',
+    file: 'structures/2MeCP2_nuc.pdb',
+    format: 'pdb'
+  },
+  'dnmt1-full-length': {
+    name: 'Full-length DNMT1',
+    method: 'Model resolution: 5.00 \u00c5',
+    description: 'View the supplied PDB coordinates.',
+    file: 'structures/FL_DNMT1_Model.pdb',
+    format: 'pdb'
+  },
+  'dnmt1-delta-1-619': {
+    name: 'DNMT1 lacking residues 1-619',
+    method: 'Model resolution: 2.50 \u00c5',
+    description: 'View the supplied PDB coordinates.',
+    file: 'structures/DNMT1_delta1_619_Model.pdb',
+    format: 'pdb'
   },
   '5HYN': {
     name: 'Human PRC2 Core (Fitted in EMD-7306/7310/7312)',
@@ -325,18 +325,22 @@ function initStructureViewer() {
   }
 }
 
+const structureAssetBase = new URL('.', document.currentScript.src);
+let structureRequest;
+
 function loadStructure(pdbId) {
   const container = document.getElementById('viewer-viewport');
   if (!container) return;
 
   unloadStructureViewer();
-  
+  const structure = structuresData[pdbId];
+
   // Set up loader indicator
   const loader = document.createElement('div');
   loader.className = 'loader-indicator';
   loader.innerHTML = `
-    <img src="assets/piku_cutout.png" class="piku-loader-img" alt="Piku loading molecular structure">
-    <div class="piku-loader-text">Piku is retrieving structure ${pdbId} from PDB...</div>
+    <img src="assets/piku_cutout.webp" class="piku-loader-img" alt="Piku loading molecular structure">
+    <div class="piku-loader-text">Loading ${structure?.name || pdbId}...</div>
   `;
   container.appendChild(loader);
 
@@ -347,7 +351,7 @@ function loadStructure(pdbId) {
     const viewer = $3Dmol.createViewer(element, config);
     window.activeViewer = viewer;
 
-    $3Dmol.download("pdb:" + pdbId, viewer, {}, function() {
+    function renderModel() {
       if (window.activeViewer !== viewer) return;
       // Remove loader text
       const loadMsg = container.querySelector('.loader-indicator');
@@ -369,7 +373,31 @@ function loadStructure(pdbId) {
       if (isSpinning) {
         viewer.spin(true);
       }
-    });
+    }
+
+    if (structure?.file) {
+      structureRequest = new AbortController();
+      fetch(new URL(structure.file, structureAssetBase), { signal: structureRequest.signal })
+        .then(response => {
+          if (!response.ok) throw new Error('Coordinate request failed: ' + response.status);
+          return response.text();
+        })
+        .then(data => {
+          if (window.activeViewer !== viewer) return;
+          const model = viewer.addModel(data, structure.format);
+          if (!model.selectedAtoms({}).length) throw new Error('The model contains no atoms');
+          renderModel();
+        })
+        .catch(error => {
+          if (error.name === 'AbortError' || window.activeViewer !== viewer) return;
+          console.error(error);
+          loader.textContent = location.protocol === 'file:'
+            ? 'Open the site through the local preview server to view this model.'
+            : 'Unable to load these coordinates.';
+        });
+    } else {
+      $3Dmol.download('pdb:' + pdbId, viewer, {}, renderModel);
+    }
   } catch (error) {
     console.error("Failed to load 3Dmol viewer:", error);
     loader.textContent = "Error loading 3D molecular viewer. Check connection.";
@@ -377,6 +405,8 @@ function loadStructure(pdbId) {
 }
 
 function unloadStructureViewer() {
+  structureRequest?.abort();
+  structureRequest = null;
   if (window.activeViewer) {
     try {
       window.activeViewer.spin(false);
@@ -515,12 +545,33 @@ function initPublicationsFilter() {
 /* =========================================================================
    Carousels (Hero and News)
    ========================================================================= */
+function rotateWhenVisible(element, advance, delay) {
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let visible = false;
+  let timer;
+
+  function reset() {
+    clearInterval(timer);
+    if (visible && !document.hidden && !reducedMotion.matches) {
+      timer = setInterval(advance, delay);
+    }
+  }
+
+  new IntersectionObserver(([entry]) => {
+    visible = entry.isIntersecting;
+    reset();
+  }).observe(element);
+  document.addEventListener('visibilitychange', reset);
+  reducedMotion.addEventListener('change', reset);
+  return reset;
+}
+
 function initCarousels() {
   // Hero Carousel Setup
   const heroSlides = document.querySelectorAll('#hero-media .carousel-slide');
   if (heroSlides.length > 0) {
     let currentHeroIndex = 0;
-    setInterval(() => {
+    rotateWhenVisible(heroSlides[0].parentElement, () => {
       heroSlides[currentHeroIndex].classList.remove('active');
       currentHeroIndex = (currentHeroIndex + 1) % heroSlides.length;
       heroSlides[currentHeroIndex].classList.add('active');
@@ -543,8 +594,7 @@ function initCarousels() {
       dot.addEventListener('click', () => {
         goToNewsSlide(index);
         // Reset interval on manual click
-        clearInterval(newsInterval);
-        newsInterval = setInterval(nextNewsSlide, 6000);
+        resetNewsRotation();
       });
       newsDotsContainer.appendChild(dot);
     });
@@ -566,7 +616,7 @@ function initCarousels() {
       goToNewsSlide(nextIndex);
     }
 
-    let newsInterval = setInterval(nextNewsSlide, 6000); // 6 seconds per slide
+    const resetNewsRotation = rotateWhenVisible(newsCarousel, nextNewsSlide, 6000);
   }
 
   // Lab Gallery Carousels (Lab Photos, Shenanigans, Life Outside)
